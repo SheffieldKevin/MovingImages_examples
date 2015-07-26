@@ -37,6 +37,8 @@ class ZukiniDemoVideo
     ""
   ]
 
+  @@video_processing_methods = []
+
   def self.path_to_inputmovie_withindex(i)
     return nil if i < 0 || i >= @@movies.count
     return File.join(@@directory, @@movies[i])
@@ -97,13 +99,9 @@ class ZukiniDemoVideo
   end
 
   def self.process_frame_movieindex0(commands, bitmap: nil, frame_index: 0)
-    
-  end
-
-  def self.process_frame(commands, bitmap: nil, movie_index: 0, frame_index: 0)
     return if frame_index == 0
-    width = self.videowidth.to_f * frame_index / 120.0
-    width = [width, self.videowidth - 20].min
+    width = (self.videowidth - 250.0) * frame_index / 240.0
+    width = [width, self.videowidth - 250].min
     drawLinearFill = MILinearGradientFillElement.new
     colors = [
                 MIColor.make_rgbacolor(0.14, 0.025, 0.16, a: 0.65),
@@ -127,7 +125,7 @@ class ZukiniDemoVideo
     drawLinearFill.shadow = theShadow
     
     drawText = MIDrawBasicStringElement.new
-    drawText.stringtext = @@video_texts[movie_index]
+    drawText.stringtext = @@video_texts[0]
     drawText.fontsize = 48
     drawText.postscriptfontname = 'BrandonGrotesque-Bold'
     drawText.fillcolor = MIColor.make_rgbacolor(0.85,0.85,0.75)
@@ -151,6 +149,34 @@ class ZukiniDemoVideo
     commands.add_command(drawCommand)
   end
 
+  def self.process_frame_movieindex1(commands, bitmap: nil, frame_index: 0)
+    
+  end
+
+  def self.process_frame_movieindex2(commands, bitmap: nil, frame_index: 0)
+    
+  end
+
+  def self.process_frame_movieindex3(commands, bitmap: nil, frame_index: 0)
+    
+  end
+
+  def self.pre_roll()
+    @@video_processing_methods.push(method(:process_frame_movieindex0))
+    @@video_processing_methods.push(method(:process_frame_movieindex1))
+    @@video_processing_methods.push(method(:process_frame_movieindex2))
+    @@video_processing_methods.push(method(:process_frame_movieindex3))
+#    puts @@video_processing_methods.push(method(:process_frame_movieindex3))
+  end
+
+  def self.process_frame(commands, bitmap: nil, movie_index: 0, frame_index: 0)
+    @@video_processing_methods[movie_index].call(commands, bitmap: bitmap,
+                                              frame_index: frame_index)
+#    return if movie_index > 0
+#    self.process_frame_movieindex0(commands, bitmap: bitmap,
+#                                   frame_index: frame_index)
+  end
+
   def self.create_intermediatemovies(movie_index: 0, async: true)
     theCommands = SmigCommands.new
     theCommands.run_asynchronously = async
@@ -159,8 +185,8 @@ class ZukiniDemoVideo
 
     bitmap = theCommands.make_createbitmapcontext(size: self.frame_size,
              preset: :PlatformDefaultBitmapContext)
-#    bitmap = theCommands.make_createwindowcontext(rect: self.frame_rectangle) #unless async
-    videoFramesWriter = theCommands.make_createvideoframeswriter(
+#    bitmap = theCommands.make_createwindowcontext(rect: self.frame_rectangle)
+     videoFramesWriter = theCommands.make_createvideoframeswriter(
                           self.path_to_exportedmovie_withindex(movie_index))
     # MIMeta.listvideoframewriterpresets
     addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
@@ -170,7 +196,7 @@ class ZukiniDemoVideo
                      frameduration: self.frame_duration)
     theCommands.add_command(addVideoInputCommand)
 #    298.times do |i|
-    120.times do |i|
+    298.times do |i|
       drawFrameCommand = self.create_draw_nextframe_tobitmap_command(bitmap,
                                                               movieImporter)
       theCommands.add_command(drawFrameCommand)
@@ -192,6 +218,7 @@ end
 
 # puts "#{ZukiniDemoVideo.zukini_logo}"
 # puts "#{ZukiniDemoVideo.moving_logo}"
+ZukiniDemoVideo.pre_roll()
 
 1.times do |j|
 #  ZukiniDemoVideo.create_intermediatemovies(movie_index: j, async: true)
