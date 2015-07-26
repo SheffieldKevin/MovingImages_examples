@@ -100,8 +100,8 @@ class ZukiniDemoVideo
 
   def self.process_frame_movieindex0(commands, bitmap: nil, frame_index: 0)
     return if frame_index == 0
-    width = (self.videowidth - 250.0) * frame_index / 240.0
-    width = [width, self.videowidth - 250].min
+    width = (self.videowidth - 280.0) * frame_index / 240.0
+    width = [width, self.videowidth - 280].min
     drawLinearFill = MILinearGradientFillElement.new
     colors = [
                 MIColor.make_rgbacolor(0.14, 0.025, 0.16, a: 0.65),
