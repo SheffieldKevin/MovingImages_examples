@@ -31,7 +31,7 @@ class ZukiniDemoVideo
   ]
 
   @@video_texts = [
-    "MovingImages by Zukini    -    Visit us at zukini.eu",
+    "Made with MovingImages for Zukini   -   zukini.eu",
     "",
     "",
     ""
@@ -98,8 +98,89 @@ class ZukiniDemoVideo
     drawImage
   end
 
-  def self.process_frame_movieindex0(commands, bitmap: nil, frame_index: 0)
+  def self.preroll_movieindex0(commands)
+    width = self.videowidth - 280
+    bitmapSize = MIShapes.make_size(width, 100)
+    bitmap = commands.make_createbitmapcontext(size: bitmapSize,
+                            preset: :PlatformDefaultBitmapContext)
+    rect = MIShapes.make_rectangle(width: width,
+                                  height: 100, yloc: 0)
+    drawTransparentFill = MIDrawElement.new(:fillrectangle)
+    drawTransparentFill.rectangle = rect
+    drawTransparentFill.fillcolor = MIColor.make_rgbacolor(0,0,0, a: 0)
+    drawTransparentFill.blendmode = :kCGBlendModeCopy
+    drawLinearFill = MILinearGradientFillElement.new
+#    drawLinearFill.blendmode = :kCGBlendModeCopy
+    colors = [
+                MIColor.make_rgbacolor(0.14, 0.025, 0.16, a: 0.65),
+                MIColor.make_rgbacolor(0.27, 0.05, 0.31, a: 0.65)
+              ]
+    locations = [0.0, 1.0]
+    drawLinearFill.set_arrayoflocations_andarrayofcolors(locations, colors)
+    startPoint = MIShapes.make_point(width * 0.5, 0)
+    endPoint = MIShapes.make_point(width * 0.5, 100)
+    drawLinearFill.line = MIShapes.make_line(startPoint, endPoint)
+    thePath = MIPath.new
+    thePath.add_roundedrectangle_withradiuses(rect,
+                                    radiuses: [16.0, 16.0, 1.0, 1.0])
+    drawLinearFill.arrayofpathelements = thePath
+    drawLinearFill.startpoint = MIShapes.make_point(0, 0)
+
+    drawText = MIDrawBasicStringElement.new
+    drawText.stringtext = @@video_texts[0]
+    drawText.fontsize = 48
+#    drawText.fontsize = 54
+    drawText.postscriptfontname = 'BrandonGrotesque-Bold'
+#    drawText.postscriptfontname = 'Tahoma-Bold'
+    drawText.fillcolor = MIColor.make_rgbacolor(0.85, 0.85, 0.75)
+#    drawText.blendmode = :kCGBlendModeCopy
+    drawText.textalignment = :kCTTextAlignmentRight
+    boundingBox = MIShapes.make_rectangle(width: width - 20,
+                                         height: 80,
+                                           xloc: 0,
+                                           yloc: 10)
+    drawText.boundingbox = boundingBox
+    
+    textInnerShadow = MIShadow.new
+    textInnerShadow.color = MIColor.make_rgbacolor(0.2,0.1,0)
+    textInnerShadow.blur = 2
+    textInnerShadow.offset = MIShapes.make_size(0.5, -1)
+    drawText.innershadow = textInnerShadow
+    drawElements = MIDrawElement.new(:arrayofelements)
+#    drawElements.blendmode = :kCGBlendModeCopy
+    drawElements.add_drawelement_toarrayofelements(drawTransparentFill)
+    drawElements.add_drawelement_toarrayofelements(drawLinearFill)
+    drawElements.add_drawelement_toarrayofelements(drawText)
+    drawCommand = CommandModule.make_drawelement(bitmap,
+                              drawinstructions: drawElements,
+                                   createimage: true)
+    commands.add_command(drawCommand)
+    bitmap
+  end
+
+  def self.process_frame_movieindex0(commands, bitmap: nil, frame_index: 0,
+                                     bitmap2: nil)
     return if frame_index == 0
+    return if bitmap2.nil?
+    drawImageElement = MIDrawImageElement.new
+    x = (self.videowidth - 280.0) * (frame_index.to_f / 150.0 - 1.0)
+    x = [x, 0.0].min
+    destRect = MIShapes.make_rectangle(width: 1000, height: 100,
+                                        xloc: x, yloc: 40)
+    drawImageElement.destinationrectangle = destRect
+    drawImageElement.set_bitmap_imagesource(source_object: bitmap2)
+
+    theShadow = MIShadow.new
+    theShadow.color = MIColor.make_rgbacolor(0,0,0, a: 0.8)
+    theShadow.blur = 12
+    theShadow.offset = MIShapes.make_size(6, -12)
+    drawImageElement.shadow = theShadow
+    
+    drawCommand = CommandModule.make_drawelement(bitmap,
+                              drawinstructions: drawImageElement)
+    commands.add_command(drawCommand)
+
+=begin
     width = (self.videowidth - 280.0) * frame_index / 240.0
     width = [width, self.videowidth - 280].min
     drawLinearFill = MILinearGradientFillElement.new
@@ -147,17 +228,21 @@ class ZukiniDemoVideo
     drawCommand = CommandModule.make_drawelement(bitmap,
                               drawinstructions: drawElements)
     commands.add_command(drawCommand)
+=end
   end
 
-  def self.process_frame_movieindex1(commands, bitmap: nil, frame_index: 0)
+  def self.process_frame_movieindex1(commands, bitmap: nil, frame_index: 0,
+                                      bitmap2: nil)
     
   end
 
-  def self.process_frame_movieindex2(commands, bitmap: nil, frame_index: 0)
+  def self.process_frame_movieindex2(commands, bitmap: nil, frame_index: 0,
+                                      bitmap2: nil)
     
   end
 
-  def self.process_frame_movieindex3(commands, bitmap: nil, frame_index: 0)
+  def self.process_frame_movieindex3(commands, bitmap: nil, frame_index: 0,
+                                      bitmap2: nil)
     
   end
 
@@ -169,9 +254,12 @@ class ZukiniDemoVideo
 #    puts @@video_processing_methods.push(method(:process_frame_movieindex3))
   end
 
-  def self.process_frame(commands, bitmap: nil, movie_index: 0, frame_index: 0)
-    @@video_processing_methods[movie_index].call(commands, bitmap: bitmap,
-                                              frame_index: frame_index)
+  def self.process_frame(commands, bitmap: nil, movie_index: 0, frame_index: 0,
+                         bitmap2: nil)
+    @@video_processing_methods[movie_index].call(commands,
+                                         bitmap: bitmap,
+                                    frame_index: frame_index,
+                                        bitmap2: bitmap2)
 #    return if movie_index > 0
 #    self.process_frame_movieindex0(commands, bitmap: bitmap,
 #                                   frame_index: frame_index)
@@ -195,6 +283,10 @@ class ZukiniDemoVideo
                          framesize: self.frame_size,
                      frameduration: self.frame_duration)
     theCommands.add_command(addVideoInputCommand)
+    bitmap2 = nil
+    if movie_index == 0
+      bitmap2 = self.preroll_movieindex0(theCommands)
+    end
 #    298.times do |i|
     298.times do |i|
       drawFrameCommand = self.create_draw_nextframe_tobitmap_command(bitmap,
@@ -202,7 +294,8 @@ class ZukiniDemoVideo
       theCommands.add_command(drawFrameCommand)
       self.process_frame(theCommands, bitmap: bitmap,
                                  movie_index: movie_index,
-                                 frame_index: i)
+                                 frame_index: i,
+                                     bitmap2: bitmap2)
       addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
                                                            videoFramesWriter,
                                              sourceobject: bitmap)
