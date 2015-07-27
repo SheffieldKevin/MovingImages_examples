@@ -176,25 +176,15 @@ class ZukiniDemoVideo
     return if bitmap2.nil?
     drawImageElement = MIDrawImageElement.new
     scrollDistance = self.videowidth - 280.0
-#    numFullScrollFrames = 100
-    numFullScrollFrames = 0
-#    numEasingOutScrollFrames = numFullScrollFrames
     numEasingOutScrollFrames = 200
     x = 0
-    if frame_index < numFullScrollFrames
-      x = scrollDistance * (frame_index / (numFullScrollFrames * 1.5) - 1.0)
-    elsif frame_index < (numFullScrollFrames + numEasingOutScrollFrames)
-#      x0 = -0.3333333333333 * scrollDistance
+    if frame_index < numEasingOutScrollFrames
       x0 = -scrollDistance
-      index = frame_index - numFullScrollFrames
-      norm_index = index.to_f / numEasingOutScrollFrames
-#     x = x0 + norm_index * (1.0 - norm_index * 0.5) * 0.666666 * scrollDistance
-     x = x0 + norm_index * (1.0 - norm_index * 0.5) * 2.0 * scrollDistance
+      norm_index = frame_index.to_f / numEasingOutScrollFrames
+      x = x0 + norm_index * (1.0 - norm_index * 0.5) * 2.0 * scrollDistance
     else
       x = 0
     end
-    # x = (self.videowidth - 280.0) * (frame_index.to_f / 150.0 - 1.0)
-    # x = [x, 0.0].min
     destRect = MIShapes.make_rectangle(width: 1000, height: 100,
                                         xloc: x, yloc: 40)
     drawImageElement.destinationrectangle = destRect
@@ -294,7 +284,10 @@ end
 
 ZukiniDemoVideo.pre_roll()
 
-1.times do |j|
-#  ZukiniDemoVideo.create_intermediatemovies(movie_index: j, async: true)
-  ZukiniDemoVideo.create_intermediatemovies(movie_index: j, async: false)
+ZukiniDemoVideo.create_intermediatemovies(movie_index: 1, async: false)
+
+=begin
+4.times do |j|
+  ZukiniDemoVideo.create_intermediatemovies(movie_index: j, async: true)
 end
+=end
