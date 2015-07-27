@@ -14,11 +14,16 @@ class ZukiniDemoVideo
   @@directory = '/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo'
   @@zukini_logo = File.join(@@directory, 'Zukini Logo-02.png')
   @@moving_logo = File.join(@@directory, 'Zukini Logo-04.png')
+  @@moving_logo2 = File.join(@@directory, 'Zukini Logo-05.png')
 
-  @@zukini_logo_objectid = SmigIDHash.make_objectid(
-                    objecttype: :imageimporter, objectname: SecureRandom.uuid)
-  @@moving_logo_identifier = SmigIDHash.make_objectid(
-                    objecttype: :imageimporter, objectname: SecureRandom.uuid)
+  @@zukini_logo_identifier = SecureRandom.uuid
+  @@moving_logo_identifier = SecureRandom.uuid
+  @@moving_logo2_identifier = SecureRandom.uuid
+
+#  @@zukini_logo_objectid = SmigIDHash.make_objectid(
+#                    objecttype: :imageimporter, objectname: SecureRandom.uuid)
+#  @@moving_logo_objectid = SmigIDHash.make_objectid(
+#                    objecttype: :imageimporter, objectname: SecureRandom.uuid)
 
   # @@output_directory = Dir.tmpdir
   @@output_directory = File.expand_path("~/Desktop/tempmovies/")
@@ -31,14 +36,55 @@ class ZukiniDemoVideo
   ]
 
   @@video_texts = [
-    "Made with MovingImages for Zukini   -   zukini.eu",
-    "",
-    "",
-    ""
+"Made with MovingImages for Zukini   -   zukini.eu",
+"You can add animations,
+apply filters, and
+draw text to Videos",
+"",
+""
   ]
 
   @@video_processing_methods = []
   @@video_preroll_methods = []
+
+  # Automatically removes logos from collection in cleanup commands.
+  def self.add_logos_to_imagecollection(theCommands)
+    zukiniObject = theCommands.make_createimporter(@@zukini_logo,
+                                    addtocleanup: false)
+    assignImage = CommandModule.make_assignimage_fromimporter_tocollection(
+                                                zukiniObject,
+                                    imageindex: 0,
+                                    identifier: @@zukini_logo_identifier)
+    theCommands.add_command(assignImage)
+    close = CommandModule.make_close(zukiniObject)
+    theCommands.add_command(close)
+    movingObject = theCommands.make_createimporter(@@moving_logo,
+                                    addtocleanup: false)
+    assign2Image = CommandModule.make_assignimage_fromimporter_tocollection(
+                                                movingObject,
+                                    imageindex: 0,
+                                    identifier: @@moving_logo_identifier)
+    theCommands.add_command(assign2Image)
+    close2 = CommandModule.make_close(movingObject)
+    theCommands.add_command(close2)
+
+    movingObject2 = theCommands.make_createimporter(@@moving_logo2,
+                                    addtocleanup: false)
+    assign3Image = CommandModule.make_assignimage_fromimporter_tocollection(
+                                                movingObject2,
+                                    imageindex: 0,
+                                    identifier: @@moving_logo2_identifier)
+    theCommands.add_command(assign3Image)
+    close3 = CommandModule.make_close(movingObject2)
+    theCommands.add_command(close3)
+
+    theCommands.add_tocleanupcommands_removeimagefromcollection(
+                                                    @@zukini_logo_identifier)
+    theCommands.add_tocleanupcommands_removeimagefromcollection(
+                                                    @@moving_logo_identifier)
+    theCommands.add_tocleanupcommands_removeimagefromcollection(
+                                                    @@moving_logo2_identifier)
+  end
 
   def self.path_to_inputmovie_withindex(i)
     return nil if i < 0 || i >= @@movies.count
@@ -99,11 +145,12 @@ class ZukiniDemoVideo
     drawImage
   end
 
-  def self.preroll_movieindex0(commands)
+  def self.preroll_movieindex0(commands, bitmap: nil)
     width = self.videowidth - 280
     bitmapSize = MIShapes.make_size(width, 100)
     bitmap = commands.make_createbitmapcontext(size: bitmapSize,
-                            preset: :PlatformDefaultBitmapContext)
+                            preset: :PlatformDefaultBitmapContext,
+                      addtocleanup: true)
     rect = MIShapes.make_rectangle(width: width,
                                   height: 100, yloc: 0)
     drawTransparentFill = MIDrawElement.new(:fillrectangle)
@@ -158,22 +205,46 @@ class ZukiniDemoVideo
     bitmap
   end
 
-  def self.preroll_movieindex1(commands)
-  
+  def self.preroll_movieindex1(commands, bitmap: nil)
+    nil
   end
 
-  def self.preroll_movieindex2(commands)
-  
+  def self.preroll_movieindex2(commands, bitmap: nil)
+    # Copy bitmap as image to image collection.
+    # Use that image as input for input filter chain that we are going to
+    # build up here. Return image identifier for image in image collection
+    imageIdentifier = SecureRandom.uuid
+    assignImageCommand = CommandModule.make_assignimage_tocollection(bitmap,
+      identifier: imageIdentifier)
+    commands.add_command(assignImageCommand)
+    commands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
+    
+    posterize = MIFilter.new(:CIColorPosterize, identifier: :posterize)
+    filterImageID = SmigIDHash.make_imageidentifier(imageIdentifier)
+    posterize.add_inputimage_property(filterImageID)
+    bloom = MIFilter.new(:CIBloom, identifier: :bloom)
+#    bloom.add_inputimage_property(SmigIDHash.makeid_withfilternameid(
+#                                                                  :posterize))
+    bloom.add_inputimage_property(filterImageID)
+    radiusProperty = MIFilterProperty.make_cinumberproperty(key: :inputRadius,
+                                                          value: 10.0)
+    bloom.add_property(radiusProperty)
+    filterChain = MIFilterChain.new(bitmap)
+#    filterChain.add_filter(posterize)
+    filterChain.add_filter(bloom)
+    filterChain.use_srgbprofile = true
+    filterChainObject = commands.make_createimagefilterchain(filterChain)
+    { imageidentifier: imageIdentifier, filterchainobject: filterChainObject }
   end
 
-  def self.preroll_movieindex3(commands)
+  def self.preroll_movieindex3(commands, bitmap: nil)
   
   end
 
   def self.process_frame_movieindex0(commands, bitmap: nil, frame_index: 0,
-                                     bitmap2: nil)
+                                     extra_info: nil)
     return if frame_index == 0
-    return if bitmap2.nil?
+    return if extra_info.nil?
     drawImageElement = MIDrawImageElement.new
     scrollDistance = self.videowidth - 280.0
     numEasingOutScrollFrames = 200
@@ -188,7 +259,7 @@ class ZukiniDemoVideo
     destRect = MIShapes.make_rectangle(width: 1000, height: 100,
                                         xloc: x, yloc: 40)
     drawImageElement.destinationrectangle = destRect
-    drawImageElement.set_bitmap_imagesource(source_object: bitmap2)
+    drawImageElement.set_bitmap_imagesource(source_object: extra_info)
 
     theShadow = MIShadow.new
     theShadow.color = MIColor.make_rgbacolor(0,0,0, a: 0.8)
@@ -202,17 +273,90 @@ class ZukiniDemoVideo
   end
 
   def self.process_frame_movieindex1(commands, bitmap: nil, frame_index: 0,
-                                      bitmap2: nil)
+                                      extra_info: nil)
+    drawElements = MIDrawElement.new(:arrayofelements)
+    drawLogoElement = MIDrawImageElement.new
+    drawLogoElement.set_imagecollection_imagesource(
+                                  identifier: @@zukini_logo_identifier)
+    logoDestRect = MIShapes.make_rectangle(width: 246.75,
+                                          height: 79.5,
+                                            xloc: 6,
+                                            yloc: self.videoheight - 86)
+    drawLogoElement.destinationrectangle = logoDestRect
+    drawElements.add_drawelement_toarrayofelements(drawLogoElement)
+
+    drawImageElement = MIDrawImageElement.new
+    drawImageElement.set_imagecollection_imagesource(
+                                  identifier: @@moving_logo2_identifier)
+    destRect = MIShapes.make_rectangle(width: 222, height: 247)
+    drawImageElement.destinationrectangle = destRect
+
+    contextTransforms = MITransformations.make_contexttransformation
+    translate2 = MIShapes.make_point(self.videowidth - (61.75 + 6),
+                                     self.videoheight - (61.75 + 6))
+    MITransformations.add_translatetransform(contextTransforms, translate2)
+    rotation = -frame_index.to_f * Math::PI * 0.03
+    MITransformations.add_rotatetransform(contextTransforms, rotation)
+    scaleXY = MIShapes.make_point(0.5, 0.5)
+    MITransformations.add_scaletransform(contextTransforms, scaleXY)
+    translate = MIShapes.make_point(-111, -123.5)
+    MITransformations.add_translatetransform(contextTransforms, translate)
+    drawImageElement.contexttransformations = contextTransforms
+    drawElements.add_drawelement_toarrayofelements(drawImageElement)
     
+    if frame_index >= 59 && frame_index < 239
+      maxFrames = 180
+      framesPerString = 180 / 3
+      indexOffset = frame_index - 59
+      stringIndex = indexOffset / framesPerString
+      alpha = 1.0 - 0.6 * (indexOffset % framesPerString).to_f/framesPerString
+      textToDraw = @@video_texts[1].split("\n")[stringIndex]
+      drawString = MIDrawBasicStringElement.new
+      drawString.stringtext = textToDraw
+      drawString.fillcolor = MIColor.make_rgbacolor(1,1,1, a: alpha)
+      drawString.boundingbox = MIShapes.make_rectangle(width: 1200, height: 120,
+                                            xloc: 40, yloc: 300)
+       drawString.postscriptfontname = 'BrandonGrotesque-Bold'
+       drawString.fontsize = 72
+       drawString.textalignment = :kCTTextAlignmentCenter
+       drawElements.add_drawelement_toarrayofelements(drawString)
+    end
+    drawCommand = CommandModule.make_drawelement(bitmap,
+                              drawinstructions: drawElements)
+    commands.add_command(drawCommand)
   end
 
   def self.process_frame_movieindex2(commands, bitmap: nil, frame_index: 0,
-                                      bitmap2: nil)
+                                      extra_info: nil)
+    filterChainObject = extra_info[:filterchainobject]
+    imageIdentifier = extra_info[:imageidentifier]
     
+    # First copy the bitmap image to the image collection with image id.
+    assignImageCommand = CommandModule.make_assignimage_tocollection(
+      bitmap, identifier: imageIdentifier)
+    commands.add_command(assignImageCommand)
+    
+    posterizeValue = 24.0 - frame_index.to_f / 298 * 20
+    # Now render the filter chain to the bitmap.
+    renderFilterChain = MIFilterChainRender.new
+    renderFilterChain.sourcerectangle = MIShapes.make_rectangle(
+                                                  width: self.videowidth,
+                                                 height: self.videoheight)
+    posterizeProp = MIFilterRenderProperty.make_renderproperty_withfilternameid(
+      key: :inputLevels, value: posterizeValue.to_i,
+      filtername_id: :posterize)
+#    renderFilterChain.add_filterproperty(posterizeProp)
+    bloomValue = 1.0 - frame_index.to_f / 298
+    bloomProp = MIFilterRenderProperty.make_renderproperty_withfilternameid(
+      key: :inputIntensity, value: bloomValue, filtername_id: :bloom)
+    renderFilterChain.add_filterproperty(bloomProp)
+    renderCommand = CommandModule.make_renderfilterchain(filterChainObject,
+      renderinstructions: renderFilterChain)
+    commands.add_command(renderCommand)
   end
 
   def self.process_frame_movieindex3(commands, bitmap: nil, frame_index: 0,
-                                      bitmap2: nil)
+                                      extra_info: nil)
     
   end
 
@@ -230,13 +374,16 @@ class ZukiniDemoVideo
 
   def self.create_intermediatemovies(theCommands, movie_index: nil)
     movieImporter = theCommands.make_createmovieimporter(
-                                self.path_to_inputmovie_withindex(movie_index))
+                                self.path_to_inputmovie_withindex(movie_index),
+                                addtocleanup: false)
 
     bitmap = theCommands.make_createbitmapcontext(size: self.frame_size,
-             preset: :PlatformDefaultBitmapContext)
+                  preset: :PlatformDefaultBitmapContext,
+            addtocleanup: false)
 #    bitmap = theCommands.make_createwindowcontext(rect: self.frame_rectangle)
      videoFramesWriter = theCommands.make_createvideoframeswriter(
-                          self.path_to_exportedmovie_withindex(movie_index))
+                          self.path_to_exportedmovie_withindex(movie_index),
+            addtocleanup: false)
     # MIMeta.listvideoframewriterpresets
     addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
                                     videoFramesWriter,
@@ -244,9 +391,10 @@ class ZukiniDemoVideo
                          framesize: self.frame_size,
                      frameduration: self.frame_duration)
     theCommands.add_command(addVideoInputCommand)
-    bitmap2 = nil
-    
-    bitmap2 = @@video_preroll_methods[movie_index].call(theCommands)
+
+    extras = nil
+    extras = @@video_preroll_methods[movie_index].call(theCommands,
+                                          bitmap: bitmap)
 
     298.times do |i|
       drawFrameCommand = self.create_draw_nextframe_tobitmap_command(bitmap,
@@ -255,7 +403,7 @@ class ZukiniDemoVideo
       @@video_processing_methods[movie_index].call(theCommands,
                                            bitmap: bitmap,
                                       frame_index: i,
-                                          bitmap2: bitmap2)
+                                       extra_info: extras)
 
       addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
                                                            videoFramesWriter,
@@ -264,12 +412,23 @@ class ZukiniDemoVideo
     end
     saveMovie = CommandModule.make_finishwritingframescommand(videoFramesWriter)
     theCommands.add_command(saveMovie)
+    close1 = CommandModule.make_close(movieImporter)
+    theCommands.add_command(close1)
+    close2 = CommandModule.make_close(bitmap)
+    theCommands.add_command(close2)
+#    unless bitmap2.nil?
+#      close3 = CommandModule.make_close(bitmap2)
+#      theCommands.add_command(close3)
+#    end
+    close4 = CommandModule.make_close(videoFramesWriter)
+    theCommands.add_command(close4)
   end
   
   def self.run()
     pre_roll()
     theCommands = SmigCommands.new
-    movie_index = 0
+    add_logos_to_imagecollection(theCommands)
+    movie_index = 2
     create_intermediatemovies(theCommands, movie_index: movie_index)
     Smig.perform_commands(theCommands)
     `open #{self.path_to_exportedmovie_withindex(movie_index)}`
@@ -278,7 +437,7 @@ class ZukiniDemoVideo
       ZukiniDemoVideo.create_intermediatemovies(theCommands, movie_index: 0)
     end
 =end
-    # puts JSON.pretty_generate(theCommands.commandshash)
+    puts JSON.pretty_generate(theCommands.commandshash)
   end
 end
 
