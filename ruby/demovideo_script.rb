@@ -38,6 +38,7 @@ class ZukiniDemoVideo
   ]
 
   @@video_processing_methods = []
+  @@video_preroll_methods = []
 
   def self.path_to_inputmovie_withindex(i)
     return nil if i < 0 || i >= @@movies.count
@@ -76,7 +77,7 @@ class ZukiniDemoVideo
   end
 
   def self.frame_duration
-    return MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
+    return MIMovie::MovieTime.make_movietime(timevalue: 3002, timescale: 90000)
   end
 
   def self.frame_size
@@ -129,7 +130,6 @@ class ZukiniDemoVideo
     drawText = MIDrawBasicStringElement.new
     drawText.stringtext = @@video_texts[0]
     drawText.fontsize = 48
-#    drawText.fontsize = 54
     drawText.postscriptfontname = 'BrandonGrotesque-Bold'
 #    drawText.postscriptfontname = 'Tahoma-Bold'
     drawText.fillcolor = MIColor.make_rgbacolor(0.85, 0.85, 0.75)
@@ -158,13 +158,43 @@ class ZukiniDemoVideo
     bitmap
   end
 
+  def self.preroll_movieindex1(commands)
+  
+  end
+
+  def self.preroll_movieindex2(commands)
+  
+  end
+
+  def self.preroll_movieindex3(commands)
+  
+  end
+
   def self.process_frame_movieindex0(commands, bitmap: nil, frame_index: 0,
                                      bitmap2: nil)
     return if frame_index == 0
     return if bitmap2.nil?
     drawImageElement = MIDrawImageElement.new
-    x = (self.videowidth - 280.0) * (frame_index.to_f / 150.0 - 1.0)
-    x = [x, 0.0].min
+    scrollDistance = self.videowidth - 280.0
+#    numFullScrollFrames = 100
+    numFullScrollFrames = 0
+#    numEasingOutScrollFrames = numFullScrollFrames
+    numEasingOutScrollFrames = 200
+    x = 0
+    if frame_index < numFullScrollFrames
+      x = scrollDistance * (frame_index / (numFullScrollFrames * 1.5) - 1.0)
+    elsif frame_index < (numFullScrollFrames + numEasingOutScrollFrames)
+#      x0 = -0.3333333333333 * scrollDistance
+      x0 = -scrollDistance
+      index = frame_index - numFullScrollFrames
+      norm_index = index.to_f / numEasingOutScrollFrames
+#     x = x0 + norm_index * (1.0 - norm_index * 0.5) * 0.666666 * scrollDistance
+     x = x0 + norm_index * (1.0 - norm_index * 0.5) * 2.0 * scrollDistance
+    else
+      x = 0
+    end
+    # x = (self.videowidth - 280.0) * (frame_index.to_f / 150.0 - 1.0)
+    # x = [x, 0.0].min
     destRect = MIShapes.make_rectangle(width: 1000, height: 100,
                                         xloc: x, yloc: 40)
     drawImageElement.destinationrectangle = destRect
@@ -179,56 +209,6 @@ class ZukiniDemoVideo
     drawCommand = CommandModule.make_drawelement(bitmap,
                               drawinstructions: drawImageElement)
     commands.add_command(drawCommand)
-
-=begin
-    width = (self.videowidth - 280.0) * frame_index / 240.0
-    width = [width, self.videowidth - 280].min
-    drawLinearFill = MILinearGradientFillElement.new
-    colors = [
-                MIColor.make_rgbacolor(0.14, 0.025, 0.16, a: 0.65),
-                MIColor.make_rgbacolor(0.27, 0.05, 0.31, a: 0.65)
-              ]
-    locations = [0.0, 1.0]
-    drawLinearFill.set_arrayoflocations_andarrayofcolors(locations, colors)
-    startPoint = MIShapes.make_point(width * 0.5, 40)
-    endPoint = MIShapes.make_point(width * 0.5, 140)
-    drawLinearFill.line = MIShapes.make_line(startPoint, endPoint)
-    thePath = MIPath.new
-    rect = MIShapes.make_rectangle(width: width,
-                                  height: 100, yloc: 50)
-    thePath.add_rectangle(rect)
-    drawLinearFill.arrayofpathelements = thePath
-    drawLinearFill.startpoint = MIShapes.make_point(0, 0)
-    theShadow = MIShadow.new
-    theShadow.color = MIColor.make_rgbacolor(0,0,0, a: 0.8)
-    theShadow.blur = 12
-    theShadow.offset = MIShapes.make_size(6, -12)
-    drawLinearFill.shadow = theShadow
-    
-    drawText = MIDrawBasicStringElement.new
-    drawText.stringtext = @@video_texts[0]
-    drawText.fontsize = 48
-    drawText.postscriptfontname = 'BrandonGrotesque-Bold'
-    drawText.fillcolor = MIColor.make_rgbacolor(0.85,0.85,0.75)
-    drawText.textalignment = :kCTTextAlignmentRight
-    boundingBox = MIShapes.make_rectangle(width: self.videowidth - 20,
-                                         height: 70,
-                                           xloc: width - self.videowidth,
-                                           yloc: 60)
-    drawText.boundingbox = boundingBox
-    
-    textInnerShadow = MIShadow.new
-    textInnerShadow.color = MIColor.make_rgbacolor(0.2,0.1,0)
-    textInnerShadow.blur = 2
-    textInnerShadow.offset = MIShapes.make_size(0.5, -1)
-    drawText.innershadow = textInnerShadow
-    drawElements = MIDrawElement.new(:arrayofelements)
-    drawElements.add_drawelement_toarrayofelements(drawLinearFill)
-    drawElements.add_drawelement_toarrayofelements(drawText)
-    drawCommand = CommandModule.make_drawelement(bitmap,
-                              drawinstructions: drawElements)
-    commands.add_command(drawCommand)
-=end
   end
 
   def self.process_frame_movieindex1(commands, bitmap: nil, frame_index: 0,
@@ -251,7 +231,11 @@ class ZukiniDemoVideo
     @@video_processing_methods.push(method(:process_frame_movieindex1))
     @@video_processing_methods.push(method(:process_frame_movieindex2))
     @@video_processing_methods.push(method(:process_frame_movieindex3))
-#    puts @@video_processing_methods.push(method(:process_frame_movieindex3))
+    
+    @@video_preroll_methods.push(method(:preroll_movieindex0))
+    @@video_preroll_methods.push(method(:preroll_movieindex1))
+    @@video_preroll_methods.push(method(:preroll_movieindex2))
+    @@video_preroll_methods.push(method(:preroll_movieindex3))
   end
 
   def self.process_frame(commands, bitmap: nil, movie_index: 0, frame_index: 0,
@@ -260,9 +244,6 @@ class ZukiniDemoVideo
                                          bitmap: bitmap,
                                     frame_index: frame_index,
                                         bitmap2: bitmap2)
-#    return if movie_index > 0
-#    self.process_frame_movieindex0(commands, bitmap: bitmap,
-#                                   frame_index: frame_index)
   end
 
   def self.create_intermediatemovies(movie_index: 0, async: true)
@@ -284,10 +265,12 @@ class ZukiniDemoVideo
                      frameduration: self.frame_duration)
     theCommands.add_command(addVideoInputCommand)
     bitmap2 = nil
-    if movie_index == 0
-      bitmap2 = self.preroll_movieindex0(theCommands)
-    end
-#    298.times do |i|
+    
+    bitmap2 = @@video_preroll_methods[movie_index].call(theCommands)
+#    if movie_index == 0
+#      bitmap2 = self.preroll_movieindex0(theCommands)
+#    end
+
     298.times do |i|
       drawFrameCommand = self.create_draw_nextframe_tobitmap_command(bitmap,
                                                               movieImporter)
@@ -309,8 +292,6 @@ class ZukiniDemoVideo
   end
 end
 
-# puts "#{ZukiniDemoVideo.zukini_logo}"
-# puts "#{ZukiniDemoVideo.moving_logo}"
 ZukiniDemoVideo.pre_roll()
 
 1.times do |j|
