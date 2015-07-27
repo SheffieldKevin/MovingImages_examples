@@ -228,17 +228,7 @@ class ZukiniDemoVideo
     @@video_preroll_methods.push(method(:preroll_movieindex3))
   end
 
-  def self.process_frame(commands, bitmap: nil, movie_index: 0, frame_index: 0,
-                         bitmap2: nil)
-    @@video_processing_methods[movie_index].call(commands,
-                                         bitmap: bitmap,
-                                    frame_index: frame_index,
-                                        bitmap2: bitmap2)
-  end
-
-  def self.create_intermediatemovies(movie_index: 0, async: true)
-    theCommands = SmigCommands.new
-    theCommands.run_asynchronously = async
+  def self.create_intermediatemovies(theCommands, movie_index: nil)
     movieImporter = theCommands.make_createmovieimporter(
                                 self.path_to_inputmovie_withindex(movie_index))
 
@@ -257,18 +247,16 @@ class ZukiniDemoVideo
     bitmap2 = nil
     
     bitmap2 = @@video_preroll_methods[movie_index].call(theCommands)
-#    if movie_index == 0
-#      bitmap2 = self.preroll_movieindex0(theCommands)
-#    end
 
     298.times do |i|
       drawFrameCommand = self.create_draw_nextframe_tobitmap_command(bitmap,
                                                               movieImporter)
       theCommands.add_command(drawFrameCommand)
-      self.process_frame(theCommands, bitmap: bitmap,
-                                 movie_index: movie_index,
-                                 frame_index: i,
-                                     bitmap2: bitmap2)
+      @@video_processing_methods[movie_index].call(theCommands,
+                                           bitmap: bitmap,
+                                      frame_index: i,
+                                          bitmap2: bitmap2)
+
       addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
                                                            videoFramesWriter,
                                              sourceobject: bitmap)
@@ -276,18 +264,23 @@ class ZukiniDemoVideo
     end
     saveMovie = CommandModule.make_finishwritingframescommand(videoFramesWriter)
     theCommands.add_command(saveMovie)
-    # puts JSON.pretty_generate(theCommands.commandshash)
+  end
+  
+  def self.run()
+    pre_roll()
+    theCommands = SmigCommands.new
+    movie_index = 0
+    create_intermediatemovies(theCommands, movie_index: movie_index)
     Smig.perform_commands(theCommands)
     `open #{self.path_to_exportedmovie_withindex(movie_index)}`
+=begin
+    4.times do |j|
+      ZukiniDemoVideo.create_intermediatemovies(theCommands, movie_index: 0)
+    end
+=end
+    # puts JSON.pretty_generate(theCommands.commandshash)
   end
 end
 
-ZukiniDemoVideo.pre_roll()
+ZukiniDemoVideo.run()
 
-ZukiniDemoVideo.create_intermediatemovies(movie_index: 1, async: false)
-
-=begin
-4.times do |j|
-  ZukiniDemoVideo.create_intermediatemovies(movie_index: j, async: true)
-end
-=end
