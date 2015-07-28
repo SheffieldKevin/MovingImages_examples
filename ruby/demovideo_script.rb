@@ -148,7 +148,7 @@ draw text to Videos",
   def self.preroll_movieindex0(commands, bitmap: nil)
     width = self.videowidth - 280
     bitmapSize = MIShapes.make_size(width, 100)
-    bitmap = commands.make_createbitmapcontext(size: bitmapSize,
+    bitmap2 = commands.make_createbitmapcontext(size: bitmapSize,
                             preset: :PlatformDefaultBitmapContext,
                       addtocleanup: true)
     rect = MIShapes.make_rectangle(width: width,
@@ -198,11 +198,11 @@ draw text to Videos",
     drawElements.add_drawelement_toarrayofelements(drawTransparentFill)
     drawElements.add_drawelement_toarrayofelements(drawLinearFill)
     drawElements.add_drawelement_toarrayofelements(drawText)
-    drawCommand = CommandModule.make_drawelement(bitmap,
+    drawCommand = CommandModule.make_drawelement(bitmap2,
                               drawinstructions: drawElements,
                                    createimage: true)
     commands.add_command(drawCommand)
-    bitmap
+    bitmap2
   end
 
   def self.preroll_movieindex1(commands, bitmap: nil)
@@ -218,23 +218,33 @@ draw text to Videos",
       identifier: imageIdentifier)
     commands.add_command(assignImageCommand)
     commands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
+#    bitmapSize = MIShapes.make_size(self.videowidth, self.videoheight)
+#    bitmap2 = commands.make_createbitmapcontext(size: bitmapSize,
+#                            preset: :PlatformDefaultBitmapContext,
+#                      addtocleanup: true)
     
     posterize = MIFilter.new(:CIColorPosterize, identifier: :posterize)
     filterImageID = SmigIDHash.make_imageidentifier(imageIdentifier)
     posterize.add_inputimage_property(filterImageID)
+    # posterize.add_inputimage_property(bitmap2)
+    #levelsProperty = MIFilterProperty.make_cinumberproperty(key: :inputLevels,
+    #                                  value: 6)
+    #posterize.add_property(levelsProperty)
     bloom = MIFilter.new(:CIBloom, identifier: :bloom)
-#    bloom.add_inputimage_property(SmigIDHash.makeid_withfilternameid(
-#                                                                  :posterize))
-    bloom.add_inputimage_property(filterImageID)
-    radiusProperty = MIFilterProperty.make_cinumberproperty(key: :inputRadius,
-                                                          value: 10.0)
-    bloom.add_property(radiusProperty)
+    bloom.add_inputimage_property(SmigIDHash.makeid_withfilternameid(
+                                                                  :posterize))
+    # bloom.add_inputimage_property(filterImageID)
+#    posterize.add_inputimage_property(SmigIDHash.makeid_withfilternameid(
+#                                                                  :bloom))
     filterChain = MIFilterChain.new(bitmap)
-#    filterChain.add_filter(posterize)
+    filterChain.add_filter(posterize)
     filterChain.add_filter(bloom)
+#    filterChain.add_filter(posterize)
     filterChain.use_srgbprofile = true
+#    filterChain.softwarerender = true
     filterChainObject = commands.make_createimagefilterchain(filterChain)
     { imageidentifier: imageIdentifier, filterchainobject: filterChainObject }
+#    { inputobject: bitmap2, filterchainobject: filterChainObject }
   end
 
   def self.preroll_movieindex3(commands, bitmap: nil)
@@ -330,11 +340,20 @@ draw text to Videos",
                                       extra_info: nil)
     filterChainObject = extra_info[:filterchainobject]
     imageIdentifier = extra_info[:imageidentifier]
+    # bitmap2 = extra_info[:inputobject]
     
     # First copy the bitmap image to the image collection with image id.
     assignImageCommand = CommandModule.make_assignimage_tocollection(
       bitmap, identifier: imageIdentifier)
     commands.add_command(assignImageCommand)
+    
+    #copyPixels = MIDrawImageElement.new
+    #copyPixels.set_bitmap_imagesource(source_object: bitmap)
+    #copyPixels.destinationrectangle = MIShapes.make_rectangle(
+    #                      width: self.videowidth, height: self.videoheight)
+    #copyPixelsCommand = CommandModule.make_drawelement(bitmap2,
+    #                          drawinstructions: copyPixels)
+    #commands.add_command(copyPixelsCommand)
     
     posterizeValue = 24.0 - frame_index.to_f / 298 * 20
     # Now render the filter chain to the bitmap.
@@ -345,7 +364,7 @@ draw text to Videos",
     posterizeProp = MIFilterRenderProperty.make_renderproperty_withfilternameid(
       key: :inputLevels, value: posterizeValue.to_i,
       filtername_id: :posterize)
-#    renderFilterChain.add_filterproperty(posterizeProp)
+    renderFilterChain.add_filterproperty(posterizeProp)
     bloomValue = 1.0 - frame_index.to_f / 298
     bloomProp = MIFilterRenderProperty.make_renderproperty_withfilternameid(
       key: :inputIntensity, value: bloomValue, filtername_id: :bloom)
@@ -392,6 +411,9 @@ draw text to Videos",
                      frameduration: self.frame_duration)
     theCommands.add_command(addVideoInputCommand)
 
+#    drawFrameCommand = self.create_draw_nextframe_tobitmap_command(bitmap,
+#                                                            movieImporter)
+#    theCommands.add_command(drawFrameCommand)
     extras = nil
     extras = @@video_preroll_methods[movie_index].call(theCommands,
                                           bitmap: bitmap)
