@@ -333,7 +333,7 @@ draw text to Videos",
       bitmap, identifier: imageIdentifier)
     commands.add_command(assignImageCommand)
 
-    posterizeValue = 24.0 - frame_index.to_f / 298 * 20
+    posterizeValue = 21.0 - frame_index.to_f / 298 * 16
     # Now render the filter chain to the bitmap.
     renderFilterChain = MIFilterChainRender.new
     renderFilterChain.sourcerectangle = MIShapes.make_rectangle(
@@ -343,7 +343,7 @@ draw text to Videos",
       key: :inputLevels, value: posterizeValue.to_i,
       filtername_id: :posterize)
     renderFilterChain.add_filterproperty(posterizeProp)
-    bloomValue = 0.25 + frame_index.to_f / 399.0
+    bloomValue = 0.33 + frame_index.to_f / 467.0
     bloomProp = MIFilterRenderProperty.make_renderproperty_withfilternameid(
       key: :inputIntensity, value: bloomValue, filtername_id: :bloom)
     renderFilterChain.add_filterproperty(bloomProp)
