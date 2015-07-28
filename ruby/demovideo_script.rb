@@ -218,33 +218,20 @@ draw text to Videos",
       identifier: imageIdentifier)
     commands.add_command(assignImageCommand)
     commands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
-#    bitmapSize = MIShapes.make_size(self.videowidth, self.videoheight)
-#    bitmap2 = commands.make_createbitmapcontext(size: bitmapSize,
-#                            preset: :PlatformDefaultBitmapContext,
-#                      addtocleanup: true)
     
     posterize = MIFilter.new(:CIColorPosterize, identifier: :posterize)
     filterImageID = SmigIDHash.make_imageidentifier(imageIdentifier)
     posterize.add_inputimage_property(filterImageID)
-    # posterize.add_inputimage_property(bitmap2)
-    #levelsProperty = MIFilterProperty.make_cinumberproperty(key: :inputLevels,
-    #                                  value: 6)
-    #posterize.add_property(levelsProperty)
+
     bloom = MIFilter.new(:CIBloom, identifier: :bloom)
     bloom.add_inputimage_property(SmigIDHash.makeid_withfilternameid(
                                                                   :posterize))
-    # bloom.add_inputimage_property(filterImageID)
-#    posterize.add_inputimage_property(SmigIDHash.makeid_withfilternameid(
-#                                                                  :bloom))
     filterChain = MIFilterChain.new(bitmap)
     filterChain.add_filter(posterize)
     filterChain.add_filter(bloom)
-#    filterChain.add_filter(posterize)
     filterChain.use_srgbprofile = true
-#    filterChain.softwarerender = true
     filterChainObject = commands.make_createimagefilterchain(filterChain)
     { imageidentifier: imageIdentifier, filterchainobject: filterChainObject }
-#    { inputobject: bitmap2, filterchainobject: filterChainObject }
   end
 
   def self.preroll_movieindex3(commands, bitmap: nil)
@@ -340,21 +327,12 @@ draw text to Videos",
                                       extra_info: nil)
     filterChainObject = extra_info[:filterchainobject]
     imageIdentifier = extra_info[:imageidentifier]
-    # bitmap2 = extra_info[:inputobject]
     
     # First copy the bitmap image to the image collection with image id.
     assignImageCommand = CommandModule.make_assignimage_tocollection(
       bitmap, identifier: imageIdentifier)
     commands.add_command(assignImageCommand)
-    
-    #copyPixels = MIDrawImageElement.new
-    #copyPixels.set_bitmap_imagesource(source_object: bitmap)
-    #copyPixels.destinationrectangle = MIShapes.make_rectangle(
-    #                      width: self.videowidth, height: self.videoheight)
-    #copyPixelsCommand = CommandModule.make_drawelement(bitmap2,
-    #                          drawinstructions: copyPixels)
-    #commands.add_command(copyPixelsCommand)
-    
+
     posterizeValue = 24.0 - frame_index.to_f / 298 * 20
     # Now render the filter chain to the bitmap.
     renderFilterChain = MIFilterChainRender.new
@@ -365,7 +343,6 @@ draw text to Videos",
       key: :inputLevels, value: posterizeValue.to_i,
       filtername_id: :posterize)
     renderFilterChain.add_filterproperty(posterizeProp)
-    # bloomValue = 1.0 - frame_index.to_f / 298
     bloomValue = 0.25 + frame_index.to_f / 399.0
     bloomProp = MIFilterRenderProperty.make_renderproperty_withfilternameid(
       key: :inputIntensity, value: bloomValue, filtername_id: :bloom)
@@ -412,9 +389,6 @@ draw text to Videos",
                      frameduration: self.frame_duration)
     theCommands.add_command(addVideoInputCommand)
 
-#    drawFrameCommand = self.create_draw_nextframe_tobitmap_command(bitmap,
-#                                                            movieImporter)
-#    theCommands.add_command(drawFrameCommand)
     extras = nil
     extras = @@video_preroll_methods[movie_index].call(theCommands,
                                           bitmap: bitmap)
@@ -439,10 +413,6 @@ draw text to Videos",
     theCommands.add_command(close1)
     close2 = CommandModule.make_close(bitmap)
     theCommands.add_command(close2)
-#    unless bitmap2.nil?
-#      close3 = CommandModule.make_close(bitmap2)
-#      theCommands.add_command(close3)
-#    end
     close4 = CommandModule.make_close(videoFramesWriter)
     theCommands.add_command(close4)
   end
