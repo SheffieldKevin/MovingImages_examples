@@ -365,7 +365,8 @@ draw text to Videos",
       key: :inputLevels, value: posterizeValue.to_i,
       filtername_id: :posterize)
     renderFilterChain.add_filterproperty(posterizeProp)
-    bloomValue = 1.0 - frame_index.to_f / 298
+    # bloomValue = 1.0 - frame_index.to_f / 298
+    bloomValue = 0.25 + frame_index.to_f / 399.0
     bloomProp = MIFilterRenderProperty.make_renderproperty_withfilternameid(
       key: :inputIntensity, value: bloomValue, filtername_id: :bloom)
     renderFilterChain.add_filterproperty(bloomProp)
@@ -459,7 +460,7 @@ draw text to Videos",
       ZukiniDemoVideo.create_intermediatemovies(theCommands, movie_index: 0)
     end
 =end
-    puts JSON.pretty_generate(theCommands.commandshash)
+    # puts JSON.pretty_generate(theCommands.commandshash)
   end
 end
 
