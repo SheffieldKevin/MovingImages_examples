@@ -9,7 +9,6 @@ include MICGDrawing
 include CommandModule
 
 class ZukiniDemoVideo
-  @@filename = File.basename(__FILE__)
 #  @@directory = File.expand_path(File.dirname(__FILE__))
   @@directory = '/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo'
   @@zukini_logo = File.join(@@directory, 'Zukini Logo-02.png')
@@ -29,10 +28,10 @@ class ZukiniDemoVideo
   @@output_directory = File.expand_path("~/Desktop/tempmovies/")
 
   @@movies = [
-    File.join('Strawberries-0529.mov'),
-    File.join('ChivesBed-0530.mov'),
-    File.join('Epimedium+Fern-0545.mov'),
-    File.join('BeehiveCompost-0536.mov')
+    'Strawberries-0529.mov',
+    'ChivesBed-0530.mov',
+    'Epimedium+Fern-0545.mov',
+    'BeehiveCompost-0536.mov'
   ]
 
   @@video_texts = [
