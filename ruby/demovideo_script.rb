@@ -41,7 +41,9 @@ class ZukiniDemoVideo
 apply filters, and
 draw text to Videos",
 "",
-""
+"MovingImages
+by
+Zukini"
   ]
 
   @@video_processing_methods = []
@@ -333,7 +335,8 @@ draw text to Videos",
       bitmap, identifier: imageIdentifier)
     commands.add_command(assignImageCommand)
 
-    posterizeValue = 21.0 - frame_index.to_f / 298 * 16
+    posterizeValue = 19.0 - frame_index.to_f / 298 * 17
+    posterizeValue = [4.0, posterizeValue].max
     # Now render the filter chain to the bitmap.
     renderFilterChain = MIFilterChainRender.new
     renderFilterChain.sourcerectangle = MIShapes.make_rectangle(
@@ -343,7 +346,8 @@ draw text to Videos",
       key: :inputLevels, value: posterizeValue.to_i,
       filtername_id: :posterize)
     renderFilterChain.add_filterproperty(posterizeProp)
-    bloomValue = 0.33 + frame_index.to_f / 467.0
+    bloomValue = 0.33 + frame_index.to_f / 300.0
+    bloomValue = [1.0, bloomValue].min
     bloomProp = MIFilterRenderProperty.make_renderproperty_withfilternameid(
       key: :inputIntensity, value: bloomValue, filtername_id: :bloom)
     renderFilterChain.add_filterproperty(bloomProp)
@@ -421,7 +425,7 @@ draw text to Videos",
     pre_roll()
     theCommands = SmigCommands.new
     add_logos_to_imagecollection(theCommands)
-    movie_index = 2
+    movie_index = 3
     create_intermediatemovies(theCommands, movie_index: movie_index)
     Smig.perform_commands(theCommands)
     `open #{self.path_to_exportedmovie_withindex(movie_index)}`
