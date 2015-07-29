@@ -17,49 +17,29 @@ class ZukiniDemoVideo
     return 720
   end
 
+  def self.frame_size
+    return MIShapes.make_size(self.videowidth, self.videoheight)
+  end
+
+  @@directory = '/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo'
+  @@movies = [
+    'BeehiveCompost-0536.mov'
+  ]
   @@video_texts = [
 "MovingImages
 by
 Zukini"
   ]
 
-  def self.create_imagefilterchain(commands, inputImageID, renderDestination)
-    # Now set up the filter chain
-    filterchain = MIFilterChain.new(renderDestination)
-    filterchain.use_srgbprofile = true
-=begin
-    # Create the radial gradient filter description
-    radial_gradient = MIFilter.new(:CIRadialGradient, identifier: :radialfilter)
-    center_property = MIFilterProperty.make_civectorproperty_fromarray(
-                                        key: 'inputCenter', value: [200, 200])
-    radial_gradient.add_property(center_property)
-    radius0_property = MIFilterProperty.make_cinumberproperty(
-                                            key: :inputRadius0, value: 10)
-    radial_gradient.add_property(radius0_property)
-    radius1_property = MIFilterProperty.make_cinumberproperty(
-                                            key: :inputRadius1, value: 200)
-    radial_gradient.add_property(radius1_property)
-    color0_property = MIFilterProperty.make_cicolorproperty_fromstring(
-                                            key: :inputColor0, value: '1 1 1 1')
-    radial_gradient.add_property(color0_property)
-    color1_property = MIFilterProperty.make_cicolorproperty_fromstring(
-                                            key: :inputColor1, value: '0 0 0 1')
-    radial_gradient.add_property(color1_property)
-    filterchain.add_filter(radial_gradient)
+  def self.path_to_inputmovie_withindex(i)
+    return nil if i < 0 || i >= @@movies.count
+    return File.join(@@directory, @@movies[i])
+  end
 
-    # Now the radial gradient filter has been created & added to filter chain
-    # Create the crop filter to set the bounds of the radial gradient filter.
-    crop = MIFilter.new(:CICrop, identifier: :cropfilter)
-    rectangle_property = MIFilterProperty.make_civectorproperty_fromstring(
-                              key: :inputRectangle, value: "[0 0 400.0 400.0]")
-    crop.add_property(rectangle_property)
-    inputimage_property = MIFilterProperty.make_ciimageproperty(
-            key: :inputImage,
-          value: SmigIDHash.makeid_withfilternameid(:radialfilter))
-    crop.add_property(inputimage_property)
-    filterchain.add_filter(crop)
-=end
-    # The crop filter has been setup, now setup the height field mask filter
+  def self.create_maskimagefilterchain(commands, inputImageID,
+                                        renderDestination)
+    filterchain = MIFilterChain.new(renderDestination)
+
     heightfieldmask = MIFilter.new(:CIHeightFieldFromMask,
                        identifier: :heightfieldmask)
     heightfield_radiusproperty = MIFilterProperty.make_cinumberproperty(
@@ -67,16 +47,84 @@ Zukini"
     heightfieldmask.add_property(heightfield_radiusproperty)
     inputImageID = SmigIDHash.make_imageidentifier(inputImageID)
     heightfieldmask.add_inputimage_property(inputImageID)
-#    heightfield_inputimageproperty = MIFilterProperty.make_ciimageproperty(
-#                                      key: :inputImage, value: window_objectid)
-#    heightfieldmask.add_property(heightfield_inputimageproperty)
     filterchain.add_filter(heightfieldmask)
     imageFilter = commands.make_createimagefilterchain(filterchain)
     imageFilter
   end
 
-  def self.render_filterchain(commands, filterChain)
+  def self.render_maskfilterchain(commands, filterChain)
     renderFilterChain = MIFilterChainRender.new
+    renderCommand = CommandModule.make_renderfilterchain(filterChain,
+                                     renderinstructions: renderFilterChain)
+    commands.add_command(renderCommand)
+  end
+
+  def self.create_pagecurlfilterchain(commands,
+            frontimageidentifier: nil,
+            backsideimagecontext: nil,
+           targetimageidentifier: nil,
+                    outputbitmap: nil)
+    filterchain = MIFilterChain.new(outputbitmap)
+    filterchain.use_srgbprofile = true
+
+    pageCurl = MIFilter.new(:CIPageCurlWithShadowTransition,
+                identifier: :pagecurlwithshadow)
+    # angle -π, 0, π
+    angle = MIFilterProperty.make_cinumberproperty(key: :inputAngle,
+                                                 value: -3.0)
+    pageCurl.add_property(angle)
+    
+    extentRect = MIShapes.make_rectangle(size: self.frame_size)
+    extent = MIFilterProperty.make_civectorproperty_fromrectangle(
+                                                key: :inputExtent,
+                                              value: extentRect)
+    pageCurl.add_property(extent)
+
+    # radius 0.01, 100, 400
+    radius = MIFilterProperty.make_cinumberproperty(key: :inputRadius,
+                                                  value: 150)
+    pageCurl.add_property(radius)
+
+    # shadow amount 0.0, 0.7, 1.0
+    shadowAmount = MIFilterProperty.make_cinumberproperty(
+                                                key: :inputShadowAmount,
+                                              value: 0.7)
+    pageCurl.add_property(shadowAmount)
+
+    # shadow size 0.0, 0.5, 1.0
+    shadowSize = MIFilterProperty.make_cinumberproperty(key: :inputShadowSize,
+                                                      value: 0.5)
+    pageCurl.add_property(shadowSize)
+    backsideImage = MIFilterProperty.make_ciimageproperty(
+                                                key: :inputBacksideImage,
+                                              value: backsideimagecontext)
+    pageCurl.add_property(backsideImage)
+
+    inputImageID = SmigIDHash.make_imageidentifier(frontimageidentifier)
+    inputImage = MIFilterProperty.make_ciimageproperty(key: :inputImage,
+                                                     value: inputImageID)
+    pageCurl.add_property(inputImage)
+    
+    targetImageID = SmigIDHash.make_imageidentifier(targetimageidentifier)
+    targetImage = MIFilterProperty.make_ciimageproperty(key: :inputTargetImage,
+                                                      value: targetImageID)
+    pageCurl.add_property(targetImage)
+    
+    filterchain.add_filter(pageCurl)
+    imageFilter = commands.make_createimagefilterchain(filterchain)
+    imageFilter
+  end
+
+  def self.render_pagecurlfilterchain(commands, filterChain, progress)
+    renderFilterChain = MIFilterChainRender.new
+    prop = MIFilterRenderProperty.make_renderproperty_withfilternameid(
+                                          key: :inputTime,
+                                        value: progress,
+                                filtername_id: :pagecurlwithshadow)
+    renderFilterChain.add_filterproperty(prop)
+    extentRect = MIShapes.make_rectangle(size: self.frame_size)
+    renderFilterChain.destinationrectangle = extentRect
+    renderFilterChain.sourcerectangle = extentRect
     renderCommand = CommandModule.make_renderfilterchain(filterChain,
                                      renderinstructions: renderFilterChain)
     commands.add_command(renderCommand)
@@ -84,10 +132,12 @@ Zukini"
 
   def self.run()
     theCommands = SmigCommands.new
-    theRect = MIShapes.make_rectangle(width: self.videowidth,
-                                     height: self.videoheight)
-    drawContext = theCommands.make_createwindowcontext(rect: theRect,
-      addtocleanup: false)
+    theRect = MIShapes.make_rectangle(size: self.frame_size)
+#    drawContext = theCommands.make_createwindowcontext(rect: theRect,
+#      addtocleanup: false)
+    drawContext = theCommands.make_createbitmapcontext(size: self.frame_size,
+                                       preset: :PlatformDefaultBitmapContext)
+
     fillBlack = MIDrawElement.new(:fillrectangle)
     fillBlack.rectangle = theRect
     fillBlack.fillcolor = MIColor.make_rgbacolor(0, 0, 0)
@@ -113,12 +163,60 @@ Zukini"
     theCommands.add_command(assignImageCommand)
     theCommands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
     
-    filterChainObject = self.create_imagefilterchain(theCommands,
+    filterChainObject = self.create_maskimagefilterchain(theCommands,
                                                 imageIdentifier, drawContext)
-    self.render_filterchain(theCommands, filterChainObject)
+    self.render_maskfilterchain(theCommands, filterChainObject)
+    theCommands.add_command(assignImageCommand)
+    # Now draw that image back to the bitmap but mirrored.
+    drawMirrorImage = MIDrawImageElement.new
+    drawMirrorImage.destinationrectangle = theRect
+    drawMirrorImage.set_imagecollection_imagesource(identifier: imageIdentifier)
+    transform = MITransformations.make_contexttransformation
+    offset = MIShapes.make_point(self.videowidth, 0)
+    MITransformations.add_translatetransform(transform, offset)
+    scale = MIShapes.make_point(-1, 1)
+    MITransformations.add_scaletransform(transform, scale)
+    drawMirrorImage.contexttransformations = transform
+    drawMirrorImageCommand = CommandModule.make_drawelement(drawContext,
+      drawinstructions: drawMirrorImage)
+    theCommands.add_command(drawMirrorImageCommand)
+
+    movie_index = 0
+    movieImporter = theCommands.make_createmovieimporter(
+                            self.path_to_inputmovie_withindex(movie_index))
+#    outputBitmap = theCommands.make_createbitmapcontext(size: self.frame_size,
+#                    preset: :PlatformDefaultBitmapContext)
+    outputBitmap = theCommands.make_createwindowcontext(rect: theRect,
+      addtocleanup: false)
+    movieInputImageID = SecureRandom.uuid
+    assignImageCommand2 = CommandModule.make_assignimage_tocollection(
+      outputBitmap, identifier: movieInputImageID)
+    theCommands.add_command(assignImageCommand2)
+    theCommands.add_tocleanupcommands_removeimagefromcollection(
+                                                            movieInputImageID)
+
+    pageCurlFilterChainObject = self.create_pagecurlfilterchain(theCommands,
+                                       frontimageidentifier: imageIdentifier,
+                                       backsideimagecontext: drawContext,
+                                      targetimageidentifier: movieInputImageID,
+                                               outputbitmap: outputBitmap)
+
+    frameTime = MIMovie::MovieTime.make_movietime_nextsample
+    180.times do |i|
+      assignCommand = CommandModule.make_assignimage_frommovie_tocollection(
+                                                   movieImporter,
+                                        frametime: frameTime,
+                                       identifier: movieInputImageID)
+      theCommands.add_command(assignCommand)
+      self.render_pagecurlfilterchain(theCommands, pageCurlFilterChainObject,
+        i.to_f / (180.0 - 1))
+    end
+#    puts JSON.pretty_generate(theCommands.commandshash)
+
     Smig.perform_commands(theCommands)
-    sleep 7
-    Smig.close_object(drawContext)
+    sleep 2
+    # Smig.close_object(drawContext)
+    Smig.close_object(outputBitmap)
   end
 end
 
