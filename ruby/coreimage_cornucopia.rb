@@ -59,7 +59,7 @@ Zukini"
     heightfieldmask = MIFilter.new(:CIHeightFieldFromMask,
                        identifier: :heightfieldmask)
     heightfield_radiusproperty = MIFilterProperty.make_cinumberproperty(
-                                                 key: :inputRadius, value: 14)
+                                                 key: :inputRadius, value: 12)
     heightfieldmask.add_property(heightfield_radiusproperty)
     inputImageID = SmigIDHash.make_imageidentifier(inputImageID)
     heightfieldmask.add_inputimage_property(inputImageID)
