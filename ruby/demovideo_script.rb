@@ -7,6 +7,7 @@ require 'moving_images'
 include MovingImages
 include MICGDrawing
 include CommandModule
+include MIMovie
 
 class ZukiniDemoVideo
 #  @@directory = File.expand_path(File.dirname(__FILE__))
@@ -192,7 +193,7 @@ Zukini"
     textInnerShadow = MIShadow.new
     textInnerShadow.color = MIColor.make_rgbacolor(0.2,0.1,0)
     textInnerShadow.blur = 2
-    textInnerShadow.offset = MIShapes.make_size(0.5, -1)
+    textInnerShadow.offset = MIShapes.make_size(1, -1)
     drawText.innershadow = textInnerShadow
     drawElements = MIDrawElement.new(:arrayofelements)
 #    drawElements.blendmode = :kCGBlendModeCopy
@@ -590,20 +591,250 @@ Zukini"
     close4 = CommandModule.make_close(videoFramesWriter)
     theCommands.add_command(close4)
   end
-  
+
+  def self.make_videocomposition(commands)
+    # import our four videos.
+    numMovies = 4
+    movieImporters = []
+    numMovies.times do |i|
+      filePath = path_to_exportedmovie_withindex(i)
+      importer = commands.make_createmovieimporter(filePath)
+      movieImporters.push(importer)
+    end
+    
+    # Create the movie editor where the video composition will happen.
+    movieEditorObject = commands.make_createmovieeditor()
+
+    addVideoTrackCommand = CommandModule.make_createtrackcommand(
+                                                movieEditorObject,
+                                     mediatype: :vide)
+
+    # Create two video tracks using the addVideoTrackCommand.
+    commands.add_command(addVideoTrackCommand)
+    commands.add_command(addVideoTrackCommand)
+
+    track0 = MovieTrackIdentifier.make_movietrackid_from_mediatype(
+                                        mediatype: :vide,
+                                       trackindex: 0)
+
+    track1 = MovieTrackIdentifier.make_movietrackid_from_mediatype(
+                                        mediatype: :vide,
+                                       trackindex: 1)
+
+    tracks = [ track0, track1 ]
+
+    numFrames = 298
+    timeZero = MovieTime.make_movietime(timevalue: 0, timescale: 1)
+    segmentDuration = MovieTime.make_movietime(timevalue: numFrames * 3002,
+                                               timescale: 90000)
+
+    segmentTimeRange = MovieTime.make_movie_timerange(start: timeZero,
+                                                   duration: segmentDuration)
+                                                   
+    # Now add the movie segments.
+#    numMovies.times do |movieIndex|
+    4.times do |movieIndex|
+      insertTrackSegmentCommand = CommandModule.make_inserttracksegment(
+                            movieEditorObject, 
+                     track: tracks[movieIndex % 2],
+             source_object: movieImporters[3 - movieIndex],
+              source_track: track0,
+             insertiontime: self.segmentstart_movietime_forindex(movieIndex), 
+          source_timerange: segmentTimeRange)
+      commands.add_command(insertTrackSegmentCommand)
+    end
+    
+    passThru1Dur = MovieTime.make_movietime(timevalue: 240 * 3002,
+                                            timescale: 90000)
+    passThru1 = VideoLayerInstructions.new
+    passThru1.add_passthrulayerinstruction(track: track0)
+    passThru1TimeRange = MovieTime.make_movie_timerange(start: timeZero,
+                                                     duration: passThru1Dur)
+    passThru1Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: passThru1TimeRange,
+                                         layerinstructions: passThru1)
+    commands.add_command(passThru1Command)
+
+    # Now add a transform ramp layer instruction.
+    trasition1Start = self.segmentstart_movietime_forindex(1)
+    transitionDuration = MovieTime.make_movietime(timevalue: 58 * 3002,
+                                                  timescale: 90000)
+
+    transformRampTimeRange = MovieTime.make_movie_timerange(
+                                              start: trasition1Start,
+                                           duration: transitionDuration)
+
+    identityTransform = MITransformations.make_affinetransform()
+    endTransform = MITransformations.make_contexttransformation()
+    translateLXPoint = MIShapes.make_point(-1279, 0)
+    MITransformations.add_translatetransform(endTransform, translateLXPoint)
+    
+    startTransform = MITransformations.make_contexttransformation()
+    translateRXpoint = MIShapes.make_point(1280, 0)
+    MITransformations.add_translatetransform(startTransform, translateRXpoint)
+    
+    transformRamp = VideoLayerInstructions.new
+    transformRamp.add_transformramplayerinstruction(
+                                                track: track1,
+                                  starttransformvalue: startTransform,
+                                    endtransformvalue: identityTransform,
+                                            timerange: transformRampTimeRange)
+
+    transformRamp.add_transformramplayerinstruction(
+                                                track: track0,
+                                  starttransformvalue: identityTransform,
+                                    endtransformvalue: endTransform,
+                                            timerange: transformRampTimeRange)
+
+    transformRampCommand = CommandModule.make_addvideoinstruction(
+                                                     movieEditorObject,
+                                          timerange: transformRampTimeRange,
+                                  layerinstructions: transformRamp)
+    commands.add_command(transformRampCommand)
+
+    # Now add the second passthru
+    passThru2Dur = MovieTime.make_movietime(timevalue: 182 * 3002,
+                                            timescale: 90000)
+    passThru2 = VideoLayerInstructions.new
+    passThru2.add_passthrulayerinstruction(track: track1)
+    startPassThruTime2 = self.segment_end_movietime_forindex(0)
+    passThru2TimeRange = MovieTime.make_movie_timerange(
+                                                start: startPassThruTime2,
+                                             duration: passThru2Dur)
+    passThru2Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                            timerange: passThru2TimeRange,
+                                    layerinstructions: passThru2)
+    commands.add_command(passThru2Command)
+
+    # Now create a dissolve ramp layer instruction.
+    dissolveRamp = VideoLayerInstructions.new
+    dissolveTimeRange = MovieTime.make_movie_timerange(
+                                start: self.segmentstart_movietime_forindex(2),
+                             duration: transitionDuration)
+    dissolveRamp.add_opacityramplayerinstruction(track: track1, 
+                                     startopacityvalue: 1.0,
+                                       endopacityvalue: 0.0,
+                                             timerange: dissolveTimeRange)
+    dissolveRamp.add_passthrulayerinstruction(track: track0)
+    dissolveRampCommand = CommandModule.make_addvideoinstruction(
+                                                      movieEditorObject,
+                                           timerange: dissolveTimeRange,
+                                   layerinstructions: dissolveRamp)
+    commands.add_command(dissolveRampCommand)
+
+    # Now add the third passthru
+    passThru3Dur = MovieTime.make_movietime(timevalue: 182 * 3002,
+                                            timescale: 90000)
+    passThru3 = VideoLayerInstructions.new
+    passThru3.add_passthrulayerinstruction(track: track0)
+    startPassThruTime3 = self.segment_end_movietime_forindex(1)
+    passThru3TimeRange = MovieTime.make_movie_timerange(
+                                                start: startPassThruTime3,
+                                             duration: passThru3Dur)
+    passThru3Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                            timerange: passThru3TimeRange,
+                                    layerinstructions: passThru3)
+    commands.add_command(passThru3Command)
+
+    # Now create a dissolve ramp layer instruction.
+    cropRamp = VideoLayerInstructions.new
+    cropTimeRange = MovieTime.make_movie_timerange(
+                                start: self.segmentstart_movietime_forindex(3),
+                             duration: transitionDuration)
+    
+    startCropRect = MIShapes.make_rectangle(width: self.videowidth,
+                                           height: self.videoheight)
+    endCropRect = MIShapes.make_rectangle(width: 0.0,
+                                           height: self.videoheight)
+    cropRamp.add_croprectramplayerinstruction(track: track0,
+                                 startcroprectvalue: startCropRect,
+                                   endcroprectvalue: endCropRect,
+                                          timerange: cropTimeRange)
+    cropRamp.add_passthrulayerinstruction(track: track1)
+    cropRampCommand = CommandModule.make_addvideoinstruction(
+                                                      movieEditorObject,
+                                           timerange: cropTimeRange,
+                                   layerinstructions: cropRamp)
+    commands.add_command(cropRampCommand)
+
+    # Now add the third passthru
+    passThru4Dur = MovieTime.make_movietime(timevalue: 240 * 3002,
+                                            timescale: 90000)
+    passThru4 = VideoLayerInstructions.new
+    passThru4.add_passthrulayerinstruction(track: track1)
+    startPassThruTime4 = self.segment_end_movietime_forindex(2)
+    passThru4TimeRange = MovieTime.make_movie_timerange(
+                                                start: startPassThruTime4,
+                                             duration: passThru4Dur)
+    passThru4Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                            timerange: passThru4TimeRange,
+                                    layerinstructions: passThru4)
+    commands.add_command(passThru4Command)
+
+    windowRect = MIShapes.make_rectangle(width: 1000, height: 600)
+#    window = commands.make_createwindowcontext(rect: windowRect,
+#                                          addtocleanup: false)
+#    self.drawimage_from(movieEditorObject, towindow: window,
+#                                            commands: commands)
+
+    # Now lets export the movie. This command may take some time so it is added
+    # to process commands.
+    exportMovieCommand = CommandModule.make_movieeditor_export(
+                                              movieEditorObject,
+                                exportpreset: :AVAssetExportPreset1280x720,
+                              exportfilepath: "~/Desktop/FirstTwo.mov",
+                              exportfiletype: :'com.apple.quicktime-movie')
+    commands.add_command(exportMovieCommand)
+
+    commands
+  end
+
+  def self.segmentstart_movietime_forindex(index)
+    return MovieTime.make_movietime(timevalue: 240 * 3002 * index,
+                                    timescale: 90000)
+  end
+
+  def self.segment_end_movietime_forindex(index)
+    return MovieTime.make_movietime(timevalue: 240 * 3002 * index + 298 * 3002,
+                                    timescale: 90000)
+  end
+
+  def self.drawimage_from(object_id, towindow: nil, commands: nil)
+    imageIdentifier = SecureRandom.uuid
+    addCompositionImage = CommandModule.make_assignimage_tocollection(
+                                                object_id,
+                                    identifier: imageIdentifier)
+    commands.add_command(addCompositionImage)
+
+    drawFrameElement = MIDrawImageElement.new
+    drawFrameElement.interpolationquality = :kCGInterpolationHigh
+    destRect = MIShapes.make_rectangle(width: 1000, height: 600)
+    drawFrameElement.destinationrectangle = destRect
+    drawFrameElement.set_imagecollection_imagesource(
+                                         identifier: imageIdentifier)
+    drawImage = CommandModule.make_drawelement(towindow,
+                    drawinstructions: drawFrameElement)
+    commands.add_command(drawImage)
+  end
+
   def self.run()
     pre_roll()
     theCommands = SmigCommands.new
-    add_logos_to_imagecollection(theCommands)
-    movie_index = 1
-    create_intermediatemovies(theCommands, movie_index: movie_index)
+#    add_logos_to_imagecollection(theCommands)
+#    movie_index = 0
+#    create_intermediatemovies(theCommands, movie_index: movie_index)
+#    Smig.perform_commands(theCommands)
+#    `open #{self.path_to_exportedmovie_withindex(movie_index)}`
+#    numMovies = 4
+#    (numMovies - 1).times do |j|
+#      ZukiniDemoVideo.create_intermediatemovies(theCommands, movie_index: j)
+#    end
+    
+    ZukiniDemoVideo.make_videocomposition(theCommands)
+    # puts JSON.pretty_generate(theCommands.commandshash)
     Smig.perform_commands(theCommands)
-    `open #{self.path_to_exportedmovie_withindex(movie_index)}`
-=begin
-    4.times do |j|
-      ZukiniDemoVideo.create_intermediatemovies(theCommands, movie_index: 0)
-    end
-=end
+    
+    # Smig.perform_commands(theCommands)
     # puts JSON.pretty_generate(theCommands.commandshash)
   end
 end
