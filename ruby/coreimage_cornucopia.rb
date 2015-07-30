@@ -21,7 +21,17 @@ class ZukiniDemoVideo
     return MIShapes.make_size(self.videowidth, self.videoheight)
   end
 
+  def self.frame_rectangle
+    return MIShapes.make_rectangle(size: frame_size)
+  end
+
+  def self.frame_duration
+    return MIMovie::MovieTime.make_movietime(timevalue: 3002, timescale: 90000)
+  end
+
   @@directory = '/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo'
+  @@output_directory = File.expand_path("~/Desktop/tempmovies/")
+
   @@movies = [
     'BeehiveCompost-0536.mov'
   ]
@@ -36,6 +46,12 @@ Zukini"
     return File.join(@@directory, @@movies[i])
   end
 
+  def self.path_to_exportedmovie_withindex(i)
+    return nil if i < 0 || i >= @@movies.count
+    fileName = "Output#{@@movies[i]}"
+    return File.join(@@output_directory, fileName)
+  end
+
   def self.create_maskimagefilterchain(commands, inputImageID,
                                         renderDestination)
     filterchain = MIFilterChain.new(renderDestination)
@@ -43,7 +59,7 @@ Zukini"
     heightfieldmask = MIFilter.new(:CIHeightFieldFromMask,
                        identifier: :heightfieldmask)
     heightfield_radiusproperty = MIFilterProperty.make_cinumberproperty(
-                                                 key: :inputRadius, value: 5)
+                                                 key: :inputRadius, value: 14)
     heightfieldmask.add_property(heightfield_radiusproperty)
     inputImageID = SmigIDHash.make_imageidentifier(inputImageID)
     heightfieldmask.add_inputimage_property(inputImageID)
@@ -130,11 +146,20 @@ Zukini"
     commands.add_command(renderCommand)
   end
 
+  def self.create_draw_nextframe_tobitmap_command(bitmap, movieImporter)
+    drawFrameElement = MIDrawImageElement.new
+    drawFrameElement.interpolationquality = :kCGInterpolationHigh
+    drawFrameElement.destinationrectangle = self.frame_rectangle
+    drawFrameElement.set_moviefile_imagesource(source_object: movieImporter,
+        frametime: MIMovie::MovieTime.make_movietime_nextsample)
+    drawImage = CommandModule.make_drawelement(bitmap,
+                    drawinstructions: drawFrameElement)
+    drawImage
+  end
+
   def self.run()
     theCommands = SmigCommands.new
     theRect = MIShapes.make_rectangle(size: self.frame_size)
-#    drawContext = theCommands.make_createwindowcontext(rect: theRect,
-#      addtocleanup: false)
     drawContext = theCommands.make_createbitmapcontext(size: self.frame_size,
                                        preset: :PlatformDefaultBitmapContext)
 
@@ -184,10 +209,10 @@ Zukini"
     movie_index = 0
     movieImporter = theCommands.make_createmovieimporter(
                             self.path_to_inputmovie_withindex(movie_index))
-#    outputBitmap = theCommands.make_createbitmapcontext(size: self.frame_size,
-#                    preset: :PlatformDefaultBitmapContext)
-    outputBitmap = theCommands.make_createwindowcontext(rect: theRect,
-      addtocleanup: false)
+    outputBitmap = theCommands.make_createbitmapcontext(size: self.frame_size,
+                    preset: :PlatformDefaultBitmapContext)
+#    outputBitmap = theCommands.make_createwindowcontext(rect: theRect,
+#      addtocleanup: false)
     movieInputImageID = SecureRandom.uuid
     assignImageCommand2 = CommandModule.make_assignimage_tocollection(
       outputBitmap, identifier: movieInputImageID)
@@ -201,6 +226,15 @@ Zukini"
                                       targetimageidentifier: movieInputImageID,
                                                outputbitmap: outputBitmap)
 
+     videoFramesWriter = theCommands.make_createvideoframeswriter(
+                          self.path_to_exportedmovie_withindex(movie_index))
+    addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
+                                    videoFramesWriter,
+                            preset: :h264preset_hd,
+                         framesize: self.frame_size,
+                     frameduration: self.frame_duration)
+    theCommands.add_command(addVideoInputCommand)
+
     frameTime = MIMovie::MovieTime.make_movietime_nextsample
     180.times do |i|
       assignCommand = CommandModule.make_assignimage_frommovie_tocollection(
@@ -210,13 +244,31 @@ Zukini"
       theCommands.add_command(assignCommand)
       self.render_pagecurlfilterchain(theCommands, pageCurlFilterChainObject,
         i.to_f / (180.0 - 1))
+      addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
+                                                           videoFramesWriter,
+                                             sourceobject: outputBitmap)
+      theCommands.add_command(addImageToWriterInput)
     end
+
+    118.times do |i|
+      drawFrameCommand = self.create_draw_nextframe_tobitmap_command(
+        outputBitmap, movieImporter)
+      theCommands.add_command(drawFrameCommand)
+      addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
+                                                           videoFramesWriter,
+                                             sourceobject: outputBitmap)
+      theCommands.add_command(addImageToWriterInput)
+    end
+
+    saveMovie = CommandModule.make_finishwritingframescommand(videoFramesWriter)
+    theCommands.add_command(saveMovie)
+
 #    puts JSON.pretty_generate(theCommands.commandshash)
 
     Smig.perform_commands(theCommands)
     sleep 2
     # Smig.close_object(drawContext)
-    Smig.close_object(outputBitmap)
+    # Smig.close_object(outputBitmap)
   end
 end
 
