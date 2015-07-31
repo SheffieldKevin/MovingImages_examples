@@ -10,8 +10,9 @@ include CommandModule
 include MIMovie
 
 class ZukiniDemoVideo
-  @@final_output_movie_path = '/Users/ktam/Desktop/Current/ZukiniDemoMovie2.mov'
-  @@directory = '/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo'
+  @@final_output_movie_path = 
+                      File.expand_path("~/Desktop/Current/ZukiniDemoMovie2.mov")
+  @@directory=File.expand_path("~/Dropbox/zukini ltd/WebsiteContent/demovideo")
   @@zukini_logo = File.join(@@directory, 'Zukini Logo-02.png')
   @@moving_logo = File.join(@@directory, 'Zukini Logo-04.png')
   @@moving_logo2 = File.join(@@directory, 'Zukini Logo-05.png')
@@ -330,7 +331,7 @@ Zukini"
       bitmap, identifier: imageIdentifier)
     commands.add_command(assignImageCommand)
 
-    posterizeValue = 19.0 - frame_index.to_f / 298 * 17
+    posterizeValue = 19.0 - frame_index.to_f / 298 * 18
     posterizeValue = [4.0, posterizeValue].max
     # Now render the filter chain to the bitmap.
     renderFilterChain = MIFilterChainRender.new
