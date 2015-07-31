@@ -30,7 +30,7 @@ class ZukiniDemoVideo
   end
 
   @@directory = '/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo'
-  @@output_directory = File.expand_path("~/Desktop/tempmovies/")
+  @@output_directory = File.expand_path("~/Desktop/Current/tempmovies/")
 
   @@movies = [
     'BeehiveCompost-0536.mov'
