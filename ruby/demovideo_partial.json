@@ -1,0 +1,3219 @@
+{
+  "commands": [
+    {
+      "command": "create",
+      "objecttype": "imageimporter",
+      "file": "/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo/Zukini Logo-02.png",
+      "objectname": "28922187-ae52-4f91-b3a3-e98c06d9de00"
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "imageimporter",
+        "objectname": "28922187-ae52-4f91-b3a3-e98c06d9de00"
+      },
+      "imageoptions": {
+        "imageindex": 0
+      },
+      "imageidentifier": "67b8a493-ab31-4a49-bc42-617bd5dac160"
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "imageimporter",
+        "objectname": "28922187-ae52-4f91-b3a3-e98c06d9de00"
+      }
+    },
+    {
+      "command": "create",
+      "objecttype": "imageimporter",
+      "file": "/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo/Zukini Logo-04.png",
+      "objectname": "09f46e1c-7bb0-4b9c-8c8e-2bec5ab08201"
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "imageimporter",
+        "objectname": "09f46e1c-7bb0-4b9c-8c8e-2bec5ab08201"
+      },
+      "imageoptions": {
+        "imageindex": 0
+      },
+      "imageidentifier": "a3a9c867-645e-48b4-b0c3-0a801847b35f"
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "imageimporter",
+        "objectname": "09f46e1c-7bb0-4b9c-8c8e-2bec5ab08201"
+      }
+    },
+    {
+      "command": "create",
+      "objecttype": "imageimporter",
+      "file": "/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo/Zukini Logo-05.png",
+      "objectname": "25b99ef6-ac94-42f1-8f74-e660be30174c"
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "imageimporter",
+        "objectname": "25b99ef6-ac94-42f1-8f74-e660be30174c"
+      },
+      "imageoptions": {
+        "imageindex": 0
+      },
+      "imageidentifier": "189186a7-3790-4e27-8144-966ed1e8fc4e"
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "imageimporter",
+        "objectname": "25b99ef6-ac94-42f1-8f74-e660be30174c"
+      }
+    },
+    {
+      "command": "create",
+      "objecttype": "movieimporter",
+      "file": "/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo/Strawberries-0529.mov",
+      "objectname": "5709c527-8f80-4324-8287-50db697dabac"
+    },
+    {
+      "command": "create",
+      "objecttype": "bitmapcontext",
+      "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57",
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "preset": "PlatformDefaultBitmapContext"
+    },
+    {
+      "command": "create",
+      "objecttype": "videoframeswriter",
+      "file": "/Users/ktam/Desktop/Current/tempmovies/OutputStrawberries-0529.mov",
+      "objectname": "6e9b67b1-a742-4807-86bb-a228ad70a1b1",
+      "utifiletype": "com.apple.quicktime-movie"
+    },
+    {
+      "command": "addinputtowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "6e9b67b1-a742-4807-86bb-a228ad70a1b1"
+      },
+      "preset": "h264preset_hd",
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "frameduration": {
+        "value": 3002,
+        "timescale": 90000,
+        "flags": 1,
+        "epoch": 0
+      }
+    },
+    {
+      "command": "create",
+      "objecttype": "bitmapcontext",
+      "objectname": "f734ade4-e5b7-4121-b7e9-2aca11f2b409",
+      "size": {
+        "width": 1000,
+        "height": 100
+      },
+      "preset": "PlatformDefaultBitmapContext"
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "f734ade4-e5b7-4121-b7e9-2aca11f2b409"
+      },
+      "drawinstructions": {
+        "elementtype": "arrayofelements",
+        "arrayofelements": [
+          {
+            "elementtype": "fillrectangle",
+            "rect": {
+              "origin": {
+                "x": 0.0,
+                "y": 0
+              },
+              "size": {
+                "width": 1000,
+                "height": 100
+              }
+            },
+            "fillcolor": {
+              "red": 0,
+              "green": 0,
+              "blue": 0,
+              "alpha": 0,
+              "colorcolorprofilename": "kCGColorSpaceSRGB"
+            },
+            "blendmode": "kCGBlendModeCopy"
+          },
+          {
+            "elementtype": "lineargradientfill",
+            "startpoint": {
+              "x": 0,
+              "y": 0
+            },
+            "arrayoflocations": [
+              0.0,
+              1.0
+            ],
+            "arrayofcolors": [
+              {
+                "red": 0.14,
+                "green": 0.025,
+                "blue": 0.16,
+                "alpha": 0.65,
+                "colorcolorprofilename": "kCGColorSpaceSRGB"
+              },
+              {
+                "red": 0.27,
+                "green": 0.05,
+                "blue": 0.31,
+                "alpha": 0.65,
+                "colorcolorprofilename": "kCGColorSpaceSRGB"
+              }
+            ],
+            "line": {
+              "startpoint": {
+                "x": 500.0,
+                "y": 0
+              },
+              "endpoint": {
+                "x": 500.0,
+                "y": 100
+              }
+            },
+            "arrayofpathelements": [
+              {
+                "elementtype": "pathroundedrectangle",
+                "rect": {
+                  "origin": {
+                    "x": 0.0,
+                    "y": 0
+                  },
+                  "size": {
+                    "width": 1000,
+                    "height": 100
+                  }
+                },
+                "radiuses": [
+                  16.0,
+                  16.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            ]
+          },
+          {
+            "elementtype": "drawbasicstring",
+            "stringtext": "Made with MovingImages for Zukini   -   zukini.eu",
+            "fontsize": 48.0,
+            "postscriptfontname": "BrandonGrotesque-Bold",
+            "fillcolor": {
+              "red": 0.85,
+              "green": 0.85,
+              "blue": 0.75,
+              "alpha": 1.0,
+              "colorcolorprofilename": "kCGColorSpaceSRGB"
+            },
+            "textalignment": "kCTTextAlignmentRight",
+            "point": {
+              "x": 0,
+              "y": 10
+            },
+            "arrayofpathelements": [
+              {
+                "elementtype": "pathrectangle",
+                "rect": {
+                  "origin": {
+                    "x": 0,
+                    "y": 10
+                  },
+                  "size": {
+                    "width": 980,
+                    "height": 80
+                  }
+                }
+              }
+            ],
+            "innershadow": {
+              "fillcolor": {
+                "red": 0.2,
+                "green": 0.1,
+                "blue": 0,
+                "alpha": 1.0,
+                "colorcolorprofilename": "kCGColorSpaceSRGB"
+              },
+              "blur": 2,
+              "offset": {
+                "width": 1,
+                "height": -1
+              }
+            }
+          }
+        ]
+      },
+      "createimage": true
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "5709c527-8f80-4324-8287-50db697dabac"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "6e9b67b1-a742-4807-86bb-a228ad70a1b1"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "5709c527-8f80-4324-8287-50db697dabac"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "destinationrectangle": {
+          "origin": {
+            "x": -990.025,
+            "y": 40
+          },
+          "size": {
+            "width": 1000,
+            "height": 100
+          }
+        },
+        "sourceobject": {
+          "objecttype": "bitmapcontext",
+          "objectname": "f734ade4-e5b7-4121-b7e9-2aca11f2b409"
+        },
+        "shadow": {
+          "fillcolor": {
+            "red": 0,
+            "green": 0,
+            "blue": 0,
+            "alpha": 0.8,
+            "colorcolorprofilename": "kCGColorSpaceSRGB"
+          },
+          "blur": 12,
+          "offset": {
+            "width": 6,
+            "height": -12
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "6e9b67b1-a742-4807-86bb-a228ad70a1b1"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "5709c527-8f80-4324-8287-50db697dabac"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "destinationrectangle": {
+          "origin": {
+            "x": -980.1,
+            "y": 40
+          },
+          "size": {
+            "width": 1000,
+            "height": 100
+          }
+        },
+        "sourceobject": {
+          "objecttype": "bitmapcontext",
+          "objectname": "f734ade4-e5b7-4121-b7e9-2aca11f2b409"
+        },
+        "shadow": {
+          "fillcolor": {
+            "red": 0,
+            "green": 0,
+            "blue": 0,
+            "alpha": 0.8,
+            "colorcolorprofilename": "kCGColorSpaceSRGB"
+          },
+          "blur": 12,
+          "offset": {
+            "width": 6,
+            "height": -12
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "6e9b67b1-a742-4807-86bb-a228ad70a1b1"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "5709c527-8f80-4324-8287-50db697dabac"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "destinationrectangle": {
+          "origin": {
+            "x": -970.225,
+            "y": 40
+          },
+          "size": {
+            "width": 1000,
+            "height": 100
+          }
+        },
+        "sourceobject": {
+          "objecttype": "bitmapcontext",
+          "objectname": "f734ade4-e5b7-4121-b7e9-2aca11f2b409"
+        },
+        "shadow": {
+          "fillcolor": {
+            "red": 0,
+            "green": 0,
+            "blue": 0,
+            "alpha": 0.8,
+            "colorcolorprofilename": "kCGColorSpaceSRGB"
+          },
+          "blur": 12,
+          "offset": {
+            "width": 6,
+            "height": -12
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "6e9b67b1-a742-4807-86bb-a228ad70a1b1"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "5709c527-8f80-4324-8287-50db697dabac"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "destinationrectangle": {
+          "origin": {
+            "x": -960.4,
+            "y": 40
+          },
+          "size": {
+            "width": 1000,
+            "height": 100
+          }
+        },
+        "sourceobject": {
+          "objecttype": "bitmapcontext",
+          "objectname": "f734ade4-e5b7-4121-b7e9-2aca11f2b409"
+        },
+        "shadow": {
+          "fillcolor": {
+            "red": 0,
+            "green": 0,
+            "blue": 0,
+            "alpha": 0.8,
+            "colorcolorprofilename": "kCGColorSpaceSRGB"
+          },
+          "blur": 12,
+          "offset": {
+            "width": 6,
+            "height": -12
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "6e9b67b1-a742-4807-86bb-a228ad70a1b1"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      }
+    },
+    {
+      "command": "finishwritingframes",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "6e9b67b1-a742-4807-86bb-a228ad70a1b1"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "5709c527-8f80-4324-8287-50db697dabac"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "aecd3949-7eb4-4c54-9b47-f5dcd8ff8b57"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "6e9b67b1-a742-4807-86bb-a228ad70a1b1"
+      }
+    },
+    {
+      "command": "create",
+      "objecttype": "movieimporter",
+      "file": "/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo/ChivesBed-0530.mov",
+      "objectname": "f77df574-3d47-48b7-a3e6-3112dea2673b"
+    },
+    {
+      "command": "create",
+      "objecttype": "bitmapcontext",
+      "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69",
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "preset": "PlatformDefaultBitmapContext"
+    },
+    {
+      "command": "create",
+      "objecttype": "videoframeswriter",
+      "file": "/Users/ktam/Desktop/Current/tempmovies/OutputChivesBed-0530.mov",
+      "objectname": "32aaa3f5-d305-4d72-a423-6cf1edfc74d7",
+      "utifiletype": "com.apple.quicktime-movie"
+    },
+    {
+      "command": "addinputtowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "32aaa3f5-d305-4d72-a423-6cf1edfc74d7"
+      },
+      "preset": "h264preset_hd",
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "frameduration": {
+        "value": 3002,
+        "timescale": 90000,
+        "flags": 1,
+        "epoch": 0
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "f77df574-3d47-48b7-a3e6-3112dea2673b"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "arrayofelements",
+        "arrayofelements": [
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "67b8a493-ab31-4a49-bc42-617bd5dac160",
+            "destinationrectangle": {
+              "origin": {
+                "x": 6,
+                "y": 634
+              },
+              "size": {
+                "width": 246.75,
+                "height": 79.5
+              }
+            }
+          },
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "189186a7-3790-4e27-8144-966ed1e8fc4e",
+            "destinationrectangle": {
+              "origin": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "size": {
+                "width": 222,
+                "height": 247
+              }
+            },
+            "contexttransformation": [
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": 1212.25,
+                  "y": 652.25
+                }
+              },
+              {
+                "transformationtype": "rotate",
+                "rotation": -0.0
+              },
+              {
+                "transformationtype": "scale",
+                "scale": {
+                  "x": 0.5,
+                  "y": 0.5
+                }
+              },
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": -111,
+                  "y": -123.5
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "32aaa3f5-d305-4d72-a423-6cf1edfc74d7"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "f77df574-3d47-48b7-a3e6-3112dea2673b"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "arrayofelements",
+        "arrayofelements": [
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "67b8a493-ab31-4a49-bc42-617bd5dac160",
+            "destinationrectangle": {
+              "origin": {
+                "x": 6,
+                "y": 634
+              },
+              "size": {
+                "width": 246.75,
+                "height": 79.5
+              }
+            }
+          },
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "189186a7-3790-4e27-8144-966ed1e8fc4e",
+            "destinationrectangle": {
+              "origin": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "size": {
+                "width": 222,
+                "height": 247
+              }
+            },
+            "contexttransformation": [
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": 1212.25,
+                  "y": 652.25
+                }
+              },
+              {
+                "transformationtype": "rotate",
+                "rotation": -0.09424777960769379
+              },
+              {
+                "transformationtype": "scale",
+                "scale": {
+                  "x": 0.5,
+                  "y": 0.5
+                }
+              },
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": -111,
+                  "y": -123.5
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "32aaa3f5-d305-4d72-a423-6cf1edfc74d7"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "f77df574-3d47-48b7-a3e6-3112dea2673b"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "arrayofelements",
+        "arrayofelements": [
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "67b8a493-ab31-4a49-bc42-617bd5dac160",
+            "destinationrectangle": {
+              "origin": {
+                "x": 6,
+                "y": 634
+              },
+              "size": {
+                "width": 246.75,
+                "height": 79.5
+              }
+            }
+          },
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "189186a7-3790-4e27-8144-966ed1e8fc4e",
+            "destinationrectangle": {
+              "origin": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "size": {
+                "width": 222,
+                "height": 247
+              }
+            },
+            "contexttransformation": [
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": 1212.25,
+                  "y": 652.25
+                }
+              },
+              {
+                "transformationtype": "rotate",
+                "rotation": -0.18849555921538758
+              },
+              {
+                "transformationtype": "scale",
+                "scale": {
+                  "x": 0.5,
+                  "y": 0.5
+                }
+              },
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": -111,
+                  "y": -123.5
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "32aaa3f5-d305-4d72-a423-6cf1edfc74d7"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "f77df574-3d47-48b7-a3e6-3112dea2673b"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "arrayofelements",
+        "arrayofelements": [
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "67b8a493-ab31-4a49-bc42-617bd5dac160",
+            "destinationrectangle": {
+              "origin": {
+                "x": 6,
+                "y": 634
+              },
+              "size": {
+                "width": 246.75,
+                "height": 79.5
+              }
+            }
+          },
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "189186a7-3790-4e27-8144-966ed1e8fc4e",
+            "destinationrectangle": {
+              "origin": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "size": {
+                "width": 222,
+                "height": 247
+              }
+            },
+            "contexttransformation": [
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": 1212.25,
+                  "y": 652.25
+                }
+              },
+              {
+                "transformationtype": "rotate",
+                "rotation": -0.2827433388230814
+              },
+              {
+                "transformationtype": "scale",
+                "scale": {
+                  "x": 0.5,
+                  "y": 0.5
+                }
+              },
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": -111,
+                  "y": -123.5
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "32aaa3f5-d305-4d72-a423-6cf1edfc74d7"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "f77df574-3d47-48b7-a3e6-3112dea2673b"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      },
+      "drawinstructions": {
+        "elementtype": "arrayofelements",
+        "arrayofelements": [
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "67b8a493-ab31-4a49-bc42-617bd5dac160",
+            "destinationrectangle": {
+              "origin": {
+                "x": 6,
+                "y": 634
+              },
+              "size": {
+                "width": 246.75,
+                "height": 79.5
+              }
+            }
+          },
+          {
+            "elementtype": "drawimage",
+            "imageidentifier": "189186a7-3790-4e27-8144-966ed1e8fc4e",
+            "destinationrectangle": {
+              "origin": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "size": {
+                "width": 222,
+                "height": 247
+              }
+            },
+            "contexttransformation": [
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": 1212.25,
+                  "y": 652.25
+                }
+              },
+              {
+                "transformationtype": "rotate",
+                "rotation": -0.37699111843077515
+              },
+              {
+                "transformationtype": "scale",
+                "scale": {
+                  "x": 0.5,
+                  "y": 0.5
+                }
+              },
+              {
+                "transformationtype": "translate",
+                "translation": {
+                  "x": -111,
+                  "y": -123.5
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "32aaa3f5-d305-4d72-a423-6cf1edfc74d7"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      }
+    },
+    {
+      "command": "finishwritingframes",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "32aaa3f5-d305-4d72-a423-6cf1edfc74d7"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "f77df574-3d47-48b7-a3e6-3112dea2673b"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "b75a1bfe-7303-45cb-b811-4ff5bb3a7d69"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "32aaa3f5-d305-4d72-a423-6cf1edfc74d7"
+      }
+    },
+    {
+      "command": "create",
+      "objecttype": "movieimporter",
+      "file": "/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo/Epimedium+Fern-0545.mov",
+      "objectname": "2528a235-ecbe-4b73-8322-f1614e4d3c3e"
+    },
+    {
+      "command": "create",
+      "objecttype": "bitmapcontext",
+      "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638",
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "preset": "PlatformDefaultBitmapContext"
+    },
+    {
+      "command": "create",
+      "objecttype": "videoframeswriter",
+      "file": "/Users/ktam/Desktop/Current/tempmovies/OutputEpimedium+Fern-0545.mov",
+      "objectname": "347919b1-891d-4a17-88ad-140638f0d075",
+      "utifiletype": "com.apple.quicktime-movie"
+    },
+    {
+      "command": "addinputtowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "347919b1-891d-4a17-88ad-140638f0d075"
+      },
+      "preset": "h264preset_hd",
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "frameduration": {
+        "value": 3002,
+        "timescale": 90000,
+        "flags": 1,
+        "epoch": 0
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "imageidentifier": "3f545f5f-5323-49cf-b9d1-8758830d1616"
+    },
+    {
+      "command": "create",
+      "objecttype": "imagefilterchain",
+      "imagefilterchaindict": {
+        "cirenderdestination": {
+          "objecttype": "bitmapcontext",
+          "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+        },
+        "cifilterlist": [
+          {
+            "cifiltername": "CIColorPosterize",
+            "mifiltername": "posterize",
+            "cifilterproperties": [
+              {
+                "cifilterkey": "inputImage",
+                "cifiltervalueclass": "CIImage",
+                "cifiltervalue": {
+                  "imageidentifier": "3f545f5f-5323-49cf-b9d1-8758830d1616"
+                }
+              }
+            ]
+          },
+          {
+            "cifiltername": "CIBloom",
+            "mifiltername": "bloom",
+            "cifilterproperties": [
+              {
+                "cifilterkey": "inputImage",
+                "cifiltervalueclass": "CIImage",
+                "cifiltervalue": {
+                  "mifiltername": "posterize"
+                }
+              }
+            ]
+          }
+        ],
+        "use_srgbcolorspace": true
+      },
+      "objectname": "467ee6fd-95de-4db0-aada-da3119ad4776"
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "2528a235-ecbe-4b73-8322-f1614e4d3c3e"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "imageidentifier": "3f545f5f-5323-49cf-b9d1-8758830d1616"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "467ee6fd-95de-4db0-aada-da3119ad4776"
+      },
+      "renderinstructions": {
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputLevels",
+            "cifiltervalue": 19,
+            "mifiltername": "posterize"
+          },
+          {
+            "cifilterkey": "inputIntensity",
+            "cifiltervalue": 0.33,
+            "mifiltername": "bloom"
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "347919b1-891d-4a17-88ad-140638f0d075"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "2528a235-ecbe-4b73-8322-f1614e4d3c3e"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "imageidentifier": "3f545f5f-5323-49cf-b9d1-8758830d1616"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "467ee6fd-95de-4db0-aada-da3119ad4776"
+      },
+      "renderinstructions": {
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputLevels",
+            "cifiltervalue": 18,
+            "mifiltername": "posterize"
+          },
+          {
+            "cifilterkey": "inputIntensity",
+            "cifiltervalue": 0.33333333333333337,
+            "mifiltername": "bloom"
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "347919b1-891d-4a17-88ad-140638f0d075"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "2528a235-ecbe-4b73-8322-f1614e4d3c3e"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "imageidentifier": "3f545f5f-5323-49cf-b9d1-8758830d1616"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "467ee6fd-95de-4db0-aada-da3119ad4776"
+      },
+      "renderinstructions": {
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputLevels",
+            "cifiltervalue": 18,
+            "mifiltername": "posterize"
+          },
+          {
+            "cifilterkey": "inputIntensity",
+            "cifiltervalue": 0.33666666666666667,
+            "mifiltername": "bloom"
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "347919b1-891d-4a17-88ad-140638f0d075"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "2528a235-ecbe-4b73-8322-f1614e4d3c3e"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "imageidentifier": "3f545f5f-5323-49cf-b9d1-8758830d1616"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "467ee6fd-95de-4db0-aada-da3119ad4776"
+      },
+      "renderinstructions": {
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputLevels",
+            "cifiltervalue": 18,
+            "mifiltername": "posterize"
+          },
+          {
+            "cifilterkey": "inputIntensity",
+            "cifiltervalue": 0.34,
+            "mifiltername": "bloom"
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "347919b1-891d-4a17-88ad-140638f0d075"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "2528a235-ecbe-4b73-8322-f1614e4d3c3e"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      },
+      "imageidentifier": "3f545f5f-5323-49cf-b9d1-8758830d1616"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "467ee6fd-95de-4db0-aada-da3119ad4776"
+      },
+      "renderinstructions": {
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputLevels",
+            "cifiltervalue": 18,
+            "mifiltername": "posterize"
+          },
+          {
+            "cifilterkey": "inputIntensity",
+            "cifiltervalue": 0.3433333333333333,
+            "mifiltername": "bloom"
+          }
+        ]
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "347919b1-891d-4a17-88ad-140638f0d075"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      }
+    },
+    {
+      "command": "finishwritingframes",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "347919b1-891d-4a17-88ad-140638f0d075"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "2528a235-ecbe-4b73-8322-f1614e4d3c3e"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "3e8f10cd-c6d3-4548-906c-77d05db9b638"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "347919b1-891d-4a17-88ad-140638f0d075"
+      }
+    },
+    {
+      "command": "create",
+      "objecttype": "bitmapcontext",
+      "objectname": "bcf64576-c504-4513-9ec1-cab26cf2a66a",
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "preset": "PlatformDefaultBitmapContext"
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "bcf64576-c504-4513-9ec1-cab26cf2a66a"
+      },
+      "drawinstructions": {
+        "elementtype": "arrayofelements",
+        "arrayofelements": [
+          {
+            "elementtype": "fillrectangle",
+            "rect": {
+              "origin": {
+                "x": 0.0,
+                "y": 0.0
+              },
+              "size": {
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "fillcolor": {
+              "red": 0,
+              "green": 0,
+              "blue": 0,
+              "alpha": 1.0,
+              "colorcolorprofilename": "kCGColorSpaceSRGB"
+            }
+          },
+          {
+            "elementtype": "drawbasicstring",
+            "stringtext": "MovingImages\nby\nZukini",
+            "fontsize": 110.0,
+            "postscriptfontname": "BrandonGrotesque-Bold",
+            "fillcolor": {
+              "red": 1,
+              "green": 1,
+              "blue": 1,
+              "alpha": 1.0,
+              "colorcolorprofilename": "kCGColorSpaceSRGB"
+            },
+            "textalignment": "kCTTextAlignmentCenter",
+            "point": {
+              "x": 150,
+              "y": 100
+            },
+            "arrayofpathelements": [
+              {
+                "elementtype": "pathrectangle",
+                "rect": {
+                  "origin": {
+                    "x": 150,
+                    "y": 100
+                  },
+                  "size": {
+                    "width": 980,
+                    "height": 520
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "bcf64576-c504-4513-9ec1-cab26cf2a66a"
+      },
+      "imageidentifier": "b457fc5b-3390-48a3-8a0b-1bdd88ea9f48"
+    },
+    {
+      "command": "create",
+      "objecttype": "imagefilterchain",
+      "imagefilterchaindict": {
+        "cirenderdestination": {
+          "objecttype": "bitmapcontext",
+          "objectname": "bcf64576-c504-4513-9ec1-cab26cf2a66a"
+        },
+        "cifilterlist": [
+          {
+            "cifiltername": "CIHeightFieldFromMask",
+            "mifiltername": "heightfieldmask",
+            "cifilterproperties": [
+              {
+                "cifilterkey": "inputRadius",
+                "cifiltervalue": 12
+              },
+              {
+                "cifilterkey": "inputImage",
+                "cifiltervalueclass": "CIImage",
+                "cifiltervalue": {
+                  "imageidentifier": "b457fc5b-3390-48a3-8a0b-1bdd88ea9f48"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "objectname": "fbb661b1-d754-4577-9a13-5d074d7c0335"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "fbb661b1-d754-4577-9a13-5d074d7c0335"
+      },
+      "renderinstructions": {
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "bcf64576-c504-4513-9ec1-cab26cf2a66a"
+      },
+      "imageidentifier": "b457fc5b-3390-48a3-8a0b-1bdd88ea9f48"
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "bcf64576-c504-4513-9ec1-cab26cf2a66a"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "imageidentifier": "b457fc5b-3390-48a3-8a0b-1bdd88ea9f48",
+        "contexttransformation": [
+          {
+            "transformationtype": "translate",
+            "translation": {
+              "x": 1280,
+              "y": 0
+            }
+          },
+          {
+            "transformationtype": "scale",
+            "scale": {
+              "x": -1,
+              "y": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "command": "create",
+      "objecttype": "movieimporter",
+      "file": "/Users/ktam/Dropbox/zukini ltd/WebsiteContent/demovideo/BeehiveCompost-0536.mov",
+      "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+    },
+    {
+      "command": "create",
+      "objecttype": "bitmapcontext",
+      "objectname": "10eb569c-c996-4778-8ea1-986c638a7465",
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "preset": "PlatformDefaultBitmapContext"
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      },
+      "imageidentifier": "9ccd71c0-192e-4fb6-9915-6481ab285d2f"
+    },
+    {
+      "command": "create",
+      "objecttype": "imagefilterchain",
+      "imagefilterchaindict": {
+        "cirenderdestination": {
+          "objecttype": "bitmapcontext",
+          "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+        },
+        "use_srgbcolorspace": true,
+        "cifilterlist": [
+          {
+            "cifiltername": "CIPageCurlWithShadowTransition",
+            "mifiltername": "pagecurlwithshadow",
+            "cifilterproperties": [
+              {
+                "cifilterkey": "inputAngle",
+                "cifiltervalue": -3.0
+              },
+              {
+                "cifilterkey": "inputExtent",
+                "cifiltervalueclass": "CIVector",
+                "cifiltervalue": {
+                  "rect": {
+                    "origin": {
+                      "x": 0.0,
+                      "y": 0.0
+                    },
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    }
+                  }
+                }
+              },
+              {
+                "cifilterkey": "inputRadius",
+                "cifiltervalue": 150
+              },
+              {
+                "cifilterkey": "inputShadowAmount",
+                "cifiltervalue": 0.7
+              },
+              {
+                "cifilterkey": "inputShadowSize",
+                "cifiltervalue": 0.5
+              },
+              {
+                "cifilterkey": "inputBacksideImage",
+                "cifiltervalueclass": "CIImage",
+                "cifiltervalue": {
+                  "objecttype": "bitmapcontext",
+                  "objectname": "bcf64576-c504-4513-9ec1-cab26cf2a66a"
+                }
+              },
+              {
+                "cifilterkey": "inputImage",
+                "cifiltervalueclass": "CIImage",
+                "cifiltervalue": {
+                  "imageidentifier": "b457fc5b-3390-48a3-8a0b-1bdd88ea9f48"
+                }
+              },
+              {
+                "cifilterkey": "inputTargetImage",
+                "cifiltervalueclass": "CIImage",
+                "cifiltervalue": {
+                  "imageidentifier": "9ccd71c0-192e-4fb6-9915-6481ab285d2f"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "objectname": "1375bc7d-c239-4c93-b538-18a417252201"
+    },
+    {
+      "command": "create",
+      "objecttype": "videoframeswriter",
+      "file": "/Users/ktam/Desktop/Current/tempmovies/OutputBeehiveCompost-0536.mov",
+      "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216",
+      "utifiletype": "com.apple.quicktime-movie"
+    },
+    {
+      "command": "addinputtowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "preset": "h264preset_hd",
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "frameduration": {
+        "value": 3002,
+        "timescale": 90000,
+        "flags": 1,
+        "epoch": 0
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+      },
+      "imageoptions": {
+        "frametime": "movienextsample"
+      },
+      "imageidentifier": "9ccd71c0-192e-4fb6-9915-6481ab285d2f"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "1375bc7d-c239-4c93-b538-18a417252201"
+      },
+      "renderinstructions": {
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputTime",
+            "cifiltervalue": 0.0,
+            "mifiltername": "pagecurlwithshadow"
+          }
+        ],
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+      },
+      "imageoptions": {
+        "frametime": "movienextsample"
+      },
+      "imageidentifier": "9ccd71c0-192e-4fb6-9915-6481ab285d2f"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "1375bc7d-c239-4c93-b538-18a417252201"
+      },
+      "renderinstructions": {
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputTime",
+            "cifiltervalue": 0.00558659217877095,
+            "mifiltername": "pagecurlwithshadow"
+          }
+        ],
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+      },
+      "imageoptions": {
+        "frametime": "movienextsample"
+      },
+      "imageidentifier": "9ccd71c0-192e-4fb6-9915-6481ab285d2f"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "1375bc7d-c239-4c93-b538-18a417252201"
+      },
+      "renderinstructions": {
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputTime",
+            "cifiltervalue": 0.0111731843575419,
+            "mifiltername": "pagecurlwithshadow"
+          }
+        ],
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+      },
+      "imageoptions": {
+        "frametime": "movienextsample"
+      },
+      "imageidentifier": "9ccd71c0-192e-4fb6-9915-6481ab285d2f"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "1375bc7d-c239-4c93-b538-18a417252201"
+      },
+      "renderinstructions": {
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputTime",
+            "cifiltervalue": 0.01675977653631285,
+            "mifiltername": "pagecurlwithshadow"
+          }
+        ],
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+      },
+      "imageoptions": {
+        "frametime": "movienextsample"
+      },
+      "imageidentifier": "9ccd71c0-192e-4fb6-9915-6481ab285d2f"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "1375bc7d-c239-4c93-b538-18a417252201"
+      },
+      "renderinstructions": {
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputTime",
+            "cifiltervalue": 0.0223463687150838,
+            "mifiltername": "pagecurlwithshadow"
+          }
+        ],
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "assignimagetocollection",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+      },
+      "imageoptions": {
+        "frametime": "movienextsample"
+      },
+      "imageidentifier": "9ccd71c0-192e-4fb6-9915-6481ab285d2f"
+    },
+    {
+      "command": "renderfilterchain",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "1375bc7d-c239-4c93-b538-18a417252201"
+      },
+      "renderinstructions": {
+        "cifilterproperties": [
+          {
+            "cifilterkey": "inputTime",
+            "cifiltervalue": 0.027932960893854747,
+            "mifiltername": "pagecurlwithshadow"
+          }
+        ],
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourcerectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "drawelement",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      },
+      "drawinstructions": {
+        "elementtype": "drawimage",
+        "interpolationquality": "kCGInterpolationHigh",
+        "destinationrectangle": {
+          "origin": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "size": {
+            "width": 1280,
+            "height": 720
+          }
+        },
+        "sourceobject": {
+          "objecttype": "movieimporter",
+          "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+        },
+        "imageoptions": {
+          "frametime": "movienextsample"
+        }
+      }
+    },
+    {
+      "command": "addimagesampletowriter",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      },
+      "sourceobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "finishwritingframes",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      }
+    },
+    {
+      "command": "create",
+      "objecttype": "movieimporter",
+      "file": "/Users/ktam/Desktop/Current/tempmovies/OutputStrawberries-0529.mov",
+      "objectname": "17bc8999-8381-4f7d-b0f7-a158a78ec396"
+    },
+    {
+      "command": "create",
+      "objecttype": "movieimporter",
+      "file": "/Users/ktam/Desktop/Current/tempmovies/OutputChivesBed-0530.mov",
+      "objectname": "d477d562-f286-48a1-a979-079fef3cae96"
+    },
+    {
+      "command": "create",
+      "objecttype": "movieimporter",
+      "file": "/Users/ktam/Desktop/Current/tempmovies/OutputEpimedium+Fern-0545.mov",
+      "objectname": "dafd209e-ae6c-48af-88af-9cfe39b6606f"
+    },
+    {
+      "command": "create",
+      "objecttype": "movieimporter",
+      "file": "/Users/ktam/Desktop/Current/tempmovies/OutputBeehiveCompost-0536.mov",
+      "objectname": "d0f6bbeb-b4ff-4d3a-9b3d-30a31d150c05"
+    },
+    {
+      "command": "create",
+      "objecttype": "movieeditor",
+      "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+    },
+    {
+      "command": "createtrack",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "mediatype": "vide"
+    },
+    {
+      "command": "createtrack",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "mediatype": "vide"
+    },
+    {
+      "command": "inserttracksegment",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "track": {
+        "trackindex": 0,
+        "mediatype": "vide"
+      },
+      "sourceobject": {
+        "objecttype": "movieimporter",
+        "objectname": "d0f6bbeb-b4ff-4d3a-9b3d-30a31d150c05"
+      },
+      "sourcetrack": {
+        "trackindex": 0,
+        "mediatype": "vide"
+      },
+      "insertiontime": {
+        "value": 0,
+        "timescale": 90000,
+        "flags": 1,
+        "epoch": 0
+      },
+      "sourcetimerange": {
+        "start": {
+          "value": 0,
+          "timescale": 1,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 894596,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      }
+    },
+    {
+      "command": "inserttracksegment",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "track": {
+        "trackindex": 1,
+        "mediatype": "vide"
+      },
+      "sourceobject": {
+        "objecttype": "movieimporter",
+        "objectname": "dafd209e-ae6c-48af-88af-9cfe39b6606f"
+      },
+      "sourcetrack": {
+        "trackindex": 0,
+        "mediatype": "vide"
+      },
+      "insertiontime": {
+        "value": 720480,
+        "timescale": 90000,
+        "flags": 1,
+        "epoch": 0
+      },
+      "sourcetimerange": {
+        "start": {
+          "value": 0,
+          "timescale": 1,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 894596,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      }
+    },
+    {
+      "command": "inserttracksegment",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "track": {
+        "trackindex": 0,
+        "mediatype": "vide"
+      },
+      "sourceobject": {
+        "objecttype": "movieimporter",
+        "objectname": "d477d562-f286-48a1-a979-079fef3cae96"
+      },
+      "sourcetrack": {
+        "trackindex": 0,
+        "mediatype": "vide"
+      },
+      "insertiontime": {
+        "value": 1440960,
+        "timescale": 90000,
+        "flags": 1,
+        "epoch": 0
+      },
+      "sourcetimerange": {
+        "start": {
+          "value": 0,
+          "timescale": 1,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 894596,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      }
+    },
+    {
+      "command": "inserttracksegment",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "track": {
+        "trackindex": 1,
+        "mediatype": "vide"
+      },
+      "sourceobject": {
+        "objecttype": "movieimporter",
+        "objectname": "17bc8999-8381-4f7d-b0f7-a158a78ec396"
+      },
+      "sourcetrack": {
+        "trackindex": 0,
+        "mediatype": "vide"
+      },
+      "insertiontime": {
+        "value": 2161440,
+        "timescale": 90000,
+        "flags": 1,
+        "epoch": 0
+      },
+      "sourcetimerange": {
+        "start": {
+          "value": 0,
+          "timescale": 1,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 894596,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      }
+    },
+    {
+      "command": "addmovieinstruction",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "timerange": {
+        "start": {
+          "value": 0,
+          "timescale": 1,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 720480,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      },
+      "layerinstructions": [
+        {
+          "layerinstructiontype": "passthruinstruction",
+          "track": {
+            "trackindex": 0,
+            "mediatype": "vide"
+          }
+        }
+      ]
+    },
+    {
+      "command": "addmovieinstruction",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "timerange": {
+        "start": {
+          "value": 720480,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 174116,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      },
+      "layerinstructions": [
+        {
+          "layerinstructiontype": "transformramp",
+          "startrampvalue": [
+            {
+              "transformationtype": "translate",
+              "translation": {
+                "x": 1280,
+                "y": 0
+              }
+            }
+          ],
+          "endrampvalue": {
+            "m11": 1.0,
+            "m12": 0.0,
+            "m21": 0.0,
+            "m22": 1.0,
+            "tX": 0.0,
+            "tY": 0.0
+          },
+          "track": {
+            "trackindex": 1,
+            "mediatype": "vide"
+          },
+          "timerange": {
+            "start": {
+              "value": 720480,
+              "timescale": 90000,
+              "flags": 1,
+              "epoch": 0
+            },
+            "duration": {
+              "value": 174116,
+              "timescale": 90000,
+              "flags": 1,
+              "epoch": 0
+            }
+          }
+        },
+        {
+          "layerinstructiontype": "transformramp",
+          "startrampvalue": {
+            "m11": 1.0,
+            "m12": 0.0,
+            "m21": 0.0,
+            "m22": 1.0,
+            "tX": 0.0,
+            "tY": 0.0
+          },
+          "endrampvalue": [
+            {
+              "transformationtype": "translate",
+              "translation": {
+                "x": -1279,
+                "y": 0
+              }
+            }
+          ],
+          "track": {
+            "trackindex": 0,
+            "mediatype": "vide"
+          },
+          "timerange": {
+            "start": {
+              "value": 720480,
+              "timescale": 90000,
+              "flags": 1,
+              "epoch": 0
+            },
+            "duration": {
+              "value": 174116,
+              "timescale": 90000,
+              "flags": 1,
+              "epoch": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "command": "addmovieinstruction",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "timerange": {
+        "start": {
+          "value": 894596,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 546364,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      },
+      "layerinstructions": [
+        {
+          "layerinstructiontype": "passthruinstruction",
+          "track": {
+            "trackindex": 1,
+            "mediatype": "vide"
+          }
+        }
+      ]
+    },
+    {
+      "command": "addmovieinstruction",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "timerange": {
+        "start": {
+          "value": 1440960,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 174116,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      },
+      "layerinstructions": [
+        {
+          "layerinstructiontype": "opacityramp",
+          "startrampvalue": 1.0,
+          "endrampvalue": 0.0,
+          "track": {
+            "trackindex": 1,
+            "mediatype": "vide"
+          },
+          "timerange": {
+            "start": {
+              "value": 1440960,
+              "timescale": 90000,
+              "flags": 1,
+              "epoch": 0
+            },
+            "duration": {
+              "value": 174116,
+              "timescale": 90000,
+              "flags": 1,
+              "epoch": 0
+            }
+          }
+        },
+        {
+          "layerinstructiontype": "passthruinstruction",
+          "track": {
+            "trackindex": 0,
+            "mediatype": "vide"
+          }
+        }
+      ]
+    },
+    {
+      "command": "addmovieinstruction",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "timerange": {
+        "start": {
+          "value": 1615076,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 546364,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      },
+      "layerinstructions": [
+        {
+          "layerinstructiontype": "passthruinstruction",
+          "track": {
+            "trackindex": 0,
+            "mediatype": "vide"
+          }
+        }
+      ]
+    },
+    {
+      "command": "addmovieinstruction",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "timerange": {
+        "start": {
+          "value": 2161440,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 174116,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      },
+      "layerinstructions": [
+        {
+          "layerinstructiontype": "cropramp",
+          "startrampvalue": {
+            "origin": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "size": {
+              "width": 1280,
+              "height": 720
+            }
+          },
+          "endrampvalue": {
+            "origin": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "size": {
+              "width": 0.0,
+              "height": 720
+            }
+          },
+          "track": {
+            "trackindex": 0,
+            "mediatype": "vide"
+          },
+          "timerange": {
+            "start": {
+              "value": 2161440,
+              "timescale": 90000,
+              "flags": 1,
+              "epoch": 0
+            },
+            "duration": {
+              "value": 174116,
+              "timescale": 90000,
+              "flags": 1,
+              "epoch": 0
+            }
+          }
+        },
+        {
+          "layerinstructiontype": "passthruinstruction",
+          "track": {
+            "trackindex": 1,
+            "mediatype": "vide"
+          }
+        }
+      ]
+    },
+    {
+      "command": "addmovieinstruction",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "timerange": {
+        "start": {
+          "value": 2335556,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        },
+        "duration": {
+          "value": 720480,
+          "timescale": 90000,
+          "flags": 1,
+          "epoch": 0
+        }
+      },
+      "layerinstructions": [
+        {
+          "layerinstructiontype": "passthruinstruction",
+          "track": {
+            "trackindex": 1,
+            "mediatype": "vide"
+          }
+        }
+      ]
+    },
+    {
+      "command": "export",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      },
+      "preset": "AVAssetExportPreset1280x720",
+      "file": "/Users/ktam/Desktop/Current/ZukiniDemoMovie2.mov",
+      "utifiletype": "com.apple.quicktime-movie"
+    }
+  ],
+  "cleanupcommands": [
+    {
+      "command": "removeimagefromcollection",
+      "imageidentifier": "67b8a493-ab31-4a49-bc42-617bd5dac160"
+    },
+    {
+      "command": "removeimagefromcollection",
+      "imageidentifier": "a3a9c867-645e-48b4-b0c3-0a801847b35f"
+    },
+    {
+      "command": "removeimagefromcollection",
+      "imageidentifier": "189186a7-3790-4e27-8144-966ed1e8fc4e"
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "f734ade4-e5b7-4121-b7e9-2aca11f2b409"
+      }
+    },
+    {
+      "command": "removeimagefromcollection",
+      "imageidentifier": "3f545f5f-5323-49cf-b9d1-8758830d1616"
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "467ee6fd-95de-4db0-aada-da3119ad4776"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "bcf64576-c504-4513-9ec1-cab26cf2a66a"
+      }
+    },
+    {
+      "command": "removeimagefromcollection",
+      "imageidentifier": "b457fc5b-3390-48a3-8a0b-1bdd88ea9f48"
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "fbb661b1-d754-4577-9a13-5d074d7c0335"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "0e4c74d6-49f1-457a-9ca7-9dababb86fef"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "bitmapcontext",
+        "objectname": "10eb569c-c996-4778-8ea1-986c638a7465"
+      }
+    },
+    {
+      "command": "removeimagefromcollection",
+      "imageidentifier": "9ccd71c0-192e-4fb6-9915-6481ab285d2f"
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "imagefilterchain",
+        "objectname": "1375bc7d-c239-4c93-b538-18a417252201"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "videoframeswriter",
+        "objectname": "3ba59ca2-d960-42d5-8e2a-62d00175e216"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "17bc8999-8381-4f7d-b0f7-a158a78ec396"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "d477d562-f286-48a1-a979-079fef3cae96"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "dafd209e-ae6c-48af-88af-9cfe39b6606f"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "movieimporter",
+        "objectname": "d0f6bbeb-b4ff-4d3a-9b3d-30a31d150c05"
+      }
+    },
+    {
+      "command": "close",
+      "receiverobject": {
+        "objecttype": "movieeditor",
+        "objectname": "f5fde256-1f6f-4813-9b43-7ab563666e72"
+      }
+    }
+  ]
+}
