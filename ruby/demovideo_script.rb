@@ -11,11 +11,13 @@ include MIMovie
 
 class ZukiniDemoVideo
   @@final_output_movie_path = 
-                      File.expand_path("~/Desktop/Current/ZukiniDemoMovie2.mov")
-  @@directory=File.expand_path("~/Dropbox/zukini ltd/WebsiteContent/demovideo")
-  @@zukini_logo = File.join(@@directory, 'Zukini Logo-02.png')
-  @@moving_logo = File.join(@@directory, 'Zukini Logo-04.png')
-  @@moving_logo2 = File.join(@@directory, 'Zukini Logo-05.png')
+                      File.expand_path("~/Desktop/Current/ZukiniDemoMovie5.mov")
+#  @@directory=File.expand_path("~/Dropbox/zukini ltd/WebsiteContent/demovideo")
+  @@logo_dir = File.expand_path("~/Dropbox/zukini ltd/WebsiteContent/demovideo")
+  @@directory=File.expand_path("~/Desktop/Current/HyperlapseTrimmed/")
+  @@zukini_logo = File.join(@@logo_dir, 'Zukini Logo-02.png')
+  @@moving_logo = File.join(@@logo_dir, 'Zukini Logo-04.png')
+  @@moving_logo2 = File.join(@@logo_dir, 'Zukini Logo-05.png')
 
   @@zukini_logo_identifier = SecureRandom.uuid
   @@moving_logo_identifier = SecureRandom.uuid
@@ -24,19 +26,37 @@ class ZukiniDemoVideo
   # @@output_directory = Dir.tmpdir
   @@output_directory = File.expand_path("~/Desktop/Current/tempmovies/")
 
+=begin
   @@movies = [
     'Strawberries-0529.mov',
     'ChivesBed-0530.mov',
     'Epimedium+Fern-0545.mov',
     'BeehiveCompost-0536.mov'
   ]
+=end
+
+=begin
+  @@movies = [
+    'CrocosmiaLucifer.mov',
+    'Garden.mov',
+    'Herbborder.mov',
+    'Grass2Shady.mov'
+  ]
+=end
+
+  @@movies = [
+    'Herbborder.mov',
+    'Grass2Shady.mov',
+    'CrocosmiaLucifer.mov',
+    'Garden.mov'
+  ]
 
   @@video_texts = [
 "Made with MovingImages for Zukini   -   zukini.eu",
 "You can add animations,
-apply filters, and
-draw text to Videos",
-"",
+draw shapes, images,
+and text to Videos",
+"You can apply filters",
 "MovingImages
 by
 Zukini"
@@ -350,6 +370,24 @@ Zukini"
     renderCommand = CommandModule.make_renderfilterchain(filterChainObject,
       renderinstructions: renderFilterChain)
     commands.add_command(renderCommand)
+
+    if frame_index >= 59 && frame_index < 239
+      maxFrames = 180
+      indexOffset = frame_index - 59
+      alpha = 1.0 - (90.0 - indexOffset)**2 / (90.0**2)
+      textToDraw = @@video_texts[2]
+      drawString = MIDrawBasicStringElement.new
+      drawString.stringtext = textToDraw
+      drawString.fillcolor = MIColor.make_rgbacolor(1,1,1, a: alpha)
+      drawString.boundingbox = MIShapes.make_rectangle(width: 1200, height: 120,
+                                            xloc: 40, yloc: 300)
+       drawString.postscriptfontname = 'BrandonGrotesque-Bold'
+       drawString.fontsize = 72
+       drawString.textalignment = :kCTTextAlignmentCenter
+      drawCommand = CommandModule.make_drawelement(bitmap,
+                                drawinstructions: drawString)
+      commands.add_command(drawCommand)
+    end
   end
 
   def self.process_frame_movieindex3(commands, bitmap: nil, frame_index: 0,
@@ -864,7 +902,6 @@ Zukini"
     add_logos_to_imagecollection(theCommands)
 #    movie_index = 0
 #    create_intermediatemovies(theCommands, movie_index: movie_index)
-#    Smig.perform_commands(theCommands)
 #    `open #{self.path_to_exportedmovie_withindex(movie_index)}`
 
     # The fourth video is processed differently to the previous 3. So it is
