@@ -101,15 +101,6 @@ module GettingStarted
                                      key: :inputCenter,
                                    value: center)
       rippleTransition.add_property(centerProperty)
-
-      # widthProperty = MIFilterProperty.make_cinumberproperty(key: :inputWidth,
-      #                                                     value: 100)
-      # rippleTransition.add_property(widthProperty)
-      
-      # scaleProperty = MIFilterProperty.make_cinumberproperty(key: :inputScale,
-      #                                                     value: 50)
-      # rippleTransition.add_property(scaleProperty)
-      
       rippleTransition
     end
 
@@ -127,8 +118,6 @@ module GettingStarted
                           filterList: [ radialGradient.filterhash,
                                             cropFilter.filterhash,
                                       rippleTransition.filterhash])
-      # filterChain.use_srgbprofile = true
-      # filterChain.softwarerender = true
       filterChainObject = commands.make_createimagefilterchain(filterChain)
       filterChainObject
     end
@@ -164,19 +153,6 @@ module GettingStarted
                                            tracks: [ @@videotrack_id ],
                                        identifier: imageidentifier)
     commands.add_command(assignFrameCommand)
-  end
-
-  def self.draw_nextvideoframe_tobitmap(commands, bitmap: nil, importer: nil)
-    drawImageElement = MIDrawImageElement.new
-    destRect = MIShapes.make_rectangle(size: @@bitmapsize)
-    drawImageElement.destinationrectangle = destRect
-    drawImageElement.set_moviefile_imagesource(
-                            source_object: importer,
-                                frametime: @@nextframe_time,
-                                   tracks: [ @@videotrack_id ])
-    drawElementCommand = CommandModule.make_drawelement(bitmap,
-                                 drawinstructions: drawImageElement)
-    commands.add_command(drawElementCommand)
   end
 
   def self.draw_imageincollection_to_context(commands,
@@ -252,33 +228,12 @@ module GettingStarted
         end
       end
 
-=begin
-      # To improve color matching.
-      bitmap1 = commands.make_createbitmapcontext(size: hd_videosize,
-                                               preset: :PlatformDefaultBitmapContext,
-                                              profile: :kCGColorSpaceGenericRGB)
-      bitmap2 = commands.make_createbitmapcontext(size: hd_videosize,
-                                               preset: :PlatformDefaultBitmapContext,
-                                              profile: :kCGColorSpaceGenericRGB)
-=end
       transitionFrames = 146
       fraction = 1.0 / (transitionFrames - 1.0)
       addImageToVideoFramesWriter2 = CommandModule.make_addimageto_videoinputwriter(
                                                 videoFramesWriter,
                                   sourceobject: bitmap)
       transitionFrames.times do |index|
-=begin
-        self.draw_nextvideoframe_tobitmap(commands, bitmap: bitmap1,
-                                             importer: movieImporter1)
-        self.draw_nextvideoframe_tobitmap(commands, bitmap: bitmap2,
-                                             importer: movieImporter2)
-        assignImageCommand1 = CommandModule.make_assignimage_tocollection(bitmap1,
-                                           identifier: @@imageidentifier_video1)
-        commands.add_command(assignImageCommand1)
-        assignImageCommand2 = CommandModule.make_assignimage_tocollection(bitmap2,
-                                           identifier: @@imageidentifier_video2)
-        commands.add_command(assignImageCommand2)
-=end
         self.assign_nextvideoframe_toimagecollection(commands,
                                              importer: movieImporter1,
                                       imageidentifier: @@imageidentifier_video1)
