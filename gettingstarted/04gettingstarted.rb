@@ -7,6 +7,7 @@ include CommandModule
 
 module GettingStarted
   @@displayInWindow = false
+
   @@movieFileName1 = "OutputGrass2Shady.mov"
   @@movieFileName2 = "ShadyBorder.mov"
   @@movieFolder = File.expand_path("~/Desktop/Current/tempmovies/")
@@ -14,10 +15,9 @@ module GettingStarted
   @@movieFile2 = File.join(@@movieFolder, @@movieFileName2)
   @@outputFilename = "RippleTransition.mov"
   @@outputFile = File.join(@@movieFolder, @@outputFilename)
+
   @@imageidentifier_video1 = SecureRandom.uuid
   @@imageidentifier_video2 = SecureRandom.uuid
-  
-  @@finalimageidentifier = SecureRandom.uuid
 
   @@videotrack_id = MovieTrackIdentifier.make_movietrackid_from_mediatype(
                                                 mediatype: :vide,
@@ -196,7 +196,7 @@ module GettingStarted
       movieImporter1 = commands.make_createmovieimporter(@@movieFile1)
       movieImporter2 = commands.make_createmovieimporter(@@movieFile2)
       
-      windowRect = MIShapes.make_rectangle(size: @@windowsize)
+      windowRect = MIShapes.make_rectangle(xloc: 40, yloc: 80, size: @@windowsize)
       if @@displayInWindow
         window = commands.make_createwindowcontext(rect: windowRect,
                                            addtocleanup: false)
@@ -271,6 +271,7 @@ module GettingStarted
       commands.add_tocleanupcommands_removeimagefromcollection(@@imageidentifier_video2)
       theTime = Smig.perform_timed_commands(commands)
       puts "Time taken: #{theTime}"
+      `open #{@@outputFile}`
     rescue RuntimeError => e
       unless Smig.exitvalue.zero?
         puts "Exit string: #{Smig.exitstring}"
