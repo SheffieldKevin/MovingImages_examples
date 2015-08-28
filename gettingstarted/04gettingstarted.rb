@@ -121,7 +121,6 @@ module GettingStarted
       filterChainObject = commands.make_createimagefilterchain(filterChain)
       filterChainObject
     end
-  
     
     def self.render_rippletranstion(filterChainObj, time: nil)
         renderProp = MIFilterRenderProperty.make_renderproperty_withfilternameid(
@@ -139,12 +138,6 @@ module GettingStarted
     
   end
   
-  def self.videotrack_id()
-    return MovieTrackIdentifier.make_movietrackid_from_mediatype(
-                                                mediatype: :vide,
-                                               trackindex: 0)
-  end
-
   def self.assign_nextvideoframe_toimagecollection(commands,
                                          importer: nil,
                                   imageidentifier: nil)
@@ -196,13 +189,12 @@ module GettingStarted
       movieImporter1 = commands.make_createmovieimporter(@@movieFile1)
       movieImporter2 = commands.make_createmovieimporter(@@movieFile2)
       
-      windowRect = MIShapes.make_rectangle(xloc: 40, yloc: 80, size: @@windowsize)
       if @@displayInWindow
-        window = commands.make_createwindowcontext(rect: windowRect,
-                                           addtocleanup: false)
+        windowRect = MIShapes.make_rectangle(xloc: 40, yloc: 80, size: @@windowsize)
+        window = commands.make_createwindowcontext(rect: windowRect)
       end
-      hd_videosize = MIShapes.make_size(1280, 720)
-      bitmap = commands.make_createbitmapcontext(size: hd_videosize,
+
+      bitmap = commands.make_createbitmapcontext(size: @@bitmapsize,
                                                preset: :PlatformDefaultBitmapContext,
                                               profile: :kCGColorSpaceGenericRGB)
       filterChain = MakeFilterChain.make_transitionfilter(commands,
@@ -279,10 +271,6 @@ module GettingStarted
       end
       puts e.message
       puts e.backtrace.to_s
-    ensure
-      if @@displayInWindow
-        Smig.close_object_nothrow(window)
-      end
     end
   end
 
