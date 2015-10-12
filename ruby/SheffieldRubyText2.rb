@@ -16,8 +16,8 @@ $movieFileExportPath = File.expand_path("~/Desktop/SheffieldRuby.mov")
 # puts $movieFileExportPath
 
 class DrawTextOnVideoFrames
-  @@textBitmapWidth = 300
-  @@textBitmapHeight = 150
+  @@textBitmapWidth = 260
+  @@textBitmapHeight = 120
   @@videoWidth = 1280
   @@videoHeight = 720
 
@@ -25,7 +25,7 @@ class DrawTextOnVideoFrames
   
   def self.drawto_textbitmap(text1: nil, text2: nil, bitmap: nil)
     drawArrayOfElements = MIDrawElement.new(:arrayofelements)
-    borderWidth = 6
+    borderWidth = 4
     blackColor = MIColor.make_rgbacolor(0,0,0, a: 1.0)
 
     drawRect = MIShapes.make_rectangle(xloc: 0,
@@ -39,20 +39,20 @@ class DrawTextOnVideoFrames
     drawArrayOfElements.add_drawelement_toarrayofelements(fillBitmap)
 
     drawText1Background = MIDrawElement.new(:fillrectangle)
-    text1BackgroundRect = MIShapes.make_rectangle(xloc: borderWidth,
+    text2BackgroundRect = MIShapes.make_rectangle(xloc: borderWidth,
                                                   yloc: borderWidth,
                                                  width: @@textBitmapWidth - 2 * borderWidth,
-                                                height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
-    text2BackgroundRect = MIShapes.make_rectangle(xloc: borderWidth,
-                                                  yloc: @@textBitmapHeight * 0.5 + borderWidth,
+                                                height: @@textBitmapHeight * 0.5 -  borderWidth)
+    text1BackgroundRect = MIShapes.make_rectangle(xloc: borderWidth,
+                                                  yloc: @@textBitmapHeight * 0.5,
                                                  width: @@textBitmapWidth - 2 * borderWidth,
-                                                height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
-    textBox2 = MIShapes.make_rectangle(xloc: borderWidth,
+                                                height: @@textBitmapHeight * 0.5 -  borderWidth)
+    textBox1 = MIShapes.make_rectangle(xloc: borderWidth,
                                    yloc: @@textBitmapHeight * 0.5 + borderWidth,
                                   width: @@textBitmapWidth - 2 * borderWidth,
                                  height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
-    textBox1 = MIShapes.make_rectangle(xloc: borderWidth,
-                                       yloc: borderWidth,
+    textBox2 = MIShapes.make_rectangle(xloc: borderWidth,
+                                       yloc: borderWidth + borderWidth,
                                       width: @@textBitmapWidth - 2 * borderWidth,
                                      height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
 
@@ -63,7 +63,7 @@ class DrawTextOnVideoFrames
     
     drawStringElement1 = MIDrawBasicStringElement.new
     drawStringElement1.boundingbox = textBox1
-    drawStringElement1.fontsize = 44
+    drawStringElement1.fontsize = 40
     drawStringElement1.fillcolor = MIColor.make_rgbacolor(0.5,0.5,0.5, a: 0.0)
     drawStringElement1.blendmode = :kCGBlendModeCopy
     drawStringElement1.stringtext = text1
@@ -94,8 +94,8 @@ class DrawTextOnVideoFrames
   def self.draw_textbitmap(videoFrameBitmap, textbitmap: nil)
     drawTextBitmap = MIDrawImageElement.new
     drawTextBitmap.set_bitmap_imagesource(source_object: textbitmap)
-    destRect = MIShapes.make_rectangle(xloc: 100,
-                                       yloc: 50,
+    destRect = MIShapes.make_rectangle(xloc: 60,
+                                       yloc: 30,
                                       width: @@textBitmapWidth,
                                      height: @@textBitmapHeight)
     drawTextBitmap.destinationrectangle = destRect
