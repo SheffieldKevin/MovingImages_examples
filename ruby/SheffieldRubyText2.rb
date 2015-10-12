@@ -25,7 +25,7 @@ class DrawTextOnVideoFrames
   
   def self.drawto_textbitmap(text1: nil, text2: nil, bitmap: nil)
     drawArrayOfElements = MIDrawElement.new(:arrayofelements)
-    borderWidth = 10
+    borderWidth = 6
     blackColor = MIColor.make_rgbacolor(0,0,0, a: 1.0)
 =begin Rather than drawing a black border. Just hit the whole bitmap with black.
      # This way we know what the state of the bitmap will be.
@@ -67,7 +67,7 @@ class DrawTextOnVideoFrames
                                       width: @@textBitmapWidth - 2 * borderWidth,
                                      height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
     drawStringElement1.boundingbox = textBox1
-    drawStringElement1.fontsize = 40
+    drawStringElement1.fontsize = 44
     drawStringElement1.fillcolor = MIColor.make_rgbacolor(0.5,0.5,0.5, a: 0.0)
     drawStringElement1.blendmode = :kCGBlendModeCopy
     drawStringElement1.stringtext = text1
@@ -107,7 +107,7 @@ class DrawTextOnVideoFrames
     drawTextBitmap = MIDrawImageElement.new
     drawTextBitmap.set_bitmap_imagesource(source_object: textbitmap)
     destRect = MIShapes.make_rectangle(xloc: 100,
-                                       yloc: 100,
+                                       yloc: 50,
                                       width: @@textBitmapWidth,
                                      height: @@textBitmapHeight)
     drawTextBitmap.destinationrectangle = destRect
@@ -171,3 +171,4 @@ theCommands = DrawTextOnVideoFrames.make_drawtext_on_videoframes_commands()
 # puts JSON.pretty_generate(theCommands.commandshash)
 Smig.perform_commands(theCommands)
 
+`open #{$movieFileExportPath}`
