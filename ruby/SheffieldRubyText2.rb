@@ -27,20 +27,7 @@ class DrawTextOnVideoFrames
     drawArrayOfElements = MIDrawElement.new(:arrayofelements)
     borderWidth = 6
     blackColor = MIColor.make_rgbacolor(0,0,0, a: 1.0)
-=begin Rather than drawing a black border. Just hit the whole bitmap with black.
-     # This way we know what the state of the bitmap will be.
 
-    drawBorder = MIDrawElement.new(:strokerectangle)
-    drawBorderRect = MIShapes.make_rectangle(xloc: borderWidth / 2,
-                                             yloc: borderWidth / 2,
-                                            width: @@textBitmapWidth - borderWidth,
-                                           height: @@textBitmapHeight - borderWidth)
-    drawBorder.linewidth = borderWidth
-    drawBorder.rectangle = drawBorderRect
-    drawBorder.strokecolor = blackColor
-    drawBorder.blendmode = :kCGBlendModeCopy
-    drawArrayOfElements.add_drawelement_toarrayofelements(drawBorder)
-=end
     drawRect = MIShapes.make_rectangle(xloc: 0,
                                        yloc: 0,
                                       width: @@textBitmapWidth,
@@ -56,16 +43,25 @@ class DrawTextOnVideoFrames
                                                   yloc: borderWidth,
                                                  width: @@textBitmapWidth - 2 * borderWidth,
                                                 height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
+    text2BackgroundRect = MIShapes.make_rectangle(xloc: borderWidth,
+                                                  yloc: @@textBitmapHeight * 0.5 + borderWidth,
+                                                 width: @@textBitmapWidth - 2 * borderWidth,
+                                                height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
+    textBox2 = MIShapes.make_rectangle(xloc: borderWidth,
+                                   yloc: @@textBitmapHeight * 0.5 + borderWidth,
+                                  width: @@textBitmapWidth - 2 * borderWidth,
+                                 height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
+    textBox1 = MIShapes.make_rectangle(xloc: borderWidth,
+                                       yloc: borderWidth,
+                                      width: @@textBitmapWidth - 2 * borderWidth,
+                                     height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
+
     drawText1Background.rectangle = text1BackgroundRect
     drawText1Background.fillcolor = blackColor
     drawText1Background.blendmode = :kCGBlendModeCopy
     drawArrayOfElements.add_drawelement_toarrayofelements(drawText1Background)
     
     drawStringElement1 = MIDrawBasicStringElement.new
-    textBox1 = MIShapes.make_rectangle(xloc: borderWidth,
-                                       yloc: borderWidth,
-                                      width: @@textBitmapWidth - 2 * borderWidth,
-                                     height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
     drawStringElement1.boundingbox = textBox1
     drawStringElement1.fontsize = 44
     drawStringElement1.fillcolor = MIColor.make_rgbacolor(0.5,0.5,0.5, a: 0.0)
@@ -76,20 +72,12 @@ class DrawTextOnVideoFrames
     drawArrayOfElements.add_drawelement_toarrayofelements(drawStringElement1)
 
     drawText2Background = MIDrawElement.new(:fillrectangle)
-    text2BackgroundRect = MIShapes.make_rectangle(xloc: borderWidth,
-                                                  yloc: @@textBitmapHeight * 0.5 + borderWidth,
-                                                 width: @@textBitmapWidth - 2 * borderWidth,
-                                                height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
     drawText2Background.rectangle = text2BackgroundRect
     drawText2Background.fillcolor = MIColor.make_rgbacolor(0.5,0.5,0.5, a: 0.0)
     drawText2Background.blendmode = :kCGBlendModeCopy
     drawArrayOfElements.add_drawelement_toarrayofelements(drawText2Background)
     
     drawStringElement2 = MIDrawBasicStringElement.new
-    textBox2 = MIShapes.make_rectangle(xloc: borderWidth,
-                                       yloc: @@textBitmapHeight * 0.5 + borderWidth,
-                                      width: @@textBitmapWidth - 2 * borderWidth,
-                                     height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
     drawStringElement2.boundingbox = textBox2
     drawStringElement2.fontsize = 40
     drawStringElement2.fillcolor = MIColor.make_rgbacolor(1.0,1.0,1.0, a: 1.0)
@@ -157,7 +145,6 @@ class DrawTextOnVideoFrames
       addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
           videoFramesWriter, sourceobject: videoFrameBitmap)
       theCommands.add_command(addImageToWriterInput)
-      
     end
     finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
     theCommands.add_command(finalize)
