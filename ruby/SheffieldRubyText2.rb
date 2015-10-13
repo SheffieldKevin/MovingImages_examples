@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# This script takes a movie file and adds a small annotation that fades in and then back out again.
+
 require 'moving_images'
 
 include MovingImages
@@ -10,14 +12,12 @@ include MIMovie
 $movieDirectory = File.expand_path(File.join(File.dirname(__FILE__), "../movies"))
 $movieFileName = "IMG_0874.MOV"
 $movieFilePath = File.join($movieDirectory, $movieFileName)
-# puts $movieFilePath
 
 $movieFileExportPath = File.expand_path("~/Desktop/SheffieldRuby.mov")
-# puts $movieFileExportPath
 
 class DrawTextOnVideoFrames
-  @@textBitmapWidth = 260
-  @@textBitmapHeight = 120
+  @@textBitmapWidth = 200
+  @@textBitmapHeight = 90
   @@videoWidth = 1280
   @@videoHeight = 720
 
@@ -25,7 +25,7 @@ class DrawTextOnVideoFrames
   
   def self.drawto_textbitmap(text1: nil, text2: nil, bitmap: nil)
     drawArrayOfElements = MIDrawElement.new(:arrayofelements)
-    borderWidth = 4
+    borderWidth = 3
     blackColor = MIColor.make_rgbacolor(0,0,0, a: 1.0)
 
     drawRect = MIShapes.make_rectangle(xloc: 0,
@@ -48,13 +48,13 @@ class DrawTextOnVideoFrames
                                                  width: @@textBitmapWidth - 2 * borderWidth,
                                                 height: @@textBitmapHeight * 0.5 -  borderWidth)
     textBox1 = MIShapes.make_rectangle(xloc: borderWidth,
-                                   yloc: @@textBitmapHeight * 0.5 + borderWidth,
-                                  width: @@textBitmapWidth - 2 * borderWidth,
-                                 height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
+                                                  yloc: @@textBitmapHeight * 0.5 + borderWidth,
+                                                 width: @@textBitmapWidth - 2 * borderWidth,
+                                                height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
     textBox2 = MIShapes.make_rectangle(xloc: borderWidth,
-                                       yloc: borderWidth + borderWidth,
-                                      width: @@textBitmapWidth - 2 * borderWidth,
-                                     height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
+                                                  yloc: borderWidth + borderWidth,
+                                                 width: @@textBitmapWidth - 2 * borderWidth,
+                                                height: @@textBitmapHeight * 0.5 - 2 * borderWidth)
 
     drawText1Background.rectangle = text1BackgroundRect
     drawText1Background.fillcolor = blackColor
@@ -63,7 +63,7 @@ class DrawTextOnVideoFrames
     
     drawStringElement1 = MIDrawBasicStringElement.new
     drawStringElement1.boundingbox = textBox1
-    drawStringElement1.fontsize = 40
+    drawStringElement1.fontsize = 30
     drawStringElement1.fillcolor = MIColor.make_rgbacolor(0.5,0.5,0.5, a: 0.0)
     drawStringElement1.blendmode = :kCGBlendModeCopy
     drawStringElement1.stringtext = text1
@@ -79,7 +79,7 @@ class DrawTextOnVideoFrames
     
     drawStringElement2 = MIDrawBasicStringElement.new
     drawStringElement2.boundingbox = textBox2
-    drawStringElement2.fontsize = 40
+    drawStringElement2.fontsize = 30
     drawStringElement2.fillcolor = MIColor.make_rgbacolor(1.0,1.0,1.0, a: 1.0)
     drawStringElement2.blendmode = :kCGBlendModeCopy
     drawStringElement2.stringtext = text2
@@ -91,22 +91,22 @@ class DrawTextOnVideoFrames
     drawElementCommand
   end
 
-  def self.draw_textbitmap(videoFrameBitmap, textbitmap: nil)
+  def self.draw_textbitmap(videoFrameBitmap, textbitmap: nil, fraction: nil)
     drawTextBitmap = MIDrawImageElement.new
     drawTextBitmap.set_bitmap_imagesource(source_object: textbitmap)
+    height = @@textBitmapHeight
+    width = @@textBitmapWidth
     destRect = MIShapes.make_rectangle(xloc: 60,
                                        yloc: 30,
-                                      width: @@textBitmapWidth,
-                                     height: @@textBitmapHeight)
+                                      width: width,
+                                     height: height)
     drawTextBitmap.destinationrectangle = destRect
+    drawTextBitmap.contextalpha = fraction
     drawElementCommand = CommandModule.make_drawelement(videoFrameBitmap, drawinstructions: drawTextBitmap)
     drawElementCommand
   end
 
   def self.draw_videoframe(videoImporter, videobitmap: nil)
-#    videoTrack0 = MovieTrackIdentifier.make_movietrackid_from_mediatype(
-#                                                          mediatype: :vide,
-#                                                         trackindex: 0)
     nextFrameTime = MovieTime.make_movietime_nextsample
     drawVideoFrameBitmap = MIDrawImageElement.new
     drawVideoFrameBitmap.set_moviefile_imagesource(source_object: videoImporter,
@@ -140,7 +140,11 @@ class DrawTextOnVideoFrames
       theCommands.add_command(drawVideoFrameCommand)
       drawTextCommand = self.drawto_textbitmap(text1: "Sheffield", text2: "garden", bitmap: textBitmap)
       theCommands.add_command(drawTextCommand)
-      drawTextBitmapToVideoFrameCommand = self.draw_textbitmap(videoFrameBitmap, textbitmap: textBitmap)
+      nm1 = @@numberOfFramesToProcess - 1.0
+      fraction = 1.0 - 4.0 * (index - nm1*0.5) * (index - nm1*0.5) / (nm1 * nm1)
+      drawTextBitmapToVideoFrameCommand = self.draw_textbitmap(videoFrameBitmap,
+                                                   textbitmap: textBitmap,
+                                                     fraction: fraction)
       theCommands.add_command(drawTextBitmapToVideoFrameCommand)
       addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
           videoFramesWriter, sourceobject: videoFrameBitmap)
