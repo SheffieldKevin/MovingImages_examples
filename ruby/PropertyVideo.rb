@@ -21,8 +21,9 @@ $movies = [
 ]
 
 $imageFiles = [
-  "IMG_1191.JPG",
-  "IMG_1192.JPG"
+  "IMG_1191.JPG",       # 0
+  "IMG_1192.JPG",       # 1
+  "Zukini Logo-02.png"  # 2
 ]
 
 $movieFileExportPath = File.expand_path("~/Desktop/PropertyVideo.mov")
@@ -136,6 +137,19 @@ class PropertyToSellVideo
     linearGradient
   end
 
+  def self.draw_companylogo(logoidentifier: nil, arrayofelements: nil)
+    scaleFactor = 0.25
+    offset = 8
+    width = 987 * scaleFactor
+    height = 308 * scaleFactor
+    bottom = 720 - (height + offset)
+    destRect = MIShapes.make_rectangle(xloc: offset, yloc: bottom, width: width, height: height)
+    drawImageElement = MIDrawImageElement.new
+    drawImageElement.set_imagecollection_imagesource(identifier: logoidentifier)
+    drawImageElement.destinationrectangle = destRect
+    arrayofelements.add_drawelement_toarrayofelements(drawImageElement)
+  end
+
   def self.draw_icon(iconindex: 0, arrayofelements: nil, rightedge: nil)
     jsonHash = self.jsonHashForIcon(iconindex)
     iconSize = self.getIconSize(jsonHash)
@@ -154,14 +168,17 @@ class PropertyToSellVideo
     self.draw_icon(iconindex: 0, arrayofelements: arrayofelements, rightedge: rightedge)
   end
 
-  def self.draw_text_atpoint(text: nil, point: nil, fontsize: nil)
+  def self.draw_text_atpoint(text: nil, point: nil, fontsize: nil, font: nil)
+    fontName = font unless font.nil?
+    fontName = :'Tahoma-Bold' if font.nil?
+    
     drawStringElement1 = MIDrawBasicStringElement.new
     drawStringElement1.point_textdrawnfrom = point
     drawStringElement1.fontsize = fontsize
     drawStringElement1.fillcolor = MIColor.make_rgbacolor(0.9,0.9,0.9, a: 1.0)
     drawStringElement1.blendmode = :kCGBlendModeNormal
     drawStringElement1.stringtext = text
-    drawStringElement1.postscriptfontname = :'Tahoma-Bold'
+    drawStringElement1.postscriptfontname = fontName
     drawStringElement1
   end
 
@@ -182,14 +199,14 @@ class PropertyToSellVideo
   end
 
   def self.draw_houseprice(arrayofelements: nil, rightedge: nil)
-    textWidth = 160
+    textWidth = 140
     drawStringElement = self.draw_text(text: "£210,000", rightedge: rightedge, textwidth: textWidth)
     arrayofelements.add_drawelement_toarrayofelements(drawStringElement)
     rightedge + textWidth
   end
 
   def self.draw_promotext1(text: nil, arrayofelements: nil, textwidth: nil, rightedge: nil, alpha: 1)
-    textPoint = MIShapes.make_point(@@videoWidth - textwidth - rightedge, @@iconHeight + 8)
+    textPoint = MIShapes.make_point(@@videoWidth - textwidth - rightedge, @@iconHeight + 4)
     drawPromoText = self.draw_text_atpoint(text: text, point: textPoint, fontsize: 20)
     arrayofelements.add_drawelement_toarrayofelements(drawPromoText)
     rightedge + textwidth
@@ -214,14 +231,25 @@ class PropertyToSellVideo
     self.draw_icon(iconindex: 6, arrayofelements: arrayofelements, rightedge: rightedge)
   end
 
-  def self.draw_lowerthird(bitmap)
-    drawArrayOfElements = MIDrawElement.new(:arrayofelements)
+  def self.draw_companyagent_details(arrayofelements: nil)
+    textPoint = MIShapes.make_point(8, 8)
+    text = "Advertized and promoted by The Real Estage Agency. If you are interested in this property please call Dave on 079 999999 or e-mail dave@therealestateagency.com"
+    drawText = self.draw_text_atpoint(text: text, point: textPoint, fontsize: 14, font: "Tahoma")
+    arrayofelements.add_drawelement_toarrayofelements(drawText)
+  end
+
+  def self.draw_lowerthird(bitmap, logoidentifier: nil)
+    drawArrayOfElementsWrapper = MIDrawElement.new(:arrayofelements)
     linearGradient = self.draw_lineargradientbackground()
-    drawArrayOfElements.add_drawelement_toarrayofelements(linearGradient)    
+    drawArrayOfElementsWrapper.add_drawelement_toarrayofelements(linearGradient)    
+    drawArrayOfElements = MIDrawElement.new(:arrayofelements)
     rightEdge = self.draw_numberofrooms("3", arrayofelements: drawArrayOfElements, rightedge: 10) + 16
     rightEdge = self.draw_bed(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 40
     rightEdge = self.draw_houseprice(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 16
-    rightEdge = self.draw_housepriceicon(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 40
+    rightEdge = self.draw_housepriceicon(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 20
+    rightEdge = self.draw_numberofrooms("2", arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 16
+    rightEdge = self.draw_bathroomicon(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 20
+    rightEdge = self.draw_garage(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 40
     self.draw_promotext1(text: "Pleasant quiet location",
                           arrayofelements: drawArrayOfElements,
                                 textwidth: 240,
@@ -232,23 +260,32 @@ class PropertyToSellVideo
                                 textwidth: 240,
                                 rightedge: rightEdge,
                                     alpha: 1.0) + 40
-    rightEdge = self.draw_garage(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 20
-    rightEdge = self.draw_numberofrooms("2", arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 16
-    rightEdge = self.draw_bathroomicon(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 20
     self.draw_promotext1(text: "Sheffield",
                           arrayofelements: drawArrayOfElements,
                                 textwidth: 160,
-                                rightedge: rightEdge,
+                                rightedge: rightEdge + 20,
                                     alpha: 1.0)
     rightEdge = self.draw_promotext2(text: "Ecclesfield",
                           arrayofelements: drawArrayOfElements,
                                 textwidth: 160,
-                                rightedge: rightEdge,
+                                rightedge: rightEdge + 20,
                                     alpha: 1.0) + 40
     self.draw_cottageicon(arrayofelements: drawArrayOfElements, rightedge: @@videoWidth - 100)
+    self.draw_companylogo(logoidentifier: logoidentifier, arrayofelements: drawArrayOfElementsWrapper)
+    shadow = MIShadow.new
+    shadow.blur = 2
+    shadow.offset = MIShapes.make_size(1, -1)
+    shadow.color = MIColor.make_rgbacolor(0.3,0.3,0.3)
+    drawArrayOfElements.shadow = shadow
     
+    transformations = MITransformations.make_contexttransformation
+    translatePoint = MIShapes.make_point(0, 18)
+    MITransformations.add_translatetransform(transformations, translatePoint)
+    drawArrayOfElements.contexttransformations = transformations
+    drawArrayOfElementsWrapper.add_drawelement_toarrayofelements(drawArrayOfElements)
+    self.draw_companyagent_details(arrayofelements: drawArrayOfElementsWrapper)
 #    puts JSON.pretty_generate(drawArrayOfElements.elementhash)
-    drawCommand = CommandModule.make_drawelement(bitmap, drawinstructions: drawArrayOfElements)
+    drawCommand = CommandModule.make_drawelement(bitmap, drawinstructions: drawArrayOfElementsWrapper)
     drawCommand
   end
   
@@ -269,17 +306,22 @@ class PropertyToSellVideo
     videoWindowRect = MIShapes.make_rectangle(size: videoFrameSize)
     frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
 
-    
     theCommands = SmigCommands.new
     # videoFrameBitmap = theCommands.make_createbitmapcontext(size: videoFrameSize)
     videoFrameBitmap = theCommands.make_createwindowcontext(rect: videoWindowRect,
       addtocleanup: false)
     movieImporter = theCommands.make_createmovieimporter(File.join($movieDirectory, $movies[0]))
+    logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, $imageFiles[2]), addtocleanup: false)
+    imageIdentifier = SecureRandom.uuid
+    addImageToCollectionCommand = CommandModule.make_assignimage_fromimporter_tocollection(logoImporter, identifier: imageIdentifier)
+    theCommands.add_command(addImageToCollectionCommand)
+    theCommands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
+    theCommands.add_command(CommandModule.make_close(logoImporter))
     theCommands.add_command(self.draw_videoframe(movieImporter, videobitmap: videoFrameBitmap))
-    theCommands.add_command(self.draw_lowerthird(videoFrameBitmap))
+    theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier))
     begin
       Smig.perform_commands(theCommands)
-      sleep 6
+      sleep 10
     ensure
       Smig.close_object(videoFrameBitmap)
     end
