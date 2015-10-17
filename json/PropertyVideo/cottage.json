@@ -1,0 +1,438 @@
+{
+  "viewBox" : {
+    "size" : {
+      "width" : 48,
+      "height" : 48
+    },
+    "origin" : {
+      "y" : 0,
+      "x" : 0
+    }
+  },
+  "arrayofelements" : [
+    {
+      "arrayofpathelements" : [
+        {
+          "point" : {
+            "x" : 41,
+            "y" : 42
+          },
+          "elementtype" : "pathmoveto"
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 7,
+            "y" : 42
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 7,
+            "y" : 13
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 41,
+            "y" : 13
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 41,
+            "y" : 42
+          }
+        },
+        {
+          "elementtype" : "pathclosesubpath"
+        }
+      ],
+      "startpoint" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "fillcolor" : {
+        "red" : 0.9098039215686274,
+        "colorcolorprofilename" : "kCGColorSpaceSRGB",
+        "blue" : 0.9647058823529412,
+        "alpha" : 1,
+        "green" : 0.9176470588235294
+      },
+      "elementtype" : "fillpath"
+    },
+    {
+      "rect" : {
+        "size" : {
+          "width" : 34,
+          "height" : 5
+        },
+        "origin" : {
+          "y" : 37,
+          "x" : 7
+        }
+      },
+      "fillcolor" : {
+        "red" : 0.7725490196078432,
+        "colorcolorprofilename" : "kCGColorSpaceSRGB",
+        "blue" : 0.9137254901960784,
+        "alpha" : 1,
+        "green" : 0.792156862745098
+      },
+      "elementtype" : "fillrectangle"
+    },
+    {
+      "arrayofpathelements" : [
+        {
+          "point" : {
+            "x" : 28,
+            "y" : 42
+          },
+          "elementtype" : "pathmoveto"
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 28,
+            "y" : 31.918
+          }
+        },
+        {
+          "controlpoint1" : {
+            "x" : 28,
+            "y" : 29.754
+          },
+          "elementtype" : "pathbeziercurve",
+          "endpoint" : {
+            "x" : 23.986,
+            "y" : 28
+          },
+          "controlpoint2" : {
+            "x" : 26.182,
+            "y" : 28
+          }
+        },
+        {
+          "controlpoint1" : {
+            "x" : 21.792,
+            "y" : 28
+          },
+          "elementtype" : "pathbeziercurve",
+          "endpoint" : {
+            "x" : 20.011,
+            "y" : 31.918
+          },
+          "controlpoint2" : {
+            "x" : 20.011,
+            "y" : 29.754
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 20.011,
+            "y" : 42
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 28,
+            "y" : 42
+          }
+        },
+        {
+          "elementtype" : "pathclosesubpath"
+        }
+      ],
+      "startpoint" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "fillcolor" : {
+        "red" : 0.8470588235294118,
+        "colorcolorprofilename" : "kCGColorSpaceSRGB",
+        "blue" : 0.08235294117647059,
+        "alpha" : 1,
+        "green" : 0.2627450980392157
+      },
+      "elementtype" : "fillpath"
+    },
+    {
+      "arrayofelements" : [
+        {
+          "rect" : {
+            "size" : {
+              "width" : 5,
+              "height" : 8
+            },
+            "origin" : {
+              "y" : 27,
+              "x" : 32
+            }
+          },
+          "elementtype" : "fillrectangle"
+        },
+        {
+          "rect" : {
+            "size" : {
+              "width" : 5,
+              "height" : 8
+            },
+            "origin" : {
+              "y" : 27,
+              "x" : 11
+            }
+          },
+          "elementtype" : "fillrectangle"
+        }
+      ],
+      "fillcolor" : {
+        "red" : 0.00392156862745098,
+        "colorcolorprofilename" : "kCGColorSpaceSRGB",
+        "blue" : 0.6078431372549019,
+        "alpha" : 1,
+        "green" : 0.3411764705882353
+      },
+      "elementtype" : "arrayofelements"
+    },
+    {
+      "arrayofpathelements" : [
+        {
+          "point" : {
+            "x" : 43,
+            "y" : 25
+          },
+          "elementtype" : "pathmoveto"
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 30.208,
+            "y" : 25
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 24,
+            "y" : 15.482
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 17.792,
+            "y" : 25
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 5,
+            "y" : 25
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 5,
+            "y" : 6
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 43,
+            "y" : 6
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 43,
+            "y" : 25
+          }
+        },
+        {
+          "elementtype" : "pathclosesubpath"
+        }
+      ],
+      "startpoint" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "fillcolor" : {
+        "red" : 0.8274509803921568,
+        "colorcolorprofilename" : "kCGColorSpaceSRGB",
+        "blue" : 0.1843137254901961,
+        "alpha" : 1,
+        "green" : 0.1843137254901961
+      },
+      "elementtype" : "fillpath"
+    },
+    {
+      "arrayofpathelements" : [
+        {
+          "point" : {
+            "x" : 25.5,
+            "y" : 34
+          },
+          "elementtype" : "pathmoveto"
+        },
+        {
+          "controlpoint1" : {
+            "x" : 25.225,
+            "y" : 34
+          },
+          "elementtype" : "pathbeziercurve",
+          "endpoint" : {
+            "x" : 25,
+            "y" : 34.5
+          },
+          "controlpoint2" : {
+            "x" : 25,
+            "y" : 34.225
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 25,
+            "y" : 36.5
+          }
+        },
+        {
+          "controlpoint1" : {
+            "x" : 25,
+            "y" : 36.775
+          },
+          "elementtype" : "pathbeziercurve",
+          "endpoint" : {
+            "x" : 25.5,
+            "y" : 37
+          },
+          "controlpoint2" : {
+            "x" : 25.225,
+            "y" : 37
+          }
+        },
+        {
+          "controlpoint1" : {
+            "x" : 25.775,
+            "y" : 37
+          },
+          "elementtype" : "pathbeziercurve",
+          "endpoint" : {
+            "x" : 26,
+            "y" : 36.5
+          },
+          "controlpoint2" : {
+            "x" : 26,
+            "y" : 36.775
+          }
+        },
+        {
+          "elementtype" : "pathlineto",
+          "endpoint" : {
+            "x" : 26,
+            "y" : 34.5
+          }
+        },
+        {
+          "controlpoint1" : {
+            "x" : 26,
+            "y" : 34.225
+          },
+          "elementtype" : "pathbeziercurve",
+          "endpoint" : {
+            "x" : 25.5,
+            "y" : 34
+          },
+          "controlpoint2" : {
+            "x" : 25.775,
+            "y" : 34
+          }
+        }
+      ],
+      "startpoint" : {
+        "x" : 0,
+        "y" : 0
+      },
+      "fillcolor" : {
+        "red" : 1,
+        "colorcolorprofilename" : "kCGColorSpaceSRGB",
+        "blue" : 0.396078431372549,
+        "alpha" : 1,
+        "green" : 0.5411764705882353
+      },
+      "elementtype" : "fillpath"
+    },
+    {
+      "arrayofpathelements" : [
+        {
+          "endpoint" : {
+            "y" : 25,
+            "x" : 17.79199981689453
+          },
+          "elementtype" : "pathlineto"
+        },
+        {
+          "endpoint" : {
+            "y" : 15.48200035095215,
+            "x" : 24
+          },
+          "elementtype" : "pathlineto"
+        },
+        {
+          "endpoint" : {
+            "y" : 25,
+            "x" : 30.20800018310547
+          },
+          "elementtype" : "pathlineto"
+        },
+        {
+          "endpoint" : {
+            "y" : 25,
+            "x" : 34
+          },
+          "elementtype" : "pathlineto"
+        },
+        {
+          "endpoint" : {
+            "y" : 10,
+            "x" : 24.18600082397461
+          },
+          "elementtype" : "pathlineto"
+        },
+        {
+          "elementtype" : "pathclosesubpath"
+        }
+      ],
+      "startpoint" : {
+        "x" : 14.36999988555908,
+        "y" : 25
+      },
+      "fillcolor" : {
+        "red" : 0.7176470588235294,
+        "colorcolorprofilename" : "kCGColorSpaceSRGB",
+        "blue" : 0.1098039215686274,
+        "alpha" : 1,
+        "green" : 0.1098039215686274
+      },
+      "elementtype" : "fillpath"
+    }
+  ],
+  "linewidth" : 1,
+  "fillcolor" : {
+    "red" : 0,
+    "colorcolorprofilename" : "kCGColorSpaceSRGB",
+    "blue" : 0,
+    "alpha" : 1,
+    "green" : 0
+  },
+  "elementtype" : "arrayofelements"
+}

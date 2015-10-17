@@ -1,0 +1,2405 @@
+{
+  "viewBox" : {
+    "size" : {
+      "width" : 474.506,
+      "height" : 474.506
+    },
+    "origin" : {
+      "y" : 0,
+      "x" : 0
+    }
+  },
+  "arrayofelements" : [
+    {
+      "arrayofelements" : [
+        {
+          "arrayofpathelements" : [
+            {
+              "point" : {
+                "x" : 237.31,
+                "y" : 97.974
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "controlpoint1" : {
+                "x" : 241.919,
+                "y" : 97.974
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 248.284,
+                "y" : 92.87700000000001
+              },
+              "controlpoint2" : {
+                "x" : 245.577,
+                "y" : 96.27500000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 250.991,
+                "y" : 89.47900000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 252.34,
+                "y" : 78.376
+              },
+              "controlpoint2" : {
+                "x" : 252.34,
+                "y" : 84.64300000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 252.34,
+                "y" : 72.13300000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 248.284,
+                "y" : 63.89100000000001
+              },
+              "controlpoint2" : {
+                "x" : 250.983,
+                "y" : 67.30500000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 245.577,
+                "y" : 60.477
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 237.31,
+                "y" : 58.77800000000001
+              },
+              "controlpoint2" : {
+                "x" : 241.919,
+                "y" : 58.77800000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 232.701,
+                "y" : 58.77800000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 226.28,
+                "y" : 63.87500000000001
+              },
+              "controlpoint2" : {
+                "x" : 229.027,
+                "y" : 60.477
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 223.533,
+                "y" : 67.27300000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 222.167,
+                "y" : 78.376
+              },
+              "controlpoint2" : {
+                "x" : 222.167,
+                "y" : 72.10900000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 222.167,
+                "y" : 84.643
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 226.28,
+                "y" : 92.87700000000001
+              },
+              "controlpoint2" : {
+                "x" : 223.541,
+                "y" : 89.48
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 229.027,
+                "y" : 96.27500000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 237.31,
+                "y" : 97.974
+              },
+              "controlpoint2" : {
+                "x" : 232.709,
+                "y" : 97.974
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            }
+          ],
+          "startpoint" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "fillcolor" : {
+            "red" : 0.00392156862745098,
+            "colorcolorprofilename" : "kCGColorSpaceSRGB",
+            "blue" : 0.007843137254901961,
+            "alpha" : 1,
+            "green" : 0
+          },
+          "elementtype" : "fillpath"
+        },
+        {
+          "arrayofpathelements" : [
+            {
+              "point" : {
+                "x" : 214.241,
+                "y" : 178.056
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 215.607,
+                "y" : 178.056
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 219.167,
+                "y" : 178.056
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 220.086,
+                "y" : 171.919
+              },
+              "controlpoint2" : {
+                "x" : 221.167,
+                "y" : 175.309
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 216.997,
+                "y" : 162.287
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 215.908,
+                "y" : 158.897
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 213.006,
+                "y" : 162.271
+              },
+              "controlpoint2" : {
+                "x" : 214.119,
+                "y" : 158.889
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 209.82,
+                "y" : 171.936
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 208.697,
+                "y" : 175.317
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 214.241,
+                "y" : 178.056
+              },
+              "controlpoint2" : {
+                "x" : 210.68,
+                "y" : 178.056
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            }
+          ],
+          "startpoint" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "fillcolor" : {
+            "red" : 0.00392156862745098,
+            "colorcolorprofilename" : "kCGColorSpaceSRGB",
+            "blue" : 0.007843137254901961,
+            "alpha" : 1,
+            "green" : 0
+          },
+          "elementtype" : "fillpath"
+        },
+        {
+          "arrayofpathelements" : [
+            {
+              "point" : {
+                "x" : 77.047,
+                "y" : 217.732
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 397.4589999999999,
+                "y" : 217.732
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 397.4589999999999,
+                "y" : 31.718
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 77.047,
+                "y" : 31.718
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 77.047,
+                "y" : 217.732
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            },
+            {
+              "point" : {
+                "x" : 336.901,
+                "y" : 148.355
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "controlpoint1" : {
+                "x" : 336.901,
+                "y" : 151.078
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 330.455,
+                "y" : 153.281
+              },
+              "controlpoint2" : {
+                "x" : 334.015,
+                "y" : 153.281
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 313.889,
+                "y" : 153.281
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 310.329,
+                "y" : 153.281
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 307.443,
+                "y" : 159.19
+              },
+              "controlpoint2" : {
+                "x" : 307.443,
+                "y" : 155.931
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 307.443,
+                "y" : 162.449
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 313.889,
+                "y" : 165.099
+              },
+              "controlpoint2" : {
+                "x" : 310.329,
+                "y" : 165.099
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 328.041,
+                "y" : 165.099
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 331.601,
+                "y" : 165.099
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 334.487,
+                "y" : 169.936
+              },
+              "controlpoint2" : {
+                "x" : 334.487,
+                "y" : 167.261
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 334.487,
+                "y" : 172.6019999999999
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 328.041,
+                "y" : 174.772
+              },
+              "controlpoint2" : {
+                "x" : 331.601,
+                "y" : 174.772
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 313.889,
+                "y" : 174.772
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 310.329,
+                "y" : 174.772
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 307.443,
+                "y" : 181.218
+              },
+              "controlpoint2" : {
+                "x" : 307.443,
+                "y" : 177.658
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 307.443,
+                "y" : 182.641
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 307.443,
+                "y" : 186.201
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 313.889,
+                "y" : 189.087
+              },
+              "controlpoint2" : {
+                "x" : 310.329,
+                "y" : 189.087
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 331.813,
+                "y" : 189.087
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 335.373,
+                "y" : 189.087
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 338.259,
+                "y" : 194.094
+              },
+              "controlpoint2" : {
+                "x" : 338.259,
+                "y" : 191.33
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 338.259,
+                "y" : 196.858
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 331.813,
+                "y" : 199.101
+              },
+              "controlpoint2" : {
+                "x" : 335.373,
+                "y" : 199.101
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 302.526,
+                "y" : 199.101
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 298.966,
+                "y" : 199.101
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 296.08,
+                "y" : 192.655
+              },
+              "controlpoint2" : {
+                "x" : 296.08,
+                "y" : 196.215
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 296.08,
+                "y" : 149.882
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 296.08,
+                "y" : 146.322
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 302.526,
+                "y" : 143.436
+              },
+              "controlpoint2" : {
+                "x" : 298.966,
+                "y" : 143.436
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 330.456,
+                "y" : 143.436
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 334.015,
+                "y" : 143.429
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 336.901,
+                "y" : 148.355
+              },
+              "controlpoint2" : {
+                "x" : 336.901,
+                "y" : 145.632
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            },
+            {
+              "point" : {
+                "x" : 273.108,
+                "y" : 57.063
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "controlpoint1" : {
+                "x" : 273.108,
+                "y" : 53.503
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 279.554,
+                "y" : 50.617
+              },
+              "controlpoint2" : {
+                "x" : 275.994,
+                "y" : 50.617
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 299.729,
+                "y" : 50.617
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 303.533,
+                "y" : 50.69
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 308.516,
+                "y" : 52.056
+              },
+              "controlpoint2" : {
+                "x" : 306.4590000000001,
+                "y" : 51.17
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 310.564,
+                "y" : 52.934
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 313.726,
+                "y" : 55.95
+              },
+              "controlpoint2" : {
+                "x" : 312.304,
+                "y" : 54.234
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 314.905,
+                "y" : 57.356
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 316.522,
+                "y" : 60.63200000000001
+              },
+              "controlpoint2" : {
+                "x" : 315.839,
+                "y" : 58.917
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 317.213,
+                "y" : 62.34700000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 317.554,
+                "y" : 66.485
+              },
+              "controlpoint2" : {
+                "x" : 317.554,
+                "y" : 64.298
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 317.554,
+                "y" : 69.127
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 315.554,
+                "y" : 74.28
+              },
+              "controlpoint2" : {
+                "x" : 316.887,
+                "y" : 71.72799999999999
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 314.863,
+                "y" : 75.59699999999999
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 312.79,
+                "y" : 77.637
+              },
+              "controlpoint2" : {
+                "x" : 313.945,
+                "y" : 76.71899999999999
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 310.896,
+                "y" : 79.149
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 312.0579999999999,
+                "y" : 81.43300000000001
+              },
+              "controlpoint2" : {
+                "x" : 310.498,
+                "y" : 80.23
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 313.05,
+                "y" : 82.197
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 314.3989999999999,
+                "y" : 84.09100000000001
+              },
+              "controlpoint2" : {
+                "x" : 313.8299999999999,
+                "y" : 83.08300000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 315.4719999999999,
+                "y" : 85.99300000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 315.9999999999999,
+                "y" : 92.79700000000001
+              },
+              "controlpoint2" : {
+                "x" : 315.9999999999999,
+                "y" : 88.89500000000001
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 315.9999999999999,
+                "y" : 96.53600000000002
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 315.9999999999999,
+                "y" : 99.08000000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 316.309,
+                "y" : 101.706
+              },
+              "controlpoint2" : {
+                "x" : 316.098,
+                "y" : 100.804
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 316.455,
+                "y" : 102.405
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 317.041,
+                "y" : 103.527
+              },
+              "controlpoint2" : {
+                "x" : 316.699,
+                "y" : 103.007
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 317.643,
+                "y" : 104.437
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 318.455,
+                "y" : 105.575
+              },
+              "controlpoint2" : {
+                "x" : 318.455,
+                "y" : 105.193
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 318.455,
+                "y" : 105.957
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 312.033,
+                "y" : 106.274
+              },
+              "controlpoint2" : {
+                "x" : 315.577,
+                "y" : 106.274
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 308.4889999999999,
+                "y" : 106.274
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 305.205,
+                "y" : 104.795
+              },
+              "controlpoint2" : {
+                "x" : 305.424,
+                "y" : 105.616
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 305.059,
+                "y" : 104.218
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 304.855,
+                "y" : 103.291
+              },
+              "controlpoint2" : {
+                "x" : 304.937,
+                "y" : 103.722
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 304.554,
+                "y" : 101.73
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 304.367,
+                "y" : 98.495
+              },
+              "controlpoint2" : {
+                "x" : 304.3919999999999,
+                "y" : 100.129
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 304.294,
+                "y" : 93.325
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 304.245,
+                "y" : 89.773
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 302.449,
+                "y" : 86.229
+              },
+              "controlpoint2" : {
+                "x" : 303.636,
+                "y" : 87.407
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 301.27,
+                "y" : 85.042
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 295.824,
+                "y" : 84.45699999999999
+              },
+              "controlpoint2" : {
+                "x" : 299.059,
+                "y" : 84.45699999999999
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 295.824,
+                "y" : 84.45699999999999
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 290.1419999999999,
+                "y" : 84.45699999999999
+              },
+              "controlpoint2" : {
+                "x" : 293.28,
+                "y" : 84.45699999999999
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 287.0039999999999,
+                "y" : 84.45699999999999
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 284.4599999999999,
+                "y" : 90.90299999999999
+              },
+              "controlpoint2" : {
+                "x" : 284.4599999999999,
+                "y" : 87.34299999999999
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 284.4599999999999,
+                "y" : 99.83599999999998
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 284.4599999999999,
+                "y" : 103.396
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 278.7779999999999,
+                "y" : 106.282
+              },
+              "controlpoint2" : {
+                "x" : 281.9159999999999,
+                "y" : 106.282
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 275.6399999999999,
+                "y" : 106.282
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 273.0959999999999,
+                "y" : 99.83599999999998
+              },
+              "controlpoint2" : {
+                "x" : 273.0959999999999,
+                "y" : 103.396
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 273.0959999999999,
+                "y" : 57.063
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 273.108,
+                "y" : 57.063
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            },
+            {
+              "point" : {
+                "x" : 281.48,
+                "y" : 189.079
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "controlpoint1" : {
+                "x" : 285.04,
+                "y" : 189.079
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 287.926,
+                "y" : 194.086
+              },
+              "controlpoint2" : {
+                "x" : 287.926,
+                "y" : 191.322
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 287.926,
+                "y" : 196.85
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 281.48,
+                "y" : 199.093
+              },
+              "controlpoint2" : {
+                "x" : 285.04,
+                "y" : 199.093
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 254.948,
+                "y" : 199.093
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 251.388,
+                "y" : 199.093
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 248.502,
+                "y" : 192.647
+              },
+              "controlpoint2" : {
+                "x" : 248.502,
+                "y" : 196.207
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 248.502,
+                "y" : 149.874
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 248.502,
+                "y" : 146.314
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 254.314,
+                "y" : 143.428
+              },
+              "controlpoint2" : {
+                "x" : 251.103,
+                "y" : 143.428
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 257.525,
+                "y" : 143.428
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 260.126,
+                "y" : 149.874
+              },
+              "controlpoint2" : {
+                "x" : 260.126,
+                "y" : 146.314
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 260.126,
+                "y" : 182.64
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 260.126,
+                "y" : 186.2
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 266.5720000000001,
+                "y" : 189.086
+              },
+              "controlpoint2" : {
+                "x" : 263.0120000000001,
+                "y" : 189.086
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 281.4800000000001,
+                "y" : 189.086
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 281.4800000000001,
+                "y" : 189.079
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            },
+            {
+              "point" : {
+                "x" : 219.069,
+                "y" : 55.421
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "controlpoint1" : {
+                "x" : 223.271,
+                "y" : 51.088
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 237.31,
+                "y" : 48.926
+              },
+              "controlpoint2" : {
+                "x" : 229.352,
+                "y" : 48.926
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 245.268,
+                "y" : 48.926
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 255.551,
+                "y" : 55.421
+              },
+              "controlpoint2" : {
+                "x" : 251.348,
+                "y" : 51.088
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 261.168,
+                "y" : 60.534
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 263.972,
+                "y" : 78.384
+              },
+              "controlpoint2" : {
+                "x" : 263.972,
+                "y" : 68.18299999999999
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 263.972,
+                "y" : 88.38200000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 255.551,
+                "y" : 101.347
+              },
+              "controlpoint2" : {
+                "x" : 261.168,
+                "y" : 96.03100000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 251.349,
+                "y" : 105.68
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 237.31,
+                "y" : 107.842
+              },
+              "controlpoint2" : {
+                "x" : 245.268,
+                "y" : 107.842
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 229.352,
+                "y" : 107.842
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 219.069,
+                "y" : 101.347
+              },
+              "controlpoint2" : {
+                "x" : 223.272,
+                "y" : 105.68
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 213.428,
+                "y" : 96.03100000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 210.607,
+                "y" : 78.38400000000001
+              },
+              "controlpoint2" : {
+                "x" : 210.607,
+                "y" : 88.38200000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 210.615,
+                "y" : 68.182
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 219.069,
+                "y" : 55.421
+              },
+              "controlpoint2" : {
+                "x" : 213.436,
+                "y" : 60.525
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            },
+            {
+              "point" : {
+                "x" : 215.013,
+                "y" : 143.429
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 215.281,
+                "y" : 143.429
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 218.841,
+                "y" : 143.429
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 223.873,
+                "y" : 149.501
+              },
+              "controlpoint2" : {
+                "x" : 222.686,
+                "y" : 146.152
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 239.269,
+                "y" : 193.013
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 240.456,
+                "y" : 196.37
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 235.115,
+                "y" : 199.085
+              },
+              "controlpoint2" : {
+                "x" : 238.594,
+                "y" : 199.085
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 231.628,
+                "y" : 199.085
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 226.97,
+                "y" : 193.362
+              },
+              "controlpoint2" : {
+                "x" : 227.986,
+                "y" : 196.524
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 225.954,
+                "y" : 190.2
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 218.687,
+                "y" : 187.639
+              },
+              "controlpoint2" : {
+                "x" : 222.247,
+                "y" : 187.639
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 211.079,
+                "y" : 187.639
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 207.519,
+                "y" : 187.639
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 202.747,
+                "y" : 193.362
+              },
+              "controlpoint2" : {
+                "x" : 203.788,
+                "y" : 190.2
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 201.707,
+                "y" : 196.524
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 194.781,
+                "y" : 199.085
+              },
+              "controlpoint2" : {
+                "x" : 198.138,
+                "y" : 199.085
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 191.424,
+                "y" : 199.085
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 190.863,
+                "y" : 193.013
+              },
+              "controlpoint2" : {
+                "x" : 189.668,
+                "y" : 196.37
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 206.397,
+                "y" : 149.493
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 207.592,
+                "y" : 146.144
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 215.013,
+                "y" : 143.429
+              },
+              "controlpoint2" : {
+                "x" : 211.453,
+                "y" : 143.429
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            },
+            {
+              "point" : {
+                "x" : 165.453,
+                "y" : 57.144
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "controlpoint1" : {
+                "x" : 165.453,
+                "y" : 53.584
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 171.899,
+                "y" : 50.698
+              },
+              "controlpoint2" : {
+                "x" : 168.339,
+                "y" : 50.698
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 198.699,
+                "y" : 50.698
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 202.259,
+                "y" : 50.698
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 205.145,
+                "y" : 55.591
+              },
+              "controlpoint2" : {
+                "x" : 205.145,
+                "y" : 52.885
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 205.145,
+                "y" : 58.297
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 198.699,
+                "y" : 60.484
+              },
+              "controlpoint2" : {
+                "x" : 202.259,
+                "y" : 60.484
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 183.458,
+                "y" : 60.484
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 179.898,
+                "y" : 60.484
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 177.012,
+                "y" : 66.881
+              },
+              "controlpoint2" : {
+                "x" : 177.012,
+                "y" : 63.353
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 177.012,
+                "y" : 70.417
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 183.458,
+                "y" : 73.27800000000001
+              },
+              "controlpoint2" : {
+                "x" : 179.898,
+                "y" : 73.27800000000001
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 195.228,
+                "y" : 73.27800000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 198.788,
+                "y" : 73.27800000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 201.674,
+                "y" : 78.11500000000001
+              },
+              "controlpoint2" : {
+                "x" : 201.674,
+                "y" : 75.44000000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 201.674,
+                "y" : 80.78100000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 195.228,
+                "y" : 82.95200000000001
+              },
+              "controlpoint2" : {
+                "x" : 198.788,
+                "y" : 82.95200000000001
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 183.458,
+                "y" : 82.95200000000001
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 179.898,
+                "y" : 82.95200000000001
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 177.012,
+                "y" : 89.39800000000001
+              },
+              "controlpoint2" : {
+                "x" : 177.012,
+                "y" : 85.83800000000001
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 177.012,
+                "y" : 99.84300000000002
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 177.012,
+                "y" : 103.403
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 171.233,
+                "y" : 106.289
+              },
+              "controlpoint2" : {
+                "x" : 174.427,
+                "y" : 106.289
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 168.038,
+                "y" : 106.289
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 165.454,
+                "y" : 99.84300000000002
+              },
+              "controlpoint2" : {
+                "x" : 165.454,
+                "y" : 103.403
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 165.454,
+                "y" : 57.144
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            },
+            {
+              "point" : {
+                "x" : 170.842,
+                "y" : 179.414
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "controlpoint1" : {
+                "x" : 169.216,
+                "y" : 178.43
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 163.112,
+                "y" : 176.805
+              },
+              "controlpoint2" : {
+                "x" : 166.64,
+                "y" : 177.561
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 157.089,
+                "y" : 175.48
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 151.163,
+                "y" : 174.171
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 144.88,
+                "y" : 171.212
+              },
+              "controlpoint2" : {
+                "x" : 147.099,
+                "y" : 172.749
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 141.133,
+                "y" : 168.643
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 139.255,
+                "y" : 159.165
+              },
+              "controlpoint2" : {
+                "x" : 139.255,
+                "y" : 164.628
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 139.255,
+                "y" : 154.182
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 144.758,
+                "y" : 146.745
+              },
+              "controlpoint2" : {
+                "x" : 141.092,
+                "y" : 150.037
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 148.424,
+                "y" : 143.445
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 160.934,
+                "y" : 141.795
+              },
+              "controlpoint2" : {
+                "x" : 153.821,
+                "y" : 141.795
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 166.876,
+                "y" : 141.795
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 176.126,
+                "y" : 146.461
+              },
+              "controlpoint2" : {
+                "x" : 171.932,
+                "y" : 143.348
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 178.678,
+                "y" : 148.347
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 181.564,
+                "y" : 153.687
+              },
+              "controlpoint2" : {
+                "x" : 180.491,
+                "y" : 150.761
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 182.791,
+                "y" : 157.028
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 177.134,
+                "y" : 159.995
+              },
+              "controlpoint2" : {
+                "x" : 180.223,
+                "y" : 159.995
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 174.045,
+                "y" : 159.995
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 170.322,
+                "y" : 155.784
+              },
+              "controlpoint2" : {
+                "x" : 171.598,
+                "y" : 157.873
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 169.574,
+                "y" : 154.557
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 167.054,
+                "y" : 152.858
+              },
+              "controlpoint2" : {
+                "x" : 168.485,
+                "y" : 153.581
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 165.193,
+                "y" : 151.923
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 160.128,
+                "y" : 151.46
+              },
+              "controlpoint2" : {
+                "x" : 162.884,
+                "y" : 151.46
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 157.055,
+                "y" : 151.46
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 152.772,
+                "y" : 153.273
+              },
+              "controlpoint2" : {
+                "x" : 154.609,
+                "y" : 152.062
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 150.943,
+                "y" : 154.484
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 150.025,
+                "y" : 158.329
+              },
+              "controlpoint2" : {
+                "x" : 150.025,
+                "y" : 156.167
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 150.025,
+                "y" : 160.321
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 152.732,
+                "y" : 162.783
+              },
+              "controlpoint2" : {
+                "x" : 150.927,
+                "y" : 161.8
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 153.894,
+                "y" : 163.441
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 160.129,
+                "y" : 165.083
+              },
+              "controlpoint2" : {
+                "x" : 156.357,
+                "y" : 164.205
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 169.9,
+                "y" : 167.383
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 174.184,
+                "y" : 168.391
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 179.524,
+                "y" : 171.423
+              },
+              "controlpoint2" : {
+                "x" : 177.386,
+                "y" : 169.74
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 182.84,
+                "y" : 174.04
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 184.499,
+                "y" : 182.787
+              },
+              "controlpoint2" : {
+                "x" : 184.499,
+                "y" : 177.828
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 184.499,
+                "y" : 187.875
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 178.598,
+                "y" : 195.459
+              },
+              "controlpoint2" : {
+                "x" : 182.532,
+                "y" : 192.094
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 174.664,
+                "y" : 198.824
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 161.943,
+                "y" : 200.499
+              },
+              "controlpoint2" : {
+                "x" : 169.112,
+                "y" : 200.499
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 154.611,
+                "y" : 200.499
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 144.654,
+                "y" : 195.532
+              },
+              "controlpoint2" : {
+                "x" : 148.848,
+                "y" : 198.841
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 142.126,
+                "y" : 193.54
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 139.354,
+                "y" : 188.208
+              },
+              "controlpoint2" : {
+                "x" : 140.362,
+                "y" : 191.102
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 138.183,
+                "y" : 184.843
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 143.906,
+                "y" : 181.876
+              },
+              "controlpoint2" : {
+                "x" : 140.842,
+                "y" : 181.876
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 146.97,
+                "y" : 181.876
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 150.141,
+                "y" : 184.884
+              },
+              "controlpoint2" : {
+                "x" : 149.596,
+                "y" : 183.266
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 150.515,
+                "y" : 185.981
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 151.58,
+                "y" : 187.583
+              },
+              "controlpoint2" : {
+                "x" : 150.994,
+                "y" : 186.884
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 153.506,
+                "y" : 189.875
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 161.489,
+                "y" : 191.021
+              },
+              "controlpoint2" : {
+                "x" : 156.807,
+                "y" : 191.021
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 164.293,
+                "y" : 191.021
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 168.309,
+                "y" : 190.111
+              },
+              "controlpoint2" : {
+                "x" : 166.561,
+                "y" : 190.72
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 171.625,
+                "y" : 188.957
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 173.284,
+                "y" : 183.657
+              },
+              "controlpoint2" : {
+                "x" : 173.284,
+                "y" : 186.803
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 173.273,
+                "y" : 181.844
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 170.842,
+                "y" : 179.414
+              },
+              "controlpoint2" : {
+                "x" : 172.46,
+                "y" : 180.422
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            }
+          ],
+          "startpoint" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "fillcolor" : {
+            "red" : 0.00392156862745098,
+            "colorcolorprofilename" : "kCGColorSpaceSRGB",
+            "blue" : 0.007843137254901961,
+            "alpha" : 1,
+            "green" : 0
+          },
+          "elementtype" : "fillpath"
+        },
+        {
+          "arrayofpathelements" : [
+            {
+              "point" : {
+                "x" : 290.739,
+                "y" : 75.246
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 296.998,
+                "y" : 75.246
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 299.485,
+                "y" : 75.246
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 302.59,
+                "y" : 74.336
+              },
+              "controlpoint2" : {
+                "x" : 301.347,
+                "y" : 74.94499999999999
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 304.785,
+                "y" : 73.279
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 305.89,
+                "y" : 68.069
+              },
+              "controlpoint2" : {
+                "x" : 305.89,
+                "y" : 71.19
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 305.89,
+                "y" : 64.696
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 302.695,
+                "y" : 61.274
+              },
+              "controlpoint2" : {
+                "x" : 304.825,
+                "y" : 62.428
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 301.5,
+                "y" : 60.616
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 297.314,
+                "y" : 60.29
+              },
+              "controlpoint2" : {
+                "x" : 299.704,
+                "y" : 60.29
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 297.314,
+                "y" : 60.29
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 290.8919999999999,
+                "y" : 60.29
+              },
+              "controlpoint2" : {
+                "x" : 294.436,
+                "y" : 60.29
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 287.3479999999999,
+                "y" : 60.29
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 284.4699999999999,
+                "y" : 66.736
+              },
+              "controlpoint2" : {
+                "x" : 284.4699999999999,
+                "y" : 63.176
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 284.4699999999999,
+                "y" : 68.8
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 284.48,
+                "y" : 72.361
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 290.739,
+                "y" : 75.246
+              },
+              "controlpoint2" : {
+                "x" : 287.284,
+                "y" : 75.246
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            }
+          ],
+          "startpoint" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "fillcolor" : {
+            "red" : 0.00392156862745098,
+            "colorcolorprofilename" : "kCGColorSpaceSRGB",
+            "blue" : 0.007843137254901961,
+            "alpha" : 1,
+            "green" : 0
+          },
+          "elementtype" : "fillpath"
+        },
+        {
+          "arrayofpathelements" : [
+            {
+              "point" : {
+                "x" : 25.008,
+                "y" : 21.955
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 25.008,
+                "y" : 452.55
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 25.008,
+                "y" : 464.678
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 46.96299999999999,
+                "y" : 474.505
+              },
+              "controlpoint2" : {
+                "x" : 34.835,
+                "y" : 474.505
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 59.09099999999999,
+                "y" : 474.505
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 68.91799999999999,
+                "y" : 452.55
+              },
+              "controlpoint2" : {
+                "x" : 68.91799999999999,
+                "y" : 464.678
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 68.91799999999999,
+                "y" : 217.732
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 68.91799999999999,
+                "y" : 31.718
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 68.91799999999999,
+                "y" : 21.956
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 68.91800000000001,
+                "y" : 9.827
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 46.963,
+                "y" : 0
+              },
+              "controlpoint2" : {
+                "x" : 59.091,
+                "y" : 0
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 34.835,
+                "y" : 0
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 25.008,
+                "y" : 21.955
+              },
+              "controlpoint2" : {
+                "x" : 25.008,
+                "y" : 9.827
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            }
+          ],
+          "startpoint" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "fillcolor" : {
+            "red" : 0.00392156862745098,
+            "colorcolorprofilename" : "kCGColorSpaceSRGB",
+            "blue" : 0.007843137254901961,
+            "alpha" : 1,
+            "green" : 0
+          },
+          "elementtype" : "fillpath"
+        },
+        {
+          "arrayofpathelements" : [
+            {
+              "point" : {
+                "x" : 449.498,
+                "y" : 452.55
+              },
+              "elementtype" : "pathmoveto"
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 449.498,
+                "y" : 21.955
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 449.498,
+                "y" : 9.827
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 427.543,
+                "y" : 0
+              },
+              "controlpoint2" : {
+                "x" : 439.671,
+                "y" : 0
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 415.415,
+                "y" : 0
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 405.588,
+                "y" : 21.955
+              },
+              "controlpoint2" : {
+                "x" : 405.588,
+                "y" : 9.827
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 405.588,
+                "y" : 31.717
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 405.588,
+                "y" : 217.74
+              }
+            },
+            {
+              "elementtype" : "pathlineto",
+              "endpoint" : {
+                "x" : 405.588,
+                "y" : 452.55
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 405.588,
+                "y" : 464.678
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 427.543,
+                "y" : 474.505
+              },
+              "controlpoint2" : {
+                "x" : 415.415,
+                "y" : 474.505
+              }
+            },
+            {
+              "controlpoint1" : {
+                "x" : 439.671,
+                "y" : 474.505
+              },
+              "elementtype" : "pathbeziercurve",
+              "endpoint" : {
+                "x" : 449.498,
+                "y" : 452.55
+              },
+              "controlpoint2" : {
+                "x" : 449.498,
+                "y" : 464.678
+              }
+            },
+            {
+              "elementtype" : "pathclosesubpath"
+            }
+          ],
+          "startpoint" : {
+            "x" : 0,
+            "y" : 0
+          },
+          "fillcolor" : {
+            "red" : 0.00392156862745098,
+            "colorcolorprofilename" : "kCGColorSpaceSRGB",
+            "blue" : 0.007843137254901961,
+            "alpha" : 1,
+            "green" : 0
+          },
+          "elementtype" : "fillpath"
+        }
+      ],
+      "elementtype" : "arrayofelements"
+    }
+  ],
+  "linewidth" : 1,
+  "fillcolor" : {
+    "red" : 0,
+    "colorcolorprofilename" : "kCGColorSpaceSRGB",
+    "blue" : 0,
+    "alpha" : 1,
+    "green" : 0
+  },
+  "elementtype" : "arrayofelements"
+}
