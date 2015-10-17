@@ -128,7 +128,7 @@ class PropertyToSellVideo
     path.add_rectangle(fillRect)
     linearGradient.arrayofpathelements = path
     linearGradient.startpoint = origin
-    linearGradient.contextalpha = 0.7
+    linearGradient.contextalpha = 0.5
     startColor = MIColor.make_rgbacolor(0.6, 0.3, 0.05)
     endColor = MIColor.make_rgbacolor(0.9, 0.45, 0.1)
     colors = [startColor, endColor]
@@ -238,7 +238,7 @@ class PropertyToSellVideo
     arrayofelements.add_drawelement_toarrayofelements(drawText)
   end
 
-  def self.draw_lowerthird(bitmap, logoidentifier: nil)
+  def self.draw_lowerthird(bitmap, logoidentifier: nil, text1: nil, text2: nil)
     drawArrayOfElementsWrapper = MIDrawElement.new(:arrayofelements)
     linearGradient = self.draw_lineargradientbackground()
     drawArrayOfElementsWrapper.add_drawelement_toarrayofelements(linearGradient)    
@@ -250,12 +250,12 @@ class PropertyToSellVideo
     rightEdge = self.draw_numberofrooms("2", arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 16
     rightEdge = self.draw_bathroomicon(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 20
     rightEdge = self.draw_garage(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 40
-    self.draw_promotext1(text: "Pleasant quiet location",
+    self.draw_promotext1(text: text1,
                           arrayofelements: drawArrayOfElements,
                                 textwidth: 240,
                                 rightedge: rightEdge,
                                     alpha: 1.0)
-    rightEdge = self.draw_promotext2(text: "Close to public transport",
+    rightEdge = self.draw_promotext2(text: text2,
                           arrayofelements: drawArrayOfElements,
                                 textwidth: 240,
                                 rightedge: rightEdge,
@@ -307,9 +307,9 @@ class PropertyToSellVideo
     frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
 
     theCommands = SmigCommands.new
-    # videoFrameBitmap = theCommands.make_createbitmapcontext(size: videoFrameSize)
-    videoFrameBitmap = theCommands.make_createwindowcontext(rect: videoWindowRect,
-      addtocleanup: false)
+    videoFrameBitmap = theCommands.make_createbitmapcontext(size: videoFrameSize)
+    # videoFrameBitmap = theCommands.make_createwindowcontext(rect: videoWindowRect,
+    #  addtocleanup: false)
     movieImporter = theCommands.make_createmovieimporter(File.join($movieDirectory, $movies[0]))
     logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, $imageFiles[2]), addtocleanup: false)
     imageIdentifier = SecureRandom.uuid
@@ -317,13 +317,29 @@ class PropertyToSellVideo
     theCommands.add_command(addImageToCollectionCommand)
     theCommands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
     theCommands.add_command(CommandModule.make_close(logoImporter))
-    theCommands.add_command(self.draw_videoframe(movieImporter, videobitmap: videoFrameBitmap))
-    theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier))
+
+    videoFramesWriter = theCommands.make_createvideoframeswriter($movieFileExportPath)
+    addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
+                                                              videoFramesWriter,
+                                                   framesize: videoFrameSize,
+                                               frameduration: frameDuration)
+    theCommands.add_command(addVideoInputCommand)
     begin
+      text1s = [ "Quiet and pleasant location" ]
+      text2s = [ "Close to public transport" ]
+      320.times do |index|
+        theCommands.add_command(self.draw_videoframe(movieImporter, videobitmap: videoFrameBitmap))
+        theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier,
+          text1: text1s[0], text2: text2s[0]))
+        addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
+            videoFramesWriter, sourceobject: videoFrameBitmap)
+        theCommands.add_command(addImageToWriterInput)
+      end
+      finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
       Smig.perform_commands(theCommands)
-      sleep 10
+      # sleep 10
     ensure
-      Smig.close_object(videoFrameBitmap)
+      # Smig.close_object(videoFrameBitmap)
     end
   end
 end
