@@ -14,26 +14,33 @@ $imagesDirectory = File.expand_path(File.join(File.dirname(__FILE__), "../images
 $svgDirectory = File.expand_path(File.join(File.dirname(__FILE__), "../json/PropertyVideo"))
 
 $movies = [
-  "IMG_0864.mov",
+  "IMG_0864.mov",     # 0, garden.
   "IMG_1189.mov",
   "IMG_1190.mov",
   "IMG_0546.mov"
 ]
 
-$imageFiles = [
-  "IMG_1191.JPG",       # 0
-  "IMG_1192.JPG",       # 1
-  "Zukini Logo-02.png"  # 2
+$images = [
+  "dsc08719.jpg",     # 0, kitchen.
+  "dsc08709.jpg",     # 1, kitchen.
+  "dsc08717.jpg",     # 2, lounge.
+  "dsc08693.jog",     # 3, bedreoom.
+  "IMG_1191.JPG",     # 4
+  "IMG_1192.JPG",     # 5
 ]
 
-$movieFileExportPath = File.expand_path("~/Desktop/PropertyVideo.mov")
+$movieFileExportFolder = File.expand_path("~/Desktop/")
 
 class PropertyToSellVideo
+  @@numFrames = 180
   @@videoWidth = 1280
   @@videoHeight = 720
   
   @@lowerThirdWidth = @@videoWidth
   @@lowerThirdHeight = 120 # Actually lower sixth.
+  @@lowerThirdSize = MIShapes.make_size(@@lowerThirdWidth, @@lowerThirdHeight)
+#  @@lowerThirdRect = 
+  
   
   @@iconHeight = @@lowerThirdHeight * 0.6
 
@@ -128,7 +135,7 @@ class PropertyToSellVideo
     path.add_rectangle(fillRect)
     linearGradient.arrayofpathelements = path
     linearGradient.startpoint = origin
-    linearGradient.contextalpha = 0.35
+    linearGradient.contextalpha = 0.45
     startColor = MIColor.make_rgbacolor(0.6, 0.3, 0.05)
     endColor = MIColor.make_rgbacolor(0.9, 0.45, 0.1)
     colors = [startColor, endColor]
@@ -293,18 +300,45 @@ class PropertyToSellVideo
     drawCommand = CommandModule.make_drawelement(bitmap, drawinstructions: drawArrayOfElementsWrapper)
     drawCommand
   end
-  
-  def self.draw_videoframe(videoImporter, videobitmap: nil)
-    nextFrameTime = MovieTime.make_movietime_nextsample
+
+  def self.draw_videoframe_attime(videoImporter, videobitmap: nil, time: nil)
     drawVideoFrameBitmap = MIDrawImageElement.new
     drawVideoFrameBitmap.set_moviefile_imagesource(source_object: videoImporter,
-                                                       frametime: nextFrameTime)
+                                                       frametime: time)
     drawVideoFrameBitmap.destinationrectangle = MIShapes.make_rectangle(width: @@videoWidth, height: @@videoHeight)
     drawVideoFrameCommand = CommandModule.make_drawelement(videobitmap, drawinstructions: drawVideoFrameBitmap)
     drawVideoFrameCommand
   end
 
-  def self.generateVideoCommands()
+  def self.draw_videoframe(videoImporter, videobitmap: nil)
+    nextFrameTime = MovieTime.make_movietime_nextsample
+    self.draw_videoframe_attime(videoImporter, videobitmap: videobitmap, time: nextFrameTime)
+  end
+
+  def self.draw_image(imageImporter, sourcerect: nil, videobitmap: nil)
+    destinationRectangle = MIShapes.make_rectangle(width: @@videoWidth, height: @@videoHeight)
+    drawImage = MIDrawImageElement.new
+    drawImage.set_imagefile_imagesource(source_object: imageImporter, imageindex: 0)
+    drawImage.destinationrectangle = destinationRectangle
+    drawImage.sourcerectangle = sourcerect
+    drawImageCommand = CommandModule.make_drawelement(videobitmap, drawinstructions: drawImage)
+    drawImageCommand
+  end
+
+  def self.draw_image_withprogress(imageImporter, progress: nil, videobitmap: nil)
+    # Source images have dimensions: 3648x2736 that's 12:9 aspect ratio.
+    # 3648 / 1280 = 2.85
+    # 2.85 * 720 = 2052
+    # progress is a value between 0 and 1.
+    sourceSize = MIShapes.make_size(3648, 2052)
+    diff = 2736 - 2052
+    y = diff * (1.0 - progress)
+    sourceOrigin = MIShapes.make_point(0, y)
+    sourceRect = MIShapes.make_rectangle(size: sourceSize, origin: sourceOrigin)
+    self.draw_image(imageImporter, sourcerect: sourceRect, videobitmap: videobitmap)
+  end
+
+  def self.generateVideoCommands1()
     lowerThirdSize = MIShapes.make_size(@@lowerThirdWidth, @@lowerThirdHeight)
     lowerThirdRect = MIShapes.make_rectangle(size: lowerThirdSize)
     videoFrameSize = MIShapes.make_size(@@videoWidth, @@videoHeight)
@@ -312,49 +346,90 @@ class PropertyToSellVideo
     frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
 
     theCommands = SmigCommands.new
+    theCommands.run_asynchronously = true
     videoFrameBitmap = theCommands.make_createbitmapcontext(size: videoFrameSize)
     # videoFrameBitmap = theCommands.make_createwindowcontext(rect: videoWindowRect,
     #  addtocleanup: false)
-    movieImporter = theCommands.make_createmovieimporter(File.join($movieDirectory, $movies[0]))
-    logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, $imageFiles[2]), addtocleanup: false)
+    logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, "Zukini Logo-02.png"), addtocleanup: false)
     imageIdentifier = SecureRandom.uuid
     addImageToCollectionCommand = CommandModule.make_assignimage_fromimporter_tocollection(logoImporter, identifier: imageIdentifier)
     theCommands.add_command(addImageToCollectionCommand)
     theCommands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
     theCommands.add_command(CommandModule.make_close(logoImporter))
-
-    videoFramesWriter = theCommands.make_createvideoframeswriter($movieFileExportPath)
+    videoFramesWriter = theCommands.make_createvideoframeswriter(File.join($movieFileExportFolder, "Video1.mov"))
     addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
                                                               videoFramesWriter,
                                                    framesize: videoFrameSize,
                                                frameduration: frameDuration)
     theCommands.add_command(addVideoInputCommand)
-    begin
-      text1s = [ "Quiet pleasant location" ]
-      text2s = [ "Close to public transport" ]
-      60.times do |index|
-        theCommands.add_command(self.draw_videoframe(movieImporter, videobitmap: videoFrameBitmap))
-        theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier,
-          text1: text1s[0], text2: text2s[0]))
-        addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
-            videoFramesWriter, sourceobject: videoFrameBitmap)
-        theCommands.add_command(addImageToWriterInput)
-      end
-      finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
-      return theCommands
-      # sleep 10
-    ensure
-      # Smig.close_object(videoFrameBitmap)
+
+    # "Quiet pleasant location", "Close to public transport"
+    
+    imageImporter = theCommands.make_createimporter(File.join($imagesDirectory, $images[0]))
+    
+    @@numFrames.times do |index|
+      progress = 1.0 * index / (@@numFrames - 1.0) * 1.0 / 1.0
+      theCommands.add_command(self.draw_image_withprogress(imageImporter, progress: progress, videobitmap: videoFrameBitmap))
+      theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier,
+        text1: "Ready to move right in", text2: "Bright practical kitchen"))
+      addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
+          videoFramesWriter, sourceobject: videoFrameBitmap)
+      theCommands.add_command(addImageToWriterInput)
     end
+
+    finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
+    theCommands.add_command(finalize)
+    theCommands
   end
+  
+  def self.generateVideoCommands2()
+    lowerThirdSize = MIShapes.make_size(@@lowerThirdWidth, @@lowerThirdHeight)
+    lowerThirdRect = MIShapes.make_rectangle(size: lowerThirdSize)
+    videoFrameSize = MIShapes.make_size(@@videoWidth, @@videoHeight)
+    videoWindowRect = MIShapes.make_rectangle(size: videoFrameSize)
+    frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
+
+    theCommands = SmigCommands.new
+    theCommands.run_asynchronously = true
+    videoFrameBitmap = theCommands.make_createbitmapcontext(size: videoFrameSize)
+    # videoFrameBitmap = theCommands.make_createwindowcontext(rect: videoWindowRect,
+    #  addtocleanup: false)
+    logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, "Zukini Logo-02.png"), addtocleanup: false)
+    imageIdentifier = SecureRandom.uuid
+    addImageToCollectionCommand = CommandModule.make_assignimage_fromimporter_tocollection(logoImporter, identifier: imageIdentifier)
+    theCommands.add_command(addImageToCollectionCommand)
+    theCommands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
+    theCommands.add_command(CommandModule.make_close(logoImporter))
+    videoFramesWriter = theCommands.make_createvideoframeswriter(File.join($movieFileExportFolder, "Video2.mov"))
+    addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
+                                                              videoFramesWriter,
+                                                   framesize: videoFrameSize,
+                                               frameduration: frameDuration)
+    theCommands.add_command(addVideoInputCommand)
+    
+    movieImporter = theCommands.make_createmovieimporter(File.join($movieDirectory, $movies[0]))
+    # draw a single frame immediately before the first frame we actually want.
+    time = MovieTime.make_movietime_fromseconds(5.1)
+    theCommands.add_command(self.draw_videoframe_attime(movieImporter, videobitmap: videoFrameBitmap, time: time))
+    @@numFrames.times do |index|
+      theCommands.add_command(self.draw_videoframe(movieImporter, videobitmap: videoFrameBitmap))
+      theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier,
+        text1: "Quiet pleasant location", text2: "Close to public transport"))
+      addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
+          videoFramesWriter, sourceobject: videoFrameBitmap)
+      theCommands.add_command(addImageToWriterInput)
+    end
+
+    finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
+    theCommands.add_command(finalize)
+    theCommands
+  end  
 end
 
-# PropertyToSellVideo.printVideoContentProperties()
-# PropertyToSellVideo.printVideoContentFrameDuration()
-# PropertyToSellVideo.printSVGViewBox()
-# theCommands = PropertyToSellVideo.generateVideoCommands()
-theCommands = PropertyToSellVideo.generateVideoCommands()
-Smig.perform_commands(theCommands)
+theCommands1 = PropertyToSellVideo.generateVideoCommands1()
+theCommands2 = PropertyToSellVideo.generateVideoCommands2()
+Smig.perform_commands(theCommands1)
+Smig.perform_commands(theCommands2)
 
 # puts JSON.pretty_generate(theCommands.commandshash)
 # Smig.perform_commands(theCommands)
