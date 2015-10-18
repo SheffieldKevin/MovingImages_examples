@@ -24,7 +24,7 @@ $images = [
   "dsc08719.jpg",     # 0, kitchen.
   "dsc08709.jpg",     # 1, kitchen.
   "dsc08717.jpg",     # 2, lounge.
-  "dsc08693.jog",     # 3, bedreoom.
+  "dsc08693.jpg",     # 3, bedreoom.
   "IMG_1191.JPG",     # 4
   "IMG_1192.JPG",     # 5
 ]
@@ -35,11 +35,11 @@ class PropertyToSellVideo
   @@numFrames = 180
   @@videoWidth = 1280
   @@videoHeight = 720
+
+  @@videoFrameSize = MIShapes.make_size(@@videoWidth, @@videoHeight)
   
   @@lowerThirdWidth = @@videoWidth
   @@lowerThirdHeight = 120 # Actually lower sixth.
-  @@lowerThirdSize = MIShapes.make_size(@@lowerThirdWidth, @@lowerThirdHeight)
-#  @@lowerThirdRect = 
   
   
   @@iconHeight = @@lowerThirdHeight * 0.6
@@ -339,17 +339,12 @@ class PropertyToSellVideo
   end
 
   def self.generateVideoCommands1()
-    lowerThirdSize = MIShapes.make_size(@@lowerThirdWidth, @@lowerThirdHeight)
-    lowerThirdRect = MIShapes.make_rectangle(size: lowerThirdSize)
-    videoFrameSize = MIShapes.make_size(@@videoWidth, @@videoHeight)
-    videoWindowRect = MIShapes.make_rectangle(size: videoFrameSize)
     frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
 
     theCommands = SmigCommands.new
     theCommands.run_asynchronously = true
-    videoFrameBitmap = theCommands.make_createbitmapcontext(size: videoFrameSize)
-    # videoFrameBitmap = theCommands.make_createwindowcontext(rect: videoWindowRect,
-    #  addtocleanup: false)
+    videoFrameBitmap = theCommands.make_createbitmapcontext(size: @@videoFrameSize)
+
     logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, "Zukini Logo-02.png"), addtocleanup: false)
     imageIdentifier = SecureRandom.uuid
     addImageToCollectionCommand = CommandModule.make_assignimage_fromimporter_tocollection(logoImporter, identifier: imageIdentifier)
@@ -359,11 +354,9 @@ class PropertyToSellVideo
     videoFramesWriter = theCommands.make_createvideoframeswriter(File.join($movieFileExportFolder, "Video1.mov"))
     addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
                                                               videoFramesWriter,
-                                                   framesize: videoFrameSize,
+                                                   framesize: @@videoFrameSize,
                                                frameduration: frameDuration)
     theCommands.add_command(addVideoInputCommand)
-
-    # "Quiet pleasant location", "Close to public transport"
     
     imageImporter = theCommands.make_createimporter(File.join($imagesDirectory, $images[0]))
     
@@ -381,19 +374,14 @@ class PropertyToSellVideo
     theCommands.add_command(finalize)
     theCommands
   end
-  
+
   def self.generateVideoCommands2()
-    lowerThirdSize = MIShapes.make_size(@@lowerThirdWidth, @@lowerThirdHeight)
-    lowerThirdRect = MIShapes.make_rectangle(size: lowerThirdSize)
-    videoFrameSize = MIShapes.make_size(@@videoWidth, @@videoHeight)
-    videoWindowRect = MIShapes.make_rectangle(size: videoFrameSize)
     frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
 
     theCommands = SmigCommands.new
     theCommands.run_asynchronously = true
-    videoFrameBitmap = theCommands.make_createbitmapcontext(size: videoFrameSize)
-    # videoFrameBitmap = theCommands.make_createwindowcontext(rect: videoWindowRect,
-    #  addtocleanup: false)
+    videoFrameBitmap = theCommands.make_createbitmapcontext(size: @@videoFrameSize)
+
     logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, "Zukini Logo-02.png"), addtocleanup: false)
     imageIdentifier = SecureRandom.uuid
     addImageToCollectionCommand = CommandModule.make_assignimage_fromimporter_tocollection(logoImporter, identifier: imageIdentifier)
@@ -403,16 +391,15 @@ class PropertyToSellVideo
     videoFramesWriter = theCommands.make_createvideoframeswriter(File.join($movieFileExportFolder, "Video2.mov"))
     addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
                                                               videoFramesWriter,
-                                                   framesize: videoFrameSize,
+                                                   framesize: @@videoFrameSize,
                                                frameduration: frameDuration)
     theCommands.add_command(addVideoInputCommand)
     
-    movieImporter = theCommands.make_createmovieimporter(File.join($movieDirectory, $movies[0]))
-    # draw a single frame immediately before the first frame we actually want.
-    time = MovieTime.make_movietime_fromseconds(5.1)
-    theCommands.add_command(self.draw_videoframe_attime(movieImporter, videobitmap: videoFrameBitmap, time: time))
+    imageImporter = theCommands.make_createimporter(File.join($imagesDirectory, $images[1]))
+    
     @@numFrames.times do |index|
-      theCommands.add_command(self.draw_videoframe(movieImporter, videobitmap: videoFrameBitmap))
+      progress = 1.0 * index / (@@numFrames - 1.0) * 1.0 / 1.0
+      theCommands.add_command(self.draw_image_withprogress(imageImporter, progress: progress, videobitmap: videoFrameBitmap))
       theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier,
         text1: "Quiet pleasant location", text2: "Close to public transport"))
       addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
@@ -423,13 +410,131 @@ class PropertyToSellVideo
     finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
     theCommands.add_command(finalize)
     theCommands
-  end  
+  end
+
+  def self.generateVideoCommands4()
+    frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
+
+    theCommands = SmigCommands.new
+    theCommands.run_asynchronously = true
+    videoFrameBitmap = theCommands.make_createbitmapcontext(size: @@videoFrameSize)
+
+    logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, "Zukini Logo-02.png"), addtocleanup: false)
+    imageIdentifier = SecureRandom.uuid
+    addImageToCollectionCommand = CommandModule.make_assignimage_fromimporter_tocollection(logoImporter, identifier: imageIdentifier)
+    theCommands.add_command(addImageToCollectionCommand)
+    theCommands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
+    theCommands.add_command(CommandModule.make_close(logoImporter))
+    videoFramesWriter = theCommands.make_createvideoframeswriter(File.join($movieFileExportFolder, "Video4.mov"))
+    addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
+                                                              videoFramesWriter,
+                                                   framesize: @@videoFrameSize,
+                                               frameduration: frameDuration)
+    theCommands.add_command(addVideoInputCommand)
+    
+    imageImporter = theCommands.make_createimporter(File.join($imagesDirectory, $images[3]))
+    
+    @@numFrames.times do |index|
+      progress = 1.0 * index / (@@numFrames - 1.0) * 1.0 / 1.0
+      theCommands.add_command(self.draw_image_withprogress(imageImporter, progress: progress, videobitmap: videoFrameBitmap))
+      theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier,
+        text1: "Close to good schools", text2: ""))
+      addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
+          videoFramesWriter, sourceobject: videoFrameBitmap)
+      theCommands.add_command(addImageToWriterInput)
+    end
+
+    finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
+    theCommands.add_command(finalize)
+    theCommands
+  end
+
+  def self.generateVideoCommands5()
+    frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
+
+    theCommands = SmigCommands.new
+    theCommands.run_asynchronously = false
+    videoFrameBitmap = theCommands.make_createbitmapcontext(size: @@videoFrameSize)
+
+    logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, "Zukini Logo-02.png"), addtocleanup: false)
+    imageIdentifier = SecureRandom.uuid
+    addImageToCollectionCommand = CommandModule.make_assignimage_fromimporter_tocollection(logoImporter, identifier: imageIdentifier)
+    theCommands.add_command(addImageToCollectionCommand)
+    theCommands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
+    theCommands.add_command(CommandModule.make_close(logoImporter))
+    videoFramesWriter = theCommands.make_createvideoframeswriter(File.join($movieFileExportFolder, "Video5.mov"))
+    addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
+                                                              videoFramesWriter,
+                                                   framesize: @@videoFrameSize,
+                                               frameduration: frameDuration)
+    theCommands.add_command(addVideoInputCommand)
+    
+    imageImporter = theCommands.make_createimporter(File.join($imagesDirectory, $images[2]))
+    
+    @@numFrames.times do |index|
+      progress = 1.0 * index / (@@numFrames - 1.0) * 1.0 / 1.0
+      theCommands.add_command(self.draw_image_withprogress(imageImporter, progress: progress, videobitmap: videoFrameBitmap))
+      theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier,
+        text1: "Well insulated property", text2: "and cheap to keep warm"))
+      addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
+          videoFramesWriter, sourceobject: videoFrameBitmap)
+      theCommands.add_command(addImageToWriterInput)
+    end
+
+    finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
+    theCommands.add_command(finalize)
+    theCommands
+  end
+  
+  # This takes as input a movie unlike the others which take images.
+  def self.generateVideoCommands3()
+    frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
+
+    theCommands = SmigCommands.new
+    theCommands.run_asynchronously = true
+    videoFrameBitmap = theCommands.make_createbitmapcontext(size: @@videoFrameSize)
+    logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, "Zukini Logo-02.png"), addtocleanup: false)
+    imageIdentifier = SecureRandom.uuid
+    addImageToCollectionCommand = CommandModule.make_assignimage_fromimporter_tocollection(logoImporter, identifier: imageIdentifier)
+    theCommands.add_command(addImageToCollectionCommand)
+    theCommands.add_tocleanupcommands_removeimagefromcollection(imageIdentifier)
+    theCommands.add_command(CommandModule.make_close(logoImporter))
+    videoFramesWriter = theCommands.make_createvideoframeswriter(File.join($movieFileExportFolder, "Video3.mov"))
+    addVideoInputCommand = CommandModule.make_addinputto_videowritercommand(
+                                                              videoFramesWriter,
+                                                   framesize: @@videoFrameSize,
+                                               frameduration: frameDuration)
+    theCommands.add_command(addVideoInputCommand)
+    
+    movieImporter = theCommands.make_createmovieimporter(File.join($movieDirectory, $movies[0]))
+    # draw a single frame immediately before the first frame we actually want.
+    time = MovieTime.make_movietime_fromseconds(5.1)
+    theCommands.add_command(self.draw_videoframe_attime(movieImporter, videobitmap: videoFrameBitmap, time: time))
+    @@numFrames.times do |index|
+      theCommands.add_command(self.draw_videoframe(movieImporter, videobitmap: videoFrameBitmap))
+      theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier,
+        text1: "Lovely well kept garden", text2: "visible from conservatory"))
+      addImageToWriterInput = CommandModule.make_addimageto_videoinputwriter(
+          videoFramesWriter, sourceobject: videoFrameBitmap)
+      theCommands.add_command(addImageToWriterInput)
+    end
+
+    finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
+    theCommands.add_command(finalize)
+    theCommands
+  end
 end
 
 theCommands1 = PropertyToSellVideo.generateVideoCommands1()
-theCommands2 = PropertyToSellVideo.generateVideoCommands2()
 Smig.perform_commands(theCommands1)
+theCommands2 = PropertyToSellVideo.generateVideoCommands2()
 Smig.perform_commands(theCommands2)
+theCommands3 = PropertyToSellVideo.generateVideoCommands3()
+Smig.perform_commands(theCommands3)
+theCommands4 = PropertyToSellVideo.generateVideoCommands4()
+Smig.perform_commands(theCommands4)
+theCommands5 = PropertyToSellVideo.generateVideoCommands5()
+Smig.perform_commands(theCommands5)
 
 # puts JSON.pretty_generate(theCommands.commandshash)
 # Smig.perform_commands(theCommands)
