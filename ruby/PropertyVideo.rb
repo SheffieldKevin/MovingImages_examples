@@ -14,7 +14,7 @@ $imagesDirectory = File.expand_path(File.join(File.dirname(__FILE__), "../images
 $svgDirectory = File.expand_path(File.join(File.dirname(__FILE__), "../json/PropertyVideo"))
 
 $movies = [
-  "IMG_1187.mov",
+  "IMG_0864.mov",
   "IMG_1189.mov",
   "IMG_1190.mov",
   "IMG_0546.mov"
@@ -33,9 +33,9 @@ class PropertyToSellVideo
   @@videoHeight = 720
   
   @@lowerThirdWidth = @@videoWidth
-  @@lowerThirdHeight = 144 # Actually lower fifth.
+  @@lowerThirdHeight = 120 # Actually lower sixth.
   
-  @@iconHeight = @@lowerThirdHeight * 0.5
+  @@iconHeight = @@lowerThirdHeight * 0.6
 
   @@propertySVG = [
     "bed.json",             # 0 Bed - Colour (# rooms)
@@ -128,7 +128,7 @@ class PropertyToSellVideo
     path.add_rectangle(fillRect)
     linearGradient.arrayofpathelements = path
     linearGradient.startpoint = origin
-    linearGradient.contextalpha = 0.5
+    linearGradient.contextalpha = 0.35
     startColor = MIColor.make_rgbacolor(0.6, 0.3, 0.05)
     endColor = MIColor.make_rgbacolor(0.9, 0.45, 0.1)
     colors = [startColor, endColor]
@@ -145,6 +145,7 @@ class PropertyToSellVideo
     bottom = 720 - (height + offset)
     destRect = MIShapes.make_rectangle(xloc: offset, yloc: bottom, width: width, height: height)
     drawImageElement = MIDrawImageElement.new
+    drawImageElement.contextalpha = 0.7
     drawImageElement.set_imagecollection_imagesource(identifier: logoidentifier)
     drawImageElement.destinationrectangle = destRect
     arrayofelements.add_drawelement_toarrayofelements(drawImageElement)
@@ -233,9 +234,13 @@ class PropertyToSellVideo
 
   def self.draw_companyagent_details(arrayofelements: nil)
     textPoint = MIShapes.make_point(8, 8)
-    text = "Advertized and promoted by The Real Estage Agency. If you are interested in this property please call Dave on 079 999999 or e-mail dave@therealestateagency.com"
+    text = "Advertized and promoted by The Real Estage Agency."
     drawText = self.draw_text_atpoint(text: text, point: textPoint, fontsize: 14, font: "Tahoma")
     arrayofelements.add_drawelement_toarrayofelements(drawText)
+    contactText = "David Smith mobile: 079 999999, email: davids@therealestateagency.com"
+    textPoint2 = MIShapes.make_point(810, 8)
+    drawText2 = self.draw_text_atpoint(text: contactText, point: textPoint2, fontsize: 14, font: "Tahoma")
+    arrayofelements.add_drawelement_toarrayofelements(drawText2)
   end
 
   def self.draw_lowerthird(bitmap, logoidentifier: nil, text1: nil, text2: nil)
@@ -247,9 +252,9 @@ class PropertyToSellVideo
     rightEdge = self.draw_bed(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 40
     rightEdge = self.draw_houseprice(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 16
     rightEdge = self.draw_housepriceicon(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 20
-    rightEdge = self.draw_numberofrooms("2", arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 16
-    rightEdge = self.draw_bathroomicon(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 20
-    rightEdge = self.draw_garage(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 40
+    rightEdge = self.draw_numberofrooms("2", arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 12
+    rightEdge = self.draw_bathroomicon(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 36
+    rightEdge = self.draw_garage(arrayofelements: drawArrayOfElements, rightedge: rightEdge) + 50
     self.draw_promotext1(text: text1,
                           arrayofelements: drawArrayOfElements,
                                 textwidth: 240,
@@ -279,7 +284,7 @@ class PropertyToSellVideo
     drawArrayOfElements.shadow = shadow
     
     transformations = MITransformations.make_contexttransformation
-    translatePoint = MIShapes.make_point(0, 18)
+    translatePoint = MIShapes.make_point(0, 4)
     MITransformations.add_translatetransform(transformations, translatePoint)
     drawArrayOfElements.contexttransformations = transformations
     drawArrayOfElementsWrapper.add_drawelement_toarrayofelements(drawArrayOfElements)
@@ -325,9 +330,9 @@ class PropertyToSellVideo
                                                frameduration: frameDuration)
     theCommands.add_command(addVideoInputCommand)
     begin
-      text1s = [ "Quiet and pleasant location" ]
+      text1s = [ "Quiet pleasant location" ]
       text2s = [ "Close to public transport" ]
-      320.times do |index|
+      60.times do |index|
         theCommands.add_command(self.draw_videoframe(movieImporter, videobitmap: videoFrameBitmap))
         theCommands.add_command(self.draw_lowerthird(videoFrameBitmap, logoidentifier: imageIdentifier,
           text1: text1s[0], text2: text2s[0]))
@@ -336,7 +341,7 @@ class PropertyToSellVideo
         theCommands.add_command(addImageToWriterInput)
       end
       finalize = CommandModule.make_finishwritingframescommand(videoFramesWriter)
-      Smig.perform_commands(theCommands)
+      return theCommands
       # sleep 10
     ensure
       # Smig.close_object(videoFrameBitmap)
@@ -348,7 +353,8 @@ end
 # PropertyToSellVideo.printVideoContentFrameDuration()
 # PropertyToSellVideo.printSVGViewBox()
 # theCommands = PropertyToSellVideo.generateVideoCommands()
-PropertyToSellVideo.generateVideoCommands()
+theCommands = PropertyToSellVideo.generateVideoCommands()
+Smig.perform_commands(theCommands)
 
 # puts JSON.pretty_generate(theCommands.commandshash)
 # Smig.perform_commands(theCommands)
