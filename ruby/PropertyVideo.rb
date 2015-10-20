@@ -491,7 +491,7 @@ class PropertyToSellVideo
     frameDuration = MIMovie::MovieTime.make_movietime(timevalue: 1, timescale: 30)
 
     theCommands = SmigCommands.new
-    theCommands.run_asynchronously = true
+    theCommands.run_asynchronously = false
     videoFrameBitmap = theCommands.make_createbitmapcontext(size: @@videoFrameSize)
     logoImporter = theCommands.make_createimporter(File.join($imagesDirectory, "Zukini Logo-02.png"), addtocleanup: false)
     imageIdentifier = SecureRandom.uuid
@@ -523,6 +523,223 @@ class PropertyToSellVideo
     theCommands.add_command(finalize)
     theCommands
   end
+  
+  def self.createComposeSubMoviesCommands()
+    theCommands = SmigCommands.new
+    
+    movieEditorObject = theCommands.make_createmovieeditor(addtocleanup: false)
+    addVideoTrackCommand = CommandModule.make_createtrackcommand(
+                                                movieEditorObject,
+                                     mediatype: :vide)
+    theCommands.add_command(addVideoTrackCommand)
+    theCommands.add_command(addVideoTrackCommand)
+    
+    videoTrack0 = MovieTrackIdentifier.make_movietrackid_from_mediatype(
+      mediatype: :vide, trackindex: 0)
+    videoTrack1 = MovieTrackIdentifier.make_movietrackid_from_mediatype(
+      mediatype: :vide, trackindex: 1)
+
+    sourceMovie1 = File.join($movieFileExportFolder, "Video1.mov")
+    movieImporter1 = theCommands.make_createmovieimporter(sourceMovie1)
+    sourceMovie2 = File.join($movieFileExportFolder, "Video2.mov")
+    movieImporter2 = theCommands.make_createmovieimporter(sourceMovie2)
+    sourceMovie3 = File.join($movieFileExportFolder, "Video3.mov")
+    movieImporter3 = theCommands.make_createmovieimporter(sourceMovie3)
+    sourceMovie4 = File.join($movieFileExportFolder, "Video4.mov")
+    movieImporter4 = theCommands.make_createmovieimporter(sourceMovie4)
+    sourceMovie5 = File.join($movieFileExportFolder, "Video5.mov")
+    movieImporter5 = theCommands.make_createmovieimporter(sourceMovie5)
+
+    timeZero = MovieTime.make_movietime(timevalue: 0, timescale: 6000)
+    sourceDuration = MovieTime.make_movietime(timevalue: 36000, timescale: 6000)
+    sourceTimeRange = MovieTime.make_movie_timerange(start: timeZero,
+                                                  duration: sourceDuration)
+    insertionTime1 = MovieTime.make_movietime(timevalue: 0, timescale: 6000)
+    insertTrackSegmentCommand1 = CommandModule.make_inserttracksegment(
+                                movieEditorObject, 
+                         track: videoTrack0,
+                 source_object: movieImporter1,
+                  source_track: videoTrack0,
+                 insertiontime: timeZero, 
+              source_timerange: sourceTimeRange)
+    theCommands.add_command(insertTrackSegmentCommand1)
+
+    insertionTime2 = MovieTime.make_movietime(timevalue: 30000, timescale: 6000)
+    insertTrackSegmentCommand2 = CommandModule.make_inserttracksegment(
+                                movieEditorObject, 
+                         track: videoTrack1,
+                 source_object: movieImporter2,
+                  source_track: videoTrack0,
+                 insertiontime: insertionTime2,
+              source_timerange: sourceTimeRange)
+    theCommands.add_command(insertTrackSegmentCommand2)
+
+    insertionTime3 = MovieTime.make_movietime(timevalue: 60000, timescale: 6000)
+    insertTrackSegmentCommand3 = CommandModule.make_inserttracksegment(
+                                movieEditorObject, 
+                         track: videoTrack0,
+                 source_object: movieImporter3,
+                  source_track: videoTrack0,
+                 insertiontime: insertionTime3,
+              source_timerange: sourceTimeRange)
+    theCommands.add_command(insertTrackSegmentCommand3)
+
+    insertionTime4 = MovieTime.make_movietime(timevalue: 90000, timescale: 6000)
+    insertTrackSegmentCommand4 = CommandModule.make_inserttracksegment(
+                                movieEditorObject, 
+                         track: videoTrack1,
+                 source_object: movieImporter4,
+                  source_track: videoTrack0,
+                 insertiontime: insertionTime4,
+              source_timerange: sourceTimeRange)
+    theCommands.add_command(insertTrackSegmentCommand4)
+
+    insertionTime5 = MovieTime.make_movietime(timevalue: 120000, timescale: 6000)
+    insertTrackSegmentCommand5 = CommandModule.make_inserttracksegment(
+                                movieEditorObject, 
+                         track: videoTrack0,
+                 source_object: movieImporter5,
+                  source_track: videoTrack0,
+                 insertiontime: insertionTime5,
+              source_timerange: sourceTimeRange)
+    theCommands.add_command(insertTrackSegmentCommand5)
+    
+    fourSeconds = MovieTime.make_movietime(timevalue: 24000, timescale: 6000)
+    oneSecond = MovieTime.make_movietime(timevalue: 6000, timescale: 6000)
+    fiveSeconds = MovieTime.make_movietime(timevalue: 30000, timescale: 6000)
+
+    li1 = VideoLayerInstructions.new
+    li1.add_passthrulayerinstruction(track: videoTrack0)
+    videoI1TimeRange = MovieTime.make_movie_timerange(start: timeZero,
+                                                   duration: fiveSeconds)
+    videoI1Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: videoI1TimeRange,
+                                         layerinstructions: li1)
+    theCommands.add_command(videoI1Command)
+
+    li2 = VideoLayerInstructions.new
+    startCropRect = MIShapes.make_rectangle(size: MIShapes.make_size(@@videoWidth, @@videoHeight))
+    endCropRect = MIShapes.make_rectangle(size: MIShapes.make_size(4, @@videoHeight))
+    li2.add_croprectramplayerinstruction(track: videoTrack0,
+                            startcroprectvalue: startCropRect,
+                              endcroprectvalue: endCropRect)
+    li2.add_passthrulayerinstruction(track: videoTrack1)
+    videoI2TimeRange = MovieTime.make_movie_timerange(start: fiveSeconds,
+                                                   duration: oneSecond)
+    videoI2Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: videoI2TimeRange,
+                                         layerinstructions: li2)
+    theCommands.add_command(videoI2Command)
+
+    li3 = VideoLayerInstructions.new
+    sixSeconds = MovieTime.make_movietime(timevalue: 36000, timescale: 6000)
+    li3.add_passthrulayerinstruction(track: videoTrack1)
+    videoI3TimeRange = MovieTime.make_movie_timerange(start: sixSeconds,
+                                                   duration: fourSeconds)
+    videoI3Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: videoI3TimeRange,
+                                         layerinstructions: li3)
+    theCommands.add_command(videoI3Command)
+
+    li4 = VideoLayerInstructions.new
+    tenSeconds = MovieTime.make_movietime(timevalue: 60000, timescale: 6000)
+    li4.add_opacityramplayerinstruction(track: videoTrack1)
+    li4.add_passthrulayerinstruction(track: videoTrack0)
+    videoI4TimeRange = MovieTime.make_movie_timerange(start: tenSeconds,
+                                                   duration: oneSecond)
+    videoI4Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: videoI4TimeRange,
+                                         layerinstructions: li4)
+    theCommands.add_command(videoI4Command)
+
+    li5 = VideoLayerInstructions.new
+    elevenSeconds = MovieTime.make_movietime(timevalue: 66000, timescale: 6000)
+    li5.add_passthrulayerinstruction(track: videoTrack0)
+    videoI5TimeRange = MovieTime.make_movie_timerange(start: elevenSeconds,
+                                                   duration: fourSeconds)
+    videoI5Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: videoI5TimeRange,
+                                         layerinstructions: li5)
+    theCommands.add_command(videoI5Command)
+
+    li6 = VideoLayerInstructions.new
+    fifteenSeconds = MovieTime.make_movietime(timevalue: 90000, timescale: 6000)
+    li6.add_opacityramplayerinstruction(track: videoTrack0)
+    li6.add_passthrulayerinstruction(track: videoTrack1)
+    videoI6TimeRange = MovieTime.make_movie_timerange(start: fifteenSeconds,
+                                                   duration: oneSecond)
+    videoI6Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: videoI6TimeRange,
+                                         layerinstructions: li6)
+    theCommands.add_command(videoI6Command)
+
+    li7 = VideoLayerInstructions.new
+    sixteenSeconds = MovieTime.make_movietime(timevalue: 96000, timescale: 6000)
+    li7.add_passthrulayerinstruction(track: videoTrack1)
+    videoI7TimeRange = MovieTime.make_movie_timerange(start: sixteenSeconds,
+                                                   duration: fourSeconds)
+    videoI7Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: videoI7TimeRange,
+                                         layerinstructions: li7)
+    theCommands.add_command(videoI7Command)
+
+    li8 = VideoLayerInstructions.new
+    twentySeconds = MovieTime.make_movietime(timevalue: 120000, timescale: 6000)
+    li8.add_croprectramplayerinstruction(track: videoTrack1,
+                            startcroprectvalue: startCropRect,
+                              endcroprectvalue: endCropRect)
+    li8.add_passthrulayerinstruction(track: videoTrack0)
+    videoI8TimeRange = MovieTime.make_movie_timerange(start: twentySeconds,
+                                                   duration: oneSecond)
+    videoI8Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: videoI8TimeRange,
+                                         layerinstructions: li8)
+    theCommands.add_command(videoI8Command)
+
+    li9 = VideoLayerInstructions.new
+    twentyOneSeconds = MovieTime.make_movietime(timevalue: 126000, timescale: 6000)
+    li9.add_passthrulayerinstruction(track: videoTrack0)
+    videoI9TimeRange = MovieTime.make_movie_timerange(start: twentyOneSeconds,
+                                                   duration: fiveSeconds)
+    videoI9Command = CommandModule.make_addvideoinstruction(movieEditorObject,
+                                                 timerange: videoI9TimeRange,
+                                         layerinstructions: li9)
+    theCommands.add_command(videoI9Command)
+
+=begin
+    imageIdentifier = SecureRandom.uuid
+    addCompositionToImageCollection = CommandModule.make_assignimage_tocollection(
+                                                movieEditorObject,
+                                    identifier: imageIdentifier)
+    theCommands.add_command(addCompositionToImageCollection)
+    theCommands.add_tocleanupcommands_removeimagefromcollection(
+                                                imageIdentifier)
+
+    compMapFileName = "PropertyVideoCompositionMap.jpg"
+
+    exportPath = File.join($movieFileExportFolder, compMapFileName)
+    exporterObject = theCommands.make_createexporter(exportPath,
+                                        export_type: "public.jpeg",
+                                       addtocleanup: false)
+    addImageToExporterCommand = CommandModule.make_addimage_fromimagecollection(
+                                    exporterObject,
+                   imageidentifier: imageIdentifier)
+    theCommands.add_command(addImageToExporterCommand)
+    exportCommand = CommandModule.make_export(exporterObject)
+    theCommands.add_command(exportCommand)
+=end
+    movieFileName = "PropertyVideo.mp4"
+    movieExportPath = File.join($movieFileExportFolder, movieFileName)
+    # movieExportPath = File.join(File.expand_path("~/Desktop"), movieFileName)
+    fileType = "public.mpeg-4"
+    exportMovieCommand = CommandModule.make_movieeditor_export(
+                                              movieEditorObject,
+                                exportpreset: :AVAssetExportPreset1280x720,
+                              exportfilepath: movieExportPath,
+                              exportfiletype: fileType)
+    theCommands.add_command(exportMovieCommand)
+    theCommands
+  end
 end
 
 theCommands1 = PropertyToSellVideo.generateVideoCommands1()
@@ -535,6 +752,9 @@ theCommands4 = PropertyToSellVideo.generateVideoCommands4()
 Smig.perform_commands(theCommands4)
 theCommands5 = PropertyToSellVideo.generateVideoCommands5()
 Smig.perform_commands(theCommands5)
+
+finalCommands = PropertyToSellVideo.createComposeSubMoviesCommands()
+Smig.perform_commands(finalCommands)
 
 # puts JSON.pretty_generate(theCommands.commandshash)
 # Smig.perform_commands(theCommands)
