@@ -2,10 +2,9 @@
 require 'moving_images'
 
 include MovingImages
-include MIMovie
+include CommandModule
 
 module GettingStarted
-  # Returns the window object we can access later.
   def self.create_window()
     windowName = SecureRandom.uuid
     window = SmigIDHash.make_objectid(objectname: windowName,
@@ -19,10 +18,10 @@ module GettingStarted
   def self.run()
     theWindow = self.create_window()
     sleep 2
-    Smig.close_object_nothrow(theWindow)
+    closeCommand = CommandModule.make_close(theWindow)
+    Smig.perform_command(closeCommand)
+    puts JSON.pretty_generate(closeCommand.commandhash)
   end
-
-  
 end
 
 GettingStarted.run

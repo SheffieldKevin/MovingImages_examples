@@ -24,9 +24,9 @@ module GettingStarted
     commands = SmigCommands.new
     movieImporter = commands.make_createmovieimporter(movieFile)
     getPropertiesCommand = self.make_getvideotrackproperties_command(movieImporter)
-    puts JSON.pretty_generate(getPropertiesCommand.commandhash)
-    puts "========================================================"
     commands.add_command(getPropertiesCommand)
+    puts JSON.pretty_generate(commands.commandshash)
+    puts "========================================================"
     jsonText = Smig.perform_commands(commands)
     jsonHash = JSON.parse(jsonText)
     puts JSON.pretty_generate(jsonHash)
